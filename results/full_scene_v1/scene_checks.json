@@ -1,0 +1,14 @@
+{
+  "valid_pixels": 1168512,
+  "predicted_plume_pixels_before_water_mask": 658549,
+  "test_sample_max_band_difference": 3.719329830231821e-09,
+  "test_samples_checked": 13850,
+  "plume_predictions_by_SCL": {
+    "2": 68237,
+    "4": 239568,
+    "5": 85389,
+    "6": 245775,
+    "7": 19580
+  },
+  "warning": "No water mask applied. No plume area estimated. SCL classes are not reference truth."
+}

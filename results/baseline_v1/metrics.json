@@ -1,0 +1,162 @@
+{
+  "model": "RandomForestClassifier",
+  "parameters": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "class_weight": "balanced",
+    "criterion": "gini",
+    "max_depth": null,
+    "max_features": "sqrt",
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 5,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 300,
+    "n_jobs": -1,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "bands": [
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "B8A",
+    "B11",
+    "B12"
+  ],
+  "sklearn_version": "1.8.0",
+  "validation": {
+    "train": {
+      "rows": 4000,
+      "polygons": 2,
+      "class_counts": {
+        "0": 2000,
+        "1": 2000
+      },
+      "maximum_distance_outside_polygon_m": 0.1815207021591006,
+      "overlap_pairs": []
+    },
+    "test": {
+      "rows": 13850,
+      "polygons": 7,
+      "class_counts": {
+        "1": 9913,
+        "0": 3937
+      },
+      "maximum_distance_outside_polygon_m": 0.07083905630039974,
+      "overlap_pairs": []
+    }
+  },
+  "accuracy": 0.7828158844765343,
+  "balanced_accuracy": 0.8482800363159487,
+  "roc_auc": 1.0,
+  "confusion_matrix_rows_true_columns_predicted_background_plume": [
+    [
+      3937,
+      0
+    ],
+    [
+      3008,
+      6905
+    ]
+  ],
+  "classification_report": {
+    "background": {
+      "precision": 0.566882649388049,
+      "recall": 1.0,
+      "f1-score": 0.7235802242234883,
+      "support": 3937.0
+    },
+    "plume": {
+      "precision": 1.0,
+      "recall": 0.6965600726318975,
+      "f1-score": 0.8211440123677013,
+      "support": 9913.0
+    },
+    "accuracy": 0.7828158844765343,
+    "macro avg": {
+      "precision": 0.7834413246940245,
+      "recall": 0.8482800363159487,
+      "f1-score": 0.7723621182955949,
+      "support": 13850.0
+    },
+    "weighted avg": {
+      "precision": 0.8768820931870577,
+      "recall": 0.7828158844765343,
+      "f1-score": 0.7934105369941441,
+      "support": 13850.0
+    }
+  },
+  "per_polygon": [
+    {
+      "polygon_id": "hutt_20210723_backgroundTest_1",
+      "class_id": 0,
+      "samples": 2000,
+      "accuracy": 1.0,
+      "predicted_plume_fraction": 0.0
+    },
+    {
+      "polygon_id": "hutt_20210723_backgroundTest_2",
+      "class_id": 0,
+      "samples": 1937,
+      "accuracy": 1.0,
+      "predicted_plume_fraction": 0.0
+    },
+    {
+      "polygon_id": "hutt_20210723_plumeTest_1",
+      "class_id": 1,
+      "samples": 2000,
+      "accuracy": 0.3305,
+      "predicted_plume_fraction": 0.3305
+    },
+    {
+      "polygon_id": "hutt_20210723_plumeTest_2",
+      "class_id": 1,
+      "samples": 1986,
+      "accuracy": 1.0,
+      "predicted_plume_fraction": 1.0
+    },
+    {
+      "polygon_id": "hutt_20210723_plumeTest_3",
+      "class_id": 1,
+      "samples": 1936,
+      "accuracy": 0.7866735537190083,
+      "predicted_plume_fraction": 0.7866735537190083
+    },
+    {
+      "polygon_id": "hutt_20210723_plumeTest_4",
+      "class_id": 1,
+      "samples": 1991,
+      "accuracy": 0.9789050728277248,
+      "predicted_plume_fraction": 0.9789050728277248
+    },
+    {
+      "polygon_id": "hutt_20210723_plumeTest_5",
+      "class_id": 1,
+      "samples": 2000,
+      "accuracy": 0.393,
+      "predicted_plume_fraction": 0.393
+    }
+  ],
+  "inputs_sha256": {
+    "drive-download-20260913T095318Z-1-001/hutt_20200713_v1_b1_p1_samples.csv": "50c308ceab2ada4232055a71431a8a117953d537d424742137e156ed81a9a5de",
+    "drive-download-20260913T095318Z-1-001/hutt_20200713_v1_b1_p2_samples.csv": "010869a8c5b0909788f8ff508ec421ffbf32bf03b57f572ad7a9f8feb511fc27",
+    "hutt-test/hutt_20210723_test-v2_all_samples.csv": "a694d5272a4a0f2c4e16b73a76bd4c911224d66ec01e89462f1e927ea708cfe9"
+  },
+  "limitations": [
+    "One training polygon per class; one test acquisition in the same harbour.",
+    "Labels are visual interpretations, not measured sediment truth.",
+    "Neighbouring samples are correlated; pixel counts are not independent observations.",
+    "No whole-image classification or plume-area accuracy was evaluated.",
+    "Test results must not be used for tuning while still calling this an untouched test."
+  ]
+}
