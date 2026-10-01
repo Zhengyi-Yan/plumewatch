@@ -1,0 +1,345 @@
+[
+  {
+    "png": "data/raw/cvat/cvat_rgb/P1/P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+    "cohort": "original",
+    "site": "Hutt / Wellington Harbour",
+    "event": "Hutt 2019-08-13",
+    "group": "group_01"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P1/P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+    "cohort": "original",
+    "site": "Hutt / Wellington Harbour",
+    "event": "Hutt 2020-07-13",
+    "group": "group_01"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P1/P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+    "cohort": "original",
+    "site": "Hutt / Wellington Harbour",
+    "event": "Hutt 2021-07-23",
+    "group": "group_01"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P1/P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+    "cohort": "original",
+    "site": "Whanganui mouth",
+    "event": "West coast Oct 2019",
+    "group": "group_02"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P1/P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+    "cohort": "original",
+    "site": "Rangit\u012bkei mouth",
+    "event": "West coast Oct 2019",
+    "group": "group_02"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P1/P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+    "cohort": "original",
+    "site": "Manawat\u016b mouth",
+    "event": "West coast Oct 2019",
+    "group": "group_02"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P2/P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waiau Uwha mouth",
+    "event": "Canterbury flood 2021",
+    "group": "group_03"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P2/P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waiau Uwha mouth",
+    "event": "Canterbury comparison Apr 2021",
+    "group": "group_03"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P2/P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+    "cohort": "original",
+    "site": "Hurunui mouth",
+    "event": "Canterbury flood 2021",
+    "group": "group_03"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P2/P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+    "cohort": "original",
+    "site": "Hurunui mouth",
+    "event": "Canterbury comparison Apr 2021",
+    "group": "group_03"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P2/P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waimakariri / Pegasus Bay",
+    "event": "Canterbury flood 2021",
+    "group": "group_03"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P2/P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waimakariri / Pegasus Bay",
+    "event": "Canterbury flood 2021",
+    "group": "group_03"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P2/P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waimakariri / Pegasus Bay",
+    "event": "Canterbury comparison Apr 2021",
+    "group": "group_03"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P3/P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+    "cohort": "original",
+    "site": "Mohaka mouth",
+    "event": "Cyclone Gabrielle 2023",
+    "group": "group_04"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P3/P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+    "cohort": "original",
+    "site": "Wairoa mouth",
+    "event": "Cyclone Gabrielle 2023",
+    "group": "group_04"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P3/P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+    "cohort": "original",
+    "site": "N\u016bhaka mouth",
+    "event": "Cyclone Gabrielle 2023",
+    "group": "group_04"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P3/P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waipaoa / T\u016branganui-a-Kiwa",
+    "event": "Cyclone Gabrielle 2023",
+    "group": "group_04"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P3/P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waipaoa / T\u016branganui-a-Kiwa",
+    "event": "Cyclone Gabrielle 2023",
+    "group": "group_04"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P3/P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waipaoa / T\u016branganui-a-Kiwa",
+    "event": "Cyclone Gabrielle 2023",
+    "group": "group_04"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P3/P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+    "cohort": "original",
+    "site": "Uawa / Tolaga Bay",
+    "event": "Cyclone Gabrielle 2023",
+    "group": "group_04"
+  },
+  {
+    "png": "data/raw/cvat/cvat_rgb/P3/P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+    "cohort": "original",
+    "site": "Waiapu mouth",
+    "event": "Cyclone Gabrielle 2023",
+    "group": "group_04"
+  },
+  {
+    "png": "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+    "cohort": "new",
+    "site": "Isonzo",
+    "event": "Isonzo 20231104",
+    "group": "group_05"
+  },
+  {
+    "png": "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+    "cohort": "new",
+    "site": "Isonzo",
+    "event": "Isonzo 20231022",
+    "group": "group_05"
+  },
+  {
+    "png": "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+    "cohort": "new",
+    "site": "Arno",
+    "event": "Arno 20200226",
+    "group": "group_06"
+  },
+  {
+    "png": "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+    "cohort": "new",
+    "site": "Arno",
+    "event": "Arno 20200228",
+    "group": "group_06"
+  },
+  {
+    "png": "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+    "cohort": "new",
+    "site": "Arno",
+    "event": "Arno 20200304",
+    "group": "group_06"
+  },
+  {
+    "png": "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+    "cohort": "new",
+    "site": "Arno",
+    "event": "Arno 20210126",
+    "group": "group_06"
+  },
+  {
+    "png": "France_Var_20200928_S2_L2A_12band_cvat.png",
+    "cohort": "new",
+    "site": "Var",
+    "event": "Var 20200928",
+    "group": "group_07"
+  },
+  {
+    "png": "France_Var_20201003_S2_L2A_12band_cvat.png",
+    "cohort": "new",
+    "site": "Var",
+    "event": "Var 20201003",
+    "group": "group_07"
+  },
+  {
+    "png": "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+    "cohort": "new",
+    "site": "Pineios",
+    "event": "Pineios 20230831",
+    "group": "group_08"
+  },
+  {
+    "png": "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+    "cohort": "new",
+    "site": "Pineios",
+    "event": "Pineios 20230910",
+    "group": "group_08"
+  },
+  {
+    "png": "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+    "cohort": "new",
+    "site": "Burdekin",
+    "event": "Queensland February 2025",
+    "group": "group_09"
+  },
+  {
+    "png": "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+    "cohort": "new",
+    "site": "Burdekin",
+    "event": "Queensland February 2025",
+    "group": "group_09"
+  },
+  {
+    "png": "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+    "cohort": "new",
+    "site": "Burdekin",
+    "event": "Queensland February 2025",
+    "group": "group_09"
+  },
+  {
+    "png": "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+    "cohort": "new",
+    "site": "Burdekin",
+    "event": "Queensland February 2025",
+    "group": "group_09"
+  },
+  {
+    "png": "AU_Murray_20230101_x0_y0_cvat.png",
+    "cohort": "new",
+    "site": "Murray",
+    "event": "Murray 20230101",
+    "group": "group_10"
+  },
+  {
+    "png": "AU_Tully_20250216_cvat.png",
+    "cohort": "new",
+    "site": "Tully",
+    "event": "Queensland February 2025",
+    "group": "group_09"
+  },
+  {
+    "png": "AU_TweedHeads_20220301_cvat.png",
+    "cohort": "new",
+    "site": "Tweed",
+    "event": "Tweed 20220301",
+    "group": "group_11"
+  },
+  {
+    "png": "Nelson_Maitai_20220822_cvat.png",
+    "cohort": "new",
+    "site": "Maitai",
+    "event": "Nelson August 2022",
+    "group": "group_12"
+  },
+  {
+    "png": "Nelson_Wakapuaka_20220831_cvat.png",
+    "cohort": "new",
+    "site": "Wakapuaka",
+    "event": "Nelson August 2022",
+    "group": "group_12"
+  },
+  {
+    "png": "Waimakariri_20220826_cvat.png",
+    "cohort": "new",
+    "site": "Waimakariri / Pegasus Bay",
+    "event": "Waimakariri / Pegasus Bay 20220826",
+    "group": "group_03"
+  },
+  {
+    "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+    "cohort": "new",
+    "site": "Burdekin",
+    "event": "Burdekin 20190210",
+    "group": "group_09"
+  },
+  {
+    "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+    "cohort": "new",
+    "site": "Burdekin",
+    "event": "Burdekin 20190210",
+    "group": "group_09"
+  },
+  {
+    "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+    "cohort": "new",
+    "site": "Burdekin",
+    "event": "Burdekin 20190210",
+    "group": "group_09"
+  },
+  {
+    "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+    "cohort": "new",
+    "site": "Hawkesbury",
+    "event": "NSW April 2022",
+    "group": "group_13"
+  },
+  {
+    "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+    "cohort": "new",
+    "site": "Hawkesbury",
+    "event": "NSW April 2022",
+    "group": "group_13"
+  },
+  {
+    "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+    "cohort": "new",
+    "site": "Hawkesbury",
+    "event": "NSW April 2022",
+    "group": "group_13"
+  },
+  {
+    "png": "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+    "cohort": "new",
+    "site": "Hunter",
+    "event": "NSW April 2022",
+    "group": "group_13"
+  },
+  {
+    "png": "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png",
+    "cohort": "new",
+    "site": "Hunter",
+    "event": "NSW April 2022",
+    "group": "group_13"
+  }
+]

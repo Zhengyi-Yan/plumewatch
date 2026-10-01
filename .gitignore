@@ -179,3 +179,25 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Local CVAT installation and its working files
+.cvat-local/
+
+# Downloaded satellite imagery
+data/raw/
+
+# Locally generated training masks
+data/processed/
+
+# Local OS metadata and Office lock files
+.DS_Store
+~$*
+
+# Satellite rasters and generated raster exports stay local.
+# Keep the exact Wellington scene used by processing.EXAMPLE.
+*.[tT][iI][fF]
+*.[tT][iI][fF][fF]
+!/hutt-test/hutt_20210723_full_scene_v1.tif
+
+# Downloaded research dataset archive (outside data/raw).
+/data/MARIDA.zip

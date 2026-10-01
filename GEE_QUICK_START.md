@@ -86,5 +86,5 @@ Keep only one complete version in the eventual training input; retain older work
 - Review medium/low/unknown polygons together. Move accepted polygons to the correct high-confidence layer, update counts and export a new version.
 - Existing `background` drawing layers are accepted as `normal_water`; check that those patches really are non-plume water.
 - Class IDs are normal water 0, plume 1, shallow water 2, land 3, unknown -1.
-- This update prepares multiclass labels. The existing Python model is still the old two-class Hutt pilot; its training loader must be updated before using the new data.
+- This update prepares multiclass labels. The original two-class pilot is retained for comparison. The dashboard now supports three-class RF, U-Net and SVM; see [REPORT.md](REPORT.md) for their scope and evaluation.
 - Local checks passed. A first small export still needs verification inside an authenticated GEE session.

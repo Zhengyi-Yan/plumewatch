@@ -1,0 +1,463 @@
+[
+  {
+    "name": "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+    "archives": [
+      "dataset_task_10.zip",
+      "dataset_task_11.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/Isonzo_20231104_S2_SR_L2A_12band_Float32.tif",
+    "counts": {
+      "candidate": 426,
+      "land": 4,
+      "plume": 2,
+      "normal_water": 2
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1840228
+  },
+  {
+    "name": "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+    "archives": [
+      "dataset_task_11.zip",
+      "dataset_task_9.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/Isonzo_20231022_S2_SR_L2A_12band_Float32.tif",
+    "counts": {
+      "candidate": 734,
+      "normal_water": 2,
+      "plume": 2,
+      "land": 3
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2410546
+  },
+  {
+    "name": "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_11.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/Italy_Arno_20200226_S2_L2A_12band.tif",
+    "counts": {
+      "candidate": 126,
+      "normal_water": 1,
+      "land": 2,
+      "plume": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2940379
+  },
+  {
+    "name": "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_11.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/Italy_Arno_20200228_S2_L2A_12band.tif",
+    "counts": {
+      "candidate": 7,
+      "land": 2,
+      "plume": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2823238
+  },
+  {
+    "name": "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_11.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/Italy_Arno_20200304_S2_L2A_12band.tif",
+    "counts": {
+      "candidate": 28,
+      "land": 3,
+      "normal_water": 1,
+      "plume": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2402406
+  },
+  {
+    "name": "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_11.zip",
+      "dataset_task_8.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/Italy_Arno_20210126_S2_L2A_12band.tif",
+    "counts": {
+      "land": 8,
+      "candidate": 4,
+      "plume": 2
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 4243942
+  },
+  {
+    "name": "France_Rhone_20210504_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_12.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/France_Rhone_20210504_S2_L2A_12band.tif",
+    "counts": {
+      "candidate": 63
+    },
+    "status": "candidate_only"
+  },
+  {
+    "name": "France_Rhone_20210512_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_12.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/France_Rhone_20210512_S2_L2A_12band.tif",
+    "counts": {
+      "candidate": 5
+    },
+    "status": "candidate_only"
+  },
+  {
+    "name": "France_Var_20200928_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_12.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/France_Var_20200928_S2_L2A_12band.tif",
+    "counts": {
+      "candidate": 16,
+      "normal_water": 1,
+      "land": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 3823813
+  },
+  {
+    "name": "France_Var_20201003_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_12.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/France_Var_20201003_S2_L2A_12band.tif",
+    "counts": {
+      "land": 12,
+      "normal_water": 3,
+      "plume": 2
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 3931478
+  },
+  {
+    "name": "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_12.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/Greece_Pineios_20230831_S2_L2A_12band.tif",
+    "counts": {
+      "candidate": 122,
+      "normal_water": 1,
+      "land": 2
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1867152
+  },
+  {
+    "name": "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+    "archives": [
+      "dataset_task_12.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/spencer-sentinel-2/Greece_Pineios_20230910_S2_L2A_12band.tif",
+    "counts": {
+      "candidate": 35,
+      "land": 2,
+      "plume": 1,
+      "normal_water": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 3655934
+  },
+  {
+    "name": "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/danny-sentinel-2/AU_BurdekinRiver_20250218_x0_y0.tif",
+    "counts": {
+      "candidate": 241,
+      "plume": 1,
+      "land": 2
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1718669
+  },
+  {
+    "name": "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/danny-sentinel-2/AU_BurdekinRiver_20250218_x1736_y0.tif",
+    "counts": {
+      "candidate": 59,
+      "land": 1,
+      "normal_water": 1,
+      "plume": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1435455
+  },
+  {
+    "name": "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/danny-sentinel-2/AU_BurdekinRiver_20250228_x0_y0.tif",
+    "counts": {
+      "candidate": 40,
+      "normal_water": 1,
+      "plume": 4,
+      "land": 2
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2323081
+  },
+  {
+    "name": "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/danny-sentinel-2/AU_BurdekinRiver_20250228_x1736_y0.tif",
+    "counts": {
+      "plume": 1,
+      "candidate": 80,
+      "land": 1,
+      "normal_water": 3
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1472118
+  },
+  {
+    "name": "AU_Murray_20230101_x0_y0_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/danny-sentinel-2/AU_Murray_20230101_x0_y0.tif",
+    "counts": {
+      "candidate": 10,
+      "plume": 9,
+      "land": 3
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2863270
+  },
+  {
+    "name": "AU_Tully_20250216_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/danny-sentinel-2/AU_Tully_20250216.tif",
+    "counts": {
+      "candidate": 23,
+      "land": 2,
+      "plume": 1,
+      "normal_water": 2
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2266334
+  },
+  {
+    "name": "AU_TweedHeads_20220301_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/danny-sentinel-2/AU_TweedHeads_20220301.tif",
+    "counts": {
+      "candidate": 193,
+      "normal_water": 1,
+      "plume": 1,
+      "land": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 4010537
+  },
+  {
+    "name": "Nelson_Maitai_20220822_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/danny-sentinel-2/Nelson_Maitai_20220822.tif",
+    "counts": {
+      "candidate": 225,
+      "land": 1,
+      "plume": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1045389
+  },
+  {
+    "name": "Nelson_Wakapuaka_20220831_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/danny-sentinel-2/Nelson_Wakapuaka_20220831.tif",
+    "counts": {
+      "candidate": 271,
+      "land": 1,
+      "plume": 2,
+      "normal_water": 2
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1198067
+  },
+  {
+    "name": "Waimakariri_20220826_cvat.png",
+    "archives": [
+      "dataset_task_13.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/raw/danny-sentinel-2/Waimakariri_20220826.tif",
+    "counts": {
+      "candidate": 33,
+      "land": 2,
+      "plume": 1,
+      "normal_water": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2488894
+  },
+  {
+    "name": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+    "archives": [
+      "dataset_task_14.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/dennis-sentinel-2/Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889.tif",
+    "counts": {
+      "candidate": 459,
+      "plume": 3,
+      "land": 3
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 4063650
+  },
+  {
+    "name": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+    "archives": [
+      "dataset_task_14.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/dennis-sentinel-2/Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0.tif",
+    "counts": {
+      "candidate": 60,
+      "plume": 1,
+      "normal_water": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 8010393
+  },
+  {
+    "name": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+    "archives": [
+      "dataset_task_14.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/dennis-sentinel-2/Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889.tif",
+    "counts": {
+      "candidate": 8,
+      "land": 3,
+      "plume": 1,
+      "normal_water": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 6973150
+  },
+  {
+    "name": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+    "archives": [
+      "dataset_task_14.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/dennis-sentinel-2/Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546.tif",
+    "counts": {
+      "candidate": 6,
+      "plume": 1,
+      "land": 3
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 2715744
+  },
+  {
+    "name": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+    "archives": [
+      "dataset_task_14.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/dennis-sentinel-2/Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093.tif",
+    "counts": {
+      "plume": 2,
+      "candidate": 5,
+      "land": 3
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1747798
+  },
+  {
+    "name": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+    "archives": [
+      "dataset_task_14.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/dennis-sentinel-2/Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639.tif",
+    "counts": {
+      "candidate": 23,
+      "plume": 1,
+      "land": 2,
+      "normal_water": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 1357428
+  },
+  {
+    "name": "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+    "archives": [
+      "dataset_task_14.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/dennis-sentinel-2/Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0.tif",
+    "counts": {
+      "candidate": 11,
+      "land": 4,
+      "plume": 1,
+      "normal_water": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 4233690
+  },
+  {
+    "name": "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png",
+    "archives": [
+      "dataset_task_14.zip"
+    ],
+    "source": "/Users/dennisyan/Documents/GitHub/plumewatch/data/processed/sam_inputs/dennis-sentinel-2/Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077.tif",
+    "counts": {
+      "candidate": 39,
+      "land": 1,
+      "plume": 1,
+      "normal_water": 1
+    },
+    "conflicts": 0,
+    "conflicts_total": 0,
+    "valid_labelled": 5065241
+  }
+]

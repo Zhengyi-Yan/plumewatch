@@ -1,0 +1,1445 @@
+{
+  "method": "leave-one-linked-site-event-group-out",
+  "class_ids": {
+    "normal_water": 0,
+    "plume": 1,
+    "shallow_water": 2,
+    "land": 3
+  },
+  "evaluated_class_ids": [
+    0,
+    1,
+    3
+  ],
+  "bands": [
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "B8A",
+    "B11",
+    "B12"
+  ],
+  "product": "COPERNICUS/S2_SR_HARMONIZED",
+  "seed": 42,
+  "train_per_scene_class": 3000,
+  "train_per_group_class": 10000,
+  "eval_per_scene": 15000,
+  "model_parameters": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "class_weight": "balanced_subsample",
+    "criterion": "gini",
+    "max_depth": null,
+    "max_features": "sqrt",
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 20,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 120,
+    "n_jobs": 4,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "sklearn_version": "1.8.0",
+  "annotated_scenes": 21,
+  "groups": 4,
+  "final_train_sample_count": 111000,
+  "overall_scene_balanced_sample": {
+    "accuracy": 0.9388,
+    "macro_f1_present_classes": 0.8712279261779865,
+    "classes": {
+      "normal_water": {
+        "support": 24895,
+        "precision": 0.5838260190128923,
+        "recall": 0.9004217714400482,
+        "f1": 0.7083583504503081,
+        "iou": 0.5484170866565543
+      },
+      "plume": {
+        "support": 98636,
+        "precision": 0.9721734003106963,
+        "recall": 0.8692059694229287,
+        "f1": 0.9178107854944467,
+        "iou": 0.8481056484320902
+      },
+      "land": {
+        "support": 191469,
+        "precision": 0.9955152428668478,
+        "recall": 0.9796416130026271,
+        "f1": 0.9875146425892046,
+        "iou": 0.9753372089395468
+      }
+    },
+    "confusion_matrix": [
+      [
+        22416,
+        2277,
+        202
+      ],
+      [
+        12258,
+        85735,
+        643
+      ],
+      [
+        3721,
+        177,
+        187571
+      ]
+    ]
+  },
+  "per_scene_plume_f1": {
+    "median": 0.9587094296139812,
+    "minimum": 0.46348061316501354,
+    "scenes_below_0_7": 4
+  },
+  "folds": [
+    {
+      "held_out_group": "group_01",
+      "sites": [
+        "Hutt / Wellington Harbour"
+      ],
+      "events": [
+        "Hutt 2019-08-13",
+        "Hutt 2020-07-13",
+        "Hutt 2021-07-23"
+      ],
+      "scenes": [
+        {
+          "png": "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 458501,
+            "1": 137208,
+            "3": 1343636
+          },
+          "accuracy": 0.9996,
+          "macro_f1_present_classes": 0.999021503945336,
+          "classes": {
+            "normal_water": {
+              "support": 3550,
+              "precision": 0.9994367783722895,
+              "recall": 0.9997183098591549,
+              "f1": 0.9995775242923531,
+              "iou": 0.9991554054054054
+            },
+            "plume": {
+              "support": 1076,
+              "precision": 0.9962928637627433,
+              "recall": 0.9990706319702602,
+              "f1": 0.9976798143851509,
+              "iou": 0.9953703703703703
+            },
+            "land": {
+              "support": 10374,
+              "precision": 1.0,
+              "recall": 0.9996144206670522,
+              "f1": 0.9998071731585036,
+              "iou": 0.9996144206670522
+            }
+          },
+          "confusion_matrix": [
+            [
+              3549,
+              1,
+              0
+            ],
+            [
+              1,
+              1075,
+              0
+            ],
+            [
+              1,
+              3,
+              10370
+            ]
+          ]
+        },
+        {
+          "png": "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 374414,
+            "1": 99744,
+            "3": 1352684
+          },
+          "accuracy": 0.8862666666666666,
+          "macro_f1_present_classes": 0.7093628346277963,
+          "classes": {
+            "normal_water": {
+              "support": 3044,
+              "precision": 0.9992663242846662,
+              "recall": 0.44743758212877793,
+              "f1": 0.6181075561606535,
+              "iou": 0.44729064039408867
+            },
+            "plume": {
+              "support": 823,
+              "precision": 0.35051107325383307,
+              "recall": 1.0,
+              "f1": 0.5190791548407443,
+              "iou": 0.35051107325383307
+            },
+            "land": {
+              "support": 11133,
+              "precision": 0.9840552750465055,
+              "recall": 0.9978442468337375,
+              "f1": 0.990901792881991,
+              "iou": 0.9819676478387696
+            }
+          },
+          "confusion_matrix": [
+            [
+              1362,
+              1502,
+              180
+            ],
+            [
+              0,
+              823,
+              0
+            ],
+            [
+              1,
+              23,
+              11109
+            ]
+          ]
+        },
+        {
+          "png": "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 95896,
+            "1": 431808,
+            "3": 1240242
+          },
+          "accuracy": 0.9972666666666666,
+          "macro_f1_present_classes": 0.9907953093133944,
+          "classes": {
+            "normal_water": {
+              "support": 797,
+              "precision": 0.9669117647058824,
+              "recall": 0.9899623588456713,
+              "f1": 0.9783013019218848,
+              "iou": 0.9575242718446602
+            },
+            "plume": {
+              "support": 3650,
+              "precision": 0.9969705315340127,
+              "recall": 0.9917808219178083,
+              "f1": 0.9943689053701416,
+              "iou": 0.9888008740781208
+            },
+            "land": {
+              "support": 10553,
+              "precision": 0.999715720648157,
+              "recall": 0.999715720648157,
+              "f1": 0.999715720648157,
+              "iou": 0.9994316028798788
+            }
+          },
+          "confusion_matrix": [
+            [
+              789,
+              8,
+              0
+            ],
+            [
+              27,
+              3620,
+              3
+            ],
+            [
+              0,
+              3,
+              10550
+            ]
+          ]
+        }
+      ],
+      "train_sample_count": 84000,
+      "accuracy": 0.9610444444444445,
+      "macro_f1_present_classes": 0.9136311024941831,
+      "classes": {
+        "normal_water": {
+          "support": 7391,
+          "precision": 0.9947643979057592,
+          "recall": 0.7712082262210797,
+          "f1": 0.8688362167517719,
+          "iou": 0.7680905538337152
+        },
+        "plume": {
+          "support": 5549,
+          "precision": 0.7818078775857183,
+          "recall": 0.994413407821229,
+          "f1": 0.8753866899341636,
+          "iou": 0.7783890534631118
+        },
+        "land": {
+          "support": 32060,
+          "precision": 0.994318887371166,
+          "recall": 0.9990330630068621,
+          "f1": 0.9966704007966143,
+          "iou": 0.9933629004745216
+        }
+      },
+      "confusion_matrix": [
+        [
+          5700,
+          1511,
+          180
+        ],
+        [
+          28,
+          5518,
+          3
+        ],
+        [
+          2,
+          29,
+          32029
+        ]
+      ]
+    },
+    {
+      "held_out_group": "group_02",
+      "sites": [
+        "Manawat\u016b mouth",
+        "Rangit\u012bkei mouth",
+        "Whanganui mouth"
+      ],
+      "events": [
+        "West coast Oct 2019"
+      ],
+      "scenes": [
+        {
+          "png": "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 0,
+            "1": 1203107,
+            "3": 1717942
+          },
+          "accuracy": 0.9982,
+          "macro_f1_present_classes": 0.9989902476498003,
+          "classes": {
+            "normal_water": {
+              "support": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "iou": 0.0
+            },
+            "plume": {
+              "support": 6194,
+              "precision": 0.9990322580645161,
+              "recall": 1.0,
+              "f1": 0.9995158947878006,
+              "iou": 0.9990322580645161
+            },
+            "land": {
+              "support": 8806,
+              "precision": 1.0,
+              "recall": 0.9969339086986145,
+              "f1": 0.9984646005117999,
+              "iou": 0.9969339086986145
+            }
+          },
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              6194,
+              0
+            ],
+            [
+              21,
+              6,
+              8779
+            ]
+          ]
+        },
+        {
+          "png": "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 532044,
+            "1": 975511,
+            "3": 1783509
+          },
+          "accuracy": 0.9124,
+          "macro_f1_present_classes": 0.855039207539924,
+          "classes": {
+            "normal_water": {
+              "support": 2331,
+              "precision": 0.7596899224806202,
+              "recall": 0.6726726726726727,
+              "f1": 0.7135381114903301,
+              "iou": 0.554651574106827
+            },
+            "plume": {
+              "support": 4404,
+              "precision": 0.8358241282217891,
+              "recall": 0.8762488646684832,
+              "f1": 0.8555592506374016,
+              "iou": 0.7475784579620303
+            },
+            "land": {
+              "support": 8265,
+              "precision": 0.9927875946628201,
+              "recall": 0.9992740471869328,
+              "f1": 0.9960202604920404,
+              "iou": 0.992072072072072
+            }
+          },
+          "confusion_matrix": [
+            [
+              1568,
+              757,
+              6
+            ],
+            [
+              491,
+              3859,
+              54
+            ],
+            [
+              5,
+              1,
+              8259
+            ]
+          ]
+        },
+        {
+          "png": "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 93615,
+            "1": 1045686,
+            "3": 1931557
+          },
+          "accuracy": 0.9294,
+          "macro_f1_present_classes": 0.7924037904350164,
+          "classes": {
+            "normal_water": {
+              "support": 461,
+              "precision": 0.3302292263610315,
+              "recall": 1.0,
+              "f1": 0.4964997307485191,
+              "iou": 0.3302292263610315
+            },
+            "plume": {
+              "support": 5165,
+              "precision": 0.9995159728944821,
+              "recall": 0.7996127783155856,
+              "f1": 0.888458642572873,
+              "iou": 0.7993032707567254
+            },
+            "land": {
+              "support": 9374,
+              "precision": 0.9871199324324325,
+              "recall": 0.9974397269042031,
+              "f1": 0.9922529979836571,
+              "iou": 0.9846251053074979
+            }
+          },
+          "confusion_matrix": [
+            [
+              461,
+              0,
+              0
+            ],
+            [
+              913,
+              4130,
+              122
+            ],
+            [
+              22,
+              2,
+              9350
+            ]
+          ]
+        }
+      ],
+      "train_sample_count": 87000,
+      "accuracy": 0.9466666666666667,
+      "macro_f1_present_classes": 0.855334724044453,
+      "classes": {
+        "normal_water": {
+          "support": 2792,
+          "precision": 0.5828784831944843,
+          "recall": 0.7267191977077364,
+          "f1": 0.6468994101705723,
+          "iou": 0.47808671065032987
+        },
+        "plume": {
+          "support": 15763,
+          "precision": 0.9487591143220282,
+          "recall": 0.8997652731079109,
+          "f1": 0.9236129200312581,
+          "iou": 0.8580676386956259
+        },
+        "land": {
+          "support": 26445,
+          "precision": 0.9931501693639443,
+          "recall": 0.9978445830969938,
+          "f1": 0.9954918419315287,
+          "iou": 0.9910241484207759
+        }
+      },
+      "confusion_matrix": [
+        [
+          2029,
+          757,
+          6
+        ],
+        [
+          1404,
+          14183,
+          176
+        ],
+        [
+          48,
+          9,
+          26388
+        ]
+      ]
+    },
+    {
+      "held_out_group": "group_03",
+      "sites": [
+        "Hurunui mouth",
+        "Waiau Uwha mouth",
+        "Waimakariri / Pegasus Bay"
+      ],
+      "events": [
+        "Canterbury comparison Apr 2021",
+        "Canterbury flood 2021"
+      ],
+      "scenes": [
+        {
+          "png": "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 67482,
+            "1": 1298031,
+            "3": 1511965
+          },
+          "accuracy": 0.9946,
+          "macro_f1_present_classes": 0.9641435177042929,
+          "classes": {
+            "normal_water": {
+              "support": 337,
+              "precision": 0.8159806295399515,
+              "recall": 1.0,
+              "f1": 0.8986666666666667,
+              "iou": 0.8159806295399515
+            },
+            "plume": {
+              "support": 6821,
+              "precision": 0.999259807549963,
+              "recall": 0.9895909690661193,
+              "f1": 0.9944018856806128,
+              "iou": 0.9888661002050981
+            },
+            "land": {
+              "support": 7842,
+              "precision": 1.0,
+              "recall": 0.9987248150981892,
+              "f1": 0.9993620007655991,
+              "iou": 0.9987248150981892
+            }
+          },
+          "confusion_matrix": [
+            [
+              337,
+              0,
+              0
+            ],
+            [
+              71,
+              6750,
+              0
+            ],
+            [
+              5,
+              5,
+              7832
+            ]
+          ]
+        },
+        {
+          "png": "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 24299,
+            "1": 1064215,
+            "3": 1506254
+          },
+          "accuracy": 0.8004,
+          "macro_f1_present_classes": 0.5823752804504156,
+          "classes": {
+            "normal_water": {
+              "support": 111,
+              "precision": 0.035748792270531404,
+              "recall": 1.0,
+              "f1": 0.06902985074626868,
+              "iou": 0.035748792270531404
+            },
+            "plume": {
+              "support": 6145,
+              "precision": 1.0,
+              "recall": 0.513100081366965,
+              "f1": 0.6782103678210368,
+              "iou": 0.513100081366965
+            },
+            "land": {
+              "support": 8744,
+              "precision": 1.0,
+              "recall": 0.9997712717291857,
+              "f1": 0.9998856227839413,
+              "iou": 0.9997712717291857
+            }
+          },
+          "confusion_matrix": [
+            [
+              111,
+              0,
+              0
+            ],
+            [
+              2992,
+              3153,
+              0
+            ],
+            [
+              2,
+              0,
+              8742
+            ]
+          ]
+        },
+        {
+          "png": "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 0,
+            "1": 1455727,
+            "3": 1447695
+          },
+          "accuracy": 0.9944,
+          "macro_f1_present_classes": 0.9972083558085826,
+          "classes": {
+            "normal_water": {
+              "support": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "iou": 0.0
+            },
+            "plume": {
+              "support": 7572,
+              "precision": 1.0,
+              "recall": 0.9900950871632329,
+              "f1": 0.9950228946844516,
+              "iou": 0.9900950871632329
+            },
+            "land": {
+              "support": 7428,
+              "precision": 1.0,
+              "recall": 0.9987883683360258,
+              "f1": 0.9993938169327136,
+              "iou": 0.9987883683360258
+            }
+          },
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              75,
+              7497,
+              0
+            ],
+            [
+              9,
+              0,
+              7419
+            ]
+          ]
+        },
+        {
+          "png": "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 94896,
+            "1": 1101799,
+            "3": 1508727
+          },
+          "accuracy": 0.7771333333333333,
+          "macro_f1_present_classes": 0.6210675096991503,
+          "classes": {
+            "normal_water": {
+              "support": 527,
+              "precision": 0.13617571059431524,
+              "recall": 1.0,
+              "f1": 0.23970889242665452,
+              "iou": 0.13617571059431524
+            },
+            "plume": {
+              "support": 6111,
+              "precision": 1.0,
+              "recall": 0.45295369006709213,
+              "f1": 0.6234936366707963,
+              "iou": 0.45295369006709213
+            },
+            "land": {
+              "support": 8362,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "iou": 1.0
+            }
+          },
+          "confusion_matrix": [
+            [
+              527,
+              0,
+              0
+            ],
+            [
+              3343,
+              2768,
+              0
+            ],
+            [
+              0,
+              0,
+              8362
+            ]
+          ]
+        },
+        {
+          "png": "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 0,
+            "1": 791378,
+            "3": 1209785
+          },
+          "accuracy": 0.9942,
+          "macro_f1_present_classes": 0.9968664027527714,
+          "classes": {
+            "normal_water": {
+              "support": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "iou": 0.0
+            },
+            "plume": {
+              "support": 5986,
+              "precision": 0.997168082625354,
+              "recall": 1.0,
+              "f1": 0.9985820335307365,
+              "iou": 0.997168082625354
+            },
+            "land": {
+              "support": 9014,
+              "precision": 1.0,
+              "recall": 0.9903483470157532,
+              "f1": 0.9951507719748063,
+              "iou": 0.9903483470157532
+            }
+          },
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5986,
+              0
+            ],
+            [
+              70,
+              17,
+              8927
+            ]
+          ]
+        },
+        {
+          "png": "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 0,
+            "1": 817139,
+            "3": 1117168
+          },
+          "accuracy": 0.9951333333333333,
+          "macro_f1_present_classes": 0.9974826576253151,
+          "classes": {
+            "normal_water": {
+              "support": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "iou": 0.0
+            },
+            "plume": {
+              "support": 6378,
+              "precision": 0.9984345648090169,
+              "recall": 1.0,
+              "f1": 0.9992166692777691,
+              "iou": 0.9984345648090169
+            },
+            "land": {
+              "support": 8622,
+              "precision": 1.0,
+              "recall": 0.9915332869403851,
+              "f1": 0.9957486459728612,
+              "iou": 0.9915332869403851
+            }
+          },
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              6378,
+              0
+            ],
+            [
+              63,
+              10,
+              8549
+            ]
+          ]
+        },
+        {
+          "png": "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 59753,
+            "1": 690460,
+            "3": 1691887
+          },
+          "accuracy": 0.9247333333333333,
+          "macro_f1_present_classes": 0.7415731417905785,
+          "classes": {
+            "normal_water": {
+              "support": 336,
+              "precision": 0.23029472241261137,
+              "recall": 1.0,
+              "f1": 0.3743732590529248,
+              "iou": 0.23029472241261137
+            },
+            "plume": {
+              "support": 4261,
+              "precision": 0.9981090450677592,
+              "recall": 0.7432527575686458,
+              "f1": 0.8520312079634114,
+              "iou": 0.7422076400281228
+            },
+            "land": {
+              "support": 10403,
+              "precision": 1.0,
+              "recall": 0.996635585888686,
+              "f1": 0.9983149583553994,
+              "iou": 0.996635585888686
+            }
+          },
+          "confusion_matrix": [
+            [
+              336,
+              0,
+              0
+            ],
+            [
+              1094,
+              3167,
+              0
+            ],
+            [
+              29,
+              6,
+              10368
+            ]
+          ]
+        }
+      ],
+      "train_sample_count": 81000,
+      "accuracy": 0.9258,
+      "macro_f1_present_classes": 0.718192794136059,
+      "classes": {
+        "normal_water": {
+          "support": 1311,
+          "precision": 0.14463812886142982,
+          "recall": 1.0,
+          "f1": 0.25272289156626504,
+          "iou": 0.14463812886142982
+        },
+        "plume": {
+          "support": 43274,
+          "precision": 0.9989366762738898,
+          "recall": 0.8249526274437307,
+          "f1": 0.9036463277265191,
+          "iou": 0.8242288511267085
+        },
+        "land": {
+          "support": 60415,
+          "precision": 1.0,
+          "recall": 0.9964247289580402,
+          "f1": 0.9982091631153929,
+          "iou": 0.9964247289580402
+        }
+      },
+      "confusion_matrix": [
+        [
+          1311,
+          0,
+          0
+        ],
+        [
+          7575,
+          35699,
+          0
+        ],
+        [
+          178,
+          38,
+          60199
+        ]
+      ]
+    },
+    {
+      "held_out_group": "group_04",
+      "sites": [
+        "Mohaka mouth",
+        "N\u016bhaka mouth",
+        "Uawa / Tolaga Bay",
+        "Waiapu mouth",
+        "Waipaoa / T\u016branganui-a-Kiwa",
+        "Wairoa mouth"
+      ],
+      "events": [
+        "Cyclone Gabrielle 2023"
+      ],
+      "scenes": [
+        {
+          "png": "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 159486,
+            "1": 538098,
+            "3": 970781
+          },
+          "accuracy": 0.9895333333333334,
+          "macro_f1_present_classes": 0.9856742256296428,
+          "classes": {
+            "normal_water": {
+              "support": 1415,
+              "precision": 0.9593220338983051,
+              "recall": 1.0,
+              "f1": 0.9792387543252595,
+              "iou": 0.9593220338983051
+            },
+            "plume": {
+              "support": 4766,
+              "precision": 1.0,
+              "recall": 0.9670583298363408,
+              "f1": 0.9832533333333334,
+              "iou": 0.9670583298363408
+            },
+            "land": {
+              "support": 8819,
+              "precision": 0.9891206819201436,
+              "recall": 1.0,
+              "f1": 0.9945305892303354,
+              "iou": 0.9891206819201436
+            }
+          },
+          "confusion_matrix": [
+            [
+              1415,
+              0,
+              0
+            ],
+            [
+              60,
+              4609,
+              97
+            ],
+            [
+              0,
+              0,
+              8819
+            ]
+          ]
+        },
+        {
+          "png": "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 68937,
+            "1": 733711,
+            "3": 1253875
+          },
+          "accuracy": 0.9712666666666666,
+          "macro_f1_present_classes": 0.8833776654781779,
+          "classes": {
+            "normal_water": {
+              "support": 480,
+              "precision": 0.5339366515837104,
+              "recall": 0.9833333333333333,
+              "f1": 0.6920821114369501,
+              "iou": 0.5291479820627802
+            },
+            "plume": {
+              "support": 5405,
+              "precision": 0.9966061090037932,
+              "recall": 0.9235892691951897,
+              "f1": 0.9587094296139812,
+              "iou": 0.9206934710438952
+            },
+            "land": {
+              "support": 9115,
+              "precision": 0.9997803887119798,
+              "recall": 0.9989029072956664,
+              "f1": 0.9993414553836023,
+              "iou": 0.9986837775584074
+            }
+          },
+          "confusion_matrix": [
+            [
+              472,
+              7,
+              1
+            ],
+            [
+              412,
+              4992,
+              1
+            ],
+            [
+              0,
+              10,
+              9105
+            ]
+          ]
+        },
+        {
+          "png": "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 239171,
+            "1": 309739,
+            "3": 1253462
+          },
+          "accuracy": 0.881,
+          "macro_f1_present_classes": 0.7183913247254617,
+          "classes": {
+            "normal_water": {
+              "support": 2001,
+              "precision": 0.5288054968287527,
+              "recall": 1.0,
+              "f1": 0.6917891097666379,
+              "iou": 0.5288054968287527
+            },
+            "plume": {
+              "support": 2555,
+              "precision": 0.9987046632124352,
+              "recall": 0.30176125244618396,
+              "f1": 0.46348061316501354,
+              "iou": 0.30164319248826293
+            },
+            "land": {
+              "support": 10444,
+              "precision": 0.9999042512447338,
+              "recall": 0.9999042512447338,
+              "f1": 0.9999042512447338,
+              "iou": 0.9998085208233605
+            }
+          },
+          "confusion_matrix": [
+            [
+              2001,
+              0,
+              0
+            ],
+            [
+              1783,
+              771,
+              1
+            ],
+            [
+              0,
+              1,
+              10443
+            ]
+          ]
+        },
+        {
+          "png": "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 82906,
+            "1": 567327,
+            "3": 985320
+          },
+          "accuracy": 0.9971333333333333,
+          "macro_f1_present_classes": 0.9925394135830384,
+          "classes": {
+            "normal_water": {
+              "support": 762,
+              "precision": 0.9657794676806084,
+              "recall": 1.0,
+              "f1": 0.9825918762088975,
+              "iou": 0.9657794676806084
+            },
+            "plume": {
+              "support": 5221,
+              "precision": 0.9980765531833045,
+              "recall": 0.9938709059567132,
+              "f1": 0.9959692898272553,
+              "iou": 0.991970942458421
+            },
+            "land": {
+              "support": 9017,
+              "precision": 0.9993342210386151,
+              "recall": 0.9987800820672064,
+              "f1": 0.9990570747129623,
+              "iou": 0.9981159259669733
+            }
+          },
+          "confusion_matrix": [
+            [
+              762,
+              0,
+              0
+            ],
+            [
+              26,
+              5189,
+              6
+            ],
+            [
+              1,
+              10,
+              9006
+            ]
+          ]
+        },
+        {
+          "png": "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 82072,
+            "1": 267681,
+            "3": 1333086
+          },
+          "accuracy": 0.9824,
+          "macro_f1_present_classes": 0.9331627836596978,
+          "classes": {
+            "normal_water": {
+              "support": 754,
+              "precision": 0.7502487562189055,
+              "recall": 1.0,
+              "f1": 0.8573052870949404,
+              "iou": 0.7502487562189055
+            },
+            "plume": {
+              "support": 2424,
+              "precision": 0.994053064958829,
+              "recall": 0.8964521452145214,
+              "f1": 0.9427331887201736,
+              "iou": 0.8916700861715223
+            },
+            "land": {
+              "support": 11822,
+              "precision": 1.0,
+              "recall": 0.9989003552698359,
+              "f1": 0.9994498751639795,
+              "iou": 0.9989003552698359
+            }
+          },
+          "confusion_matrix": [
+            [
+              754,
+              0,
+              0
+            ],
+            [
+              251,
+              2173,
+              0
+            ],
+            [
+              0,
+              13,
+              11809
+            ]
+          ]
+        },
+        {
+          "png": "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 108111,
+            "1": 843514,
+            "3": 841302
+          },
+          "accuracy": 0.9759333333333333,
+          "macro_f1_present_classes": 0.9806970288744198,
+          "classes": {
+            "normal_water": {
+              "support": 921,
+              "precision": 0.9967141292442497,
+              "recall": 0.988056460369164,
+              "f1": 0.9923664122137404,
+              "iou": 0.9848484848484849
+            },
+            "plume": {
+              "support": 7099,
+              "precision": 0.9998518957345972,
+              "recall": 0.950979011128328,
+              "f1": 0.9748032633022887,
+              "iou": 0.9508450704225352
+            },
+            "land": {
+              "support": 6980,
+              "precision": 0.9513292433537832,
+              "recall": 0.9997134670487106,
+              "f1": 0.9749214111072302,
+              "iou": 0.9510699195856617
+            }
+          },
+          "confusion_matrix": [
+            [
+              910,
+              1,
+              10
+            ],
+            [
+              1,
+              6751,
+              347
+            ],
+            [
+              2,
+              0,
+              6978
+            ]
+          ]
+        },
+        {
+          "png": "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 0,
+            "1": 70958,
+            "3": 1637837
+          },
+          "accuracy": 0.7627333333333334,
+          "macro_f1_present_classes": 0.9031694001126791,
+          "classes": {
+            "normal_water": {
+              "support": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "iou": 0.0
+            },
+            "plume": {
+              "support": 626,
+              "precision": 0.9030390738060782,
+              "recall": 0.9968051118210862,
+              "f1": 0.9476082004555808,
+              "iou": 0.9004329004329005
+            },
+            "land": {
+              "support": 14374,
+              "precision": 0.9998151400314262,
+              "recall": 0.7525393070822318,
+              "f1": 0.8587305997697773,
+              "iou": 0.7524346132442961
+            }
+          },
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              624,
+              2
+            ],
+            [
+              3490,
+              67,
+              10817
+            ]
+          ]
+        },
+        {
+          "png": "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+          "labelled_pixel_counts": {
+            "0": 793396,
+            "1": 667647,
+            "3": 232173
+          },
+          "accuracy": 0.9510666666666666,
+          "macro_f1_present_classes": 0.9607539818046678,
+          "classes": {
+            "normal_water": {
+              "support": 7068,
+              "precision": 0.9077120822622108,
+              "recall": 0.9991511035653651,
+              "f1": 0.951239224137931,
+              "iou": 0.9070125866940663
+            },
+            "plume": {
+              "support": 5954,
+              "precision": 0.9998086856705567,
+              "recall": 0.8777292576419214,
+              "f1": 0.9348001073249262,
+              "iou": 0.8775818639798488
+            },
+            "land": {
+              "support": 1978,
+              "precision": 0.9924736578023081,
+              "recall": 1.0,
+              "f1": 0.9962226139511459,
+              "iou": 0.9924736578023081
+            }
+          },
+          "confusion_matrix": [
+            [
+              7062,
+              1,
+              5
+            ],
+            [
+              718,
+              5226,
+              10
+            ],
+            [
+              0,
+              0,
+              1978
+            ]
+          ]
+        }
+      ],
+      "train_sample_count": 81000,
+      "accuracy": 0.9388833333333333,
+      "macro_f1_present_classes": 0.9033555288425417,
+      "classes": {
+        "normal_water": {
+          "support": 13401,
+          "precision": 0.6648111332007952,
+          "recall": 0.9981344675770465,
+          "f1": 0.7980668834461979,
+          "iou": 0.6639861007694217
+        },
+        "plume": {
+          "support": 34050,
+          "precision": 0.9963869272458532,
+          "recall": 0.8908957415565345,
+          "f1": 0.9406930769827119,
+          "iou": 0.8880269320843092
+        },
+        "land": {
+          "support": 72549,
+          "precision": 0.9930870598401382,
+          "recall": 0.9504610676921804,
+          "f1": 0.9713066260987153,
+          "iou": 0.9442139424064413
+        }
+      },
+      "confusion_matrix": [
+        [
+          13376,
+          9,
+          16
+        ],
+        [
+          3251,
+          30335,
+          464
+        ],
+        [
+          3493,
+          101,
+          68955
+        ]
+      ]
+    }
+  ],
+  "excluded_unannotated": [
+    "data/raw/cvat/cvat_rgb/P2/P2-06_20210428T222539_20210428T222539_T59GPM_cvat_v1.png",
+    "data/raw/cvat/cvat_rgb/P2/P2-06_20210428T222539_20210428T222539_T59GPN_cvat_v1.png"
+  ],
+  "input_sha256": {
+    "data/annotation_manifest.json": "912cc993254dac23e7db505c3a6877307bf0fbe07aef1f8142855c3b490602c1",
+    "data/raw/dataset_task_3.zip": "b42a11667ad8ac417fb836d787acb989c965cffc8b8e191c7a73c56709bd4ecf",
+    "data/raw/dataset_task_5.zip": "bc4020d917a6f7cd8112fd3b023015dd5bee6608100687933a6f32657f78d207",
+    "data/raw/dataset_task_6.zip": "45e5d36b801d68db2fbbfb4349c5c3d2a53b75beb04b80a7012d44fd70af14e5",
+    "data/processed/cvat_masks_v1/P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1_mask.tif": "7e8fc1607f08cada7b9b1a300db7671a31aa72f441796a33ebbd3a36d48a2cd2",
+    "data/processed/cvat_masks_v1/P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1_mask.tif": "f8735d933fa350372d5e17b61e18b4dcd2af5d44d51b13af7cd5316c3a512bd3",
+    "data/processed/cvat_masks_v1/P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1_mask.tif": "12c15da39b934053864ed134e338ff6ca67368b88cb6d3b146c5a197dc443a59",
+    "data/processed/cvat_masks_v1/P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1_mask.tif": "68eb1e76e0c23b99068958d6665c71149166a776b53eea0195535bc2caee3724",
+    "data/processed/cvat_masks_v1/P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1_mask.tif": "8d738cce053ef04f50e8cd684f85008707a52700d29de42f6a60c0ecb7607adf",
+    "data/processed/cvat_masks_v1/P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1_mask.tif": "971ff4b9dc00c15f2290f6af8f6051a2cf656908fb346aaa0da4ac66e5dcb400",
+    "data/processed/cvat_masks_v1/P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1_mask.tif": "c651f7a45adeb6aaeabccbed315ec6120e357ad65ddfd13776e1dd0ee32f4511",
+    "data/processed/cvat_masks_v1/P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1_mask.tif": "c24b7ac46e1e7749d9e01852d3734aa2b599062bc58a4ea829f8ffb39e75c1e3",
+    "data/processed/cvat_masks_v1/P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1_mask.tif": "d0701985c5888872ec1cb780465ddbdaa4538adf835ea0be5b44be49e54a9f44",
+    "data/processed/cvat_masks_v1/P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1_mask.tif": "0db620f3b693857433febfd51d279b7c2d045581b1cafcc2bd0517388161a93e",
+    "data/processed/cvat_masks_v1/P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1_mask.tif": "6a1568fe56f99ce593ccbee996003a2906dcaf2706bd87f0a7980b48b90d5fca",
+    "data/processed/cvat_masks_v1/P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1_mask.tif": "e5faffc9fcf07b273ce12f01d7222d9e37bb6793ad75af328a7ef485db983ec5",
+    "data/processed/cvat_masks_v1/P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1_mask.tif": "43150771b782504f077f54b91a767f3fc36032064512b466ec8f0a2b93b872cc",
+    "data/processed/cvat_masks_v1/P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1_mask.tif": "34ad88a9091492839486e71a181c9e9a988ea7fb841ad741ec165908ce9b3b13",
+    "data/processed/cvat_masks_v1/P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1_mask.tif": "24145d7fd0ff657ea109a00d2bcbcfe68edc6acdb81b6f73c98735c03be3d856",
+    "data/processed/cvat_masks_v1/P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1_mask.tif": "7b797976de981215f824003422553cd7ea99612b00c3a78c36aee2d8565dfafe",
+    "data/processed/cvat_masks_v1/P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1_mask.tif": "25afa583866fe9c1edf5b060e0bfeb11d0d1fc63a7717a4f6a8e43f2e3191c43",
+    "data/processed/cvat_masks_v1/P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1_mask.tif": "272a044ee646411a6813338acb2729961d50db492af821a5f296af6d272eec4c",
+    "data/processed/cvat_masks_v1/P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1_mask.tif": "77334b5f786d98d1843091b00665aebcd056aecadca36e1c385fd8f57eae61a6",
+    "data/processed/cvat_masks_v1/P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1_mask.tif": "29947b0b084cc1bbad8d813612711b817d85ede6e2f69b5fb1d4345b336668d5",
+    "data/processed/cvat_masks_v1/P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1_mask.tif": "8209c94ca84009d2eed86462a84ad9b33222ddcb49f5dae877d0a577169a9d51",
+    "data/raw/cvat/usable_core/P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.tif": "d2bc11880dc4fb6d4772a293533336ebfd66828948d6b71f5fc189447125ec16",
+    "data/raw/cvat/usable_core/P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.tif": "5b700fbd083964148532fe3cc241dbd58d8cfd4494dc2ffee026067610a9ce0b",
+    "data/raw/cvat/usable_core/P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.tif": "cf698a3c07d4697122217517e7e2ff557222102bcb2e01653655a63650426b82",
+    "data/raw/cvat/usable_core/P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.tif": "41707604b879d4538c61d3ee1a6ae0c45fc736f15346559f6c072c4b988c2b64",
+    "data/raw/cvat/usable_core/P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.tif": "fbf949723b09b89d4942bb07ac163ca4ec87169ecfc61ad9c884c03f6f62506f",
+    "data/raw/cvat/usable_core/P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.tif": "495d829fae067870c13ddd6fe04df02c13392d26684895ced76cf57e5997b91c",
+    "data/raw/cvat/usable_core/P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.tif": "147eafc7ed04952bb0a3fcdc0fd465716518117385b2631b2748eee02c20b7a1",
+    "data/raw/cvat/usable_core/P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.tif": "077db39864e35a82ad211530135b4db97ce5479114587c18abd510a2ecd8cf2c",
+    "data/raw/cvat/usable_core/P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.tif": "e49206b3f402569ec20f65077c0b3a5e1f49dd26e8f86ad59883d4d5e7d2be42",
+    "data/raw/cvat/usable_core/P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.tif": "0d42a89aebc5ca9e8fc09e1f21199e5716c613b2a8e3f60cebd69bc25042e395",
+    "data/raw/cvat/usable_core/P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.tif": "26beca5c3d48cbc46258820ea4307c455621bef0583ed923db9f715986ee91a1",
+    "data/raw/cvat/usable_core/P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.tif": "e6134a84fa4155f4a15861df70d8bf834680a1470c53e3f0f6306329230506b2",
+    "data/raw/cvat/usable_core/P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.tif": "7f0cbf1c3e9d7e2aeb928d6e9d3fc11299ca1f461c80f3ba1527abaa3d678ce7",
+    "data/raw/cvat/usable_core/P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.tif": "028b0bc698b1e3f1b9cf983282cf375d4016e6fe8e67ade6cbd758ea609c7a65",
+    "data/raw/cvat/usable_core/P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.tif": "929422c5afaca4f9529cf70d7de664c2d706f225d25f79948d7731f46627d0c4",
+    "data/raw/cvat/usable_core/P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.tif": "3b0ea96c8af113fb2df444b7ae3b9975741f3cdb178afeba8ce860a9556b85a1",
+    "data/raw/cvat/usable_core/P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.tif": "c473781978932ab04395464e2e269d34cb0ca1517d69b61723d60c36da128149",
+    "data/raw/cvat/usable_core/P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.tif": "5a5bd6445a7d3c345a76016064714a1dae0cbf04c7afee0f4ac65f77a7ab2a1d",
+    "data/raw/cvat/usable_core/P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.tif": "5e3b5bf1054a98bf1ecdfeedaf37dae9fe3d9997ebcf73afee3020fa798ed3d2",
+    "data/raw/cvat/usable_core/P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.tif": "b8240bf939430e3209b0bd82367fcb8d5d76015ca8b9a6756524ffc8530a0435",
+    "data/raw/cvat/usable_core/P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.tif": "362030257d4657475637ce5fe7391ae935dddcdd7897b8a02ad808d963b7ac0b"
+  },
+  "limitations": [
+    "Labels are visual interpretations, not measured sediment or water quality.",
+    "Only four linked geographic/event groups; these scores are exploratory.",
+    "Evaluation samples pixels uniformly within each labelled scene, not whole-scene area.",
+    "Neighbouring pixels are correlated; sample counts are not independent observations.",
+    "No shallow-water class was annotated; it may be confused with plume.",
+    "RF probabilities are not calibrated and provide no area margin of error."
+  ]
+}
