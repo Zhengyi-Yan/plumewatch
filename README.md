@@ -8,7 +8,7 @@ Start with [the teammate setup and dashboard guide](TEAM_GUIDE.md) for installat
 
 ### Before starting
 
-The dashboard needs two Python environments and separately supplied model checkpoints. You do **not** need CVAT, SAM, a GEE account, Node.js or training data to run inference on an existing supported image.
+The dashboard needs two Python environments. The three active trained models are included in the repository. You do **not** need CVAT, SAM, a GEE account, Node.js or training data to run inference on an existing supported image.
 
 - **Verified locally:** macOS with dashboard Python 3.14.3 and U-Net Python 3.12.2.
 - **Linux:** compatible environment paths, but a fresh installation has not been tested.
@@ -44,7 +44,7 @@ experiments/unet/.venv/bin/python -m pip install --upgrade pip
 experiments/unet/.venv/bin/python -m pip install -r experiments/unet/requirements.txt
 ```
 
-If you already cloned the repository, enter that existing checkout rather than cloning again. Continue with **D. Copy the trained models**.
+If you already cloned the repository, enter that existing checkout rather than cloning again. Continue with **D. Included trained models**.
 
 ### B. Windows installation through WSL2
 
@@ -99,48 +99,23 @@ uv pip install --python experiments/unet/.venv/bin/python \
 
 Keep the checkout in the Linux home directory under WSL. If a dependency fails to install, retain the error rather than silently changing pinned versions or retraining. PyTorch downloads can be large. Continue with section D.
 
-### D. Copy the trained models
+### D. Included trained models
 
-**GitHub does not include the active model checkpoints.** Obtain these exact models from the project owner; cloning alone cannot enable classification. The historical tracked `results/baseline_v1/model.pkl` is not the current dashboard RF.
+**All three active dashboard models are included when you clone or pull this repository.** No separate model download, copying or training is needed.
 
-| Model | Required destination inside the repository |
+| Model | Included file |
 |---|---|
 | Random Forest | `data/processed/multiclass_rf_v2_20260930/model.pkl` |
 | U-Net | `experiments/unet/outputs/expanded_all_data_20260930/model.pt` |
 | SVM | `data/processed/svm_rbf_20261001/model.pkl` |
 
-Only load trusted project artifacts. Keep any supplied protocol files for provenance. RF/U-Net requests compute **both** models and need both checkpoints plus the U-Net environment. SVM runs separately when selected.
-
-For the copy commands below, save the supplied files in Downloads using the distinguishable names `rf_model.pkl`, `unet_model.pt` and `svm_model.pkl`. These are temporary transfer names; the destination filenames must match the table. Run from the repository root:
+If you cloned an older version, update it from the repository root:
 
 ```sh
-mkdir -p data/processed/multiclass_rf_v2_20260930
-mkdir -p experiments/unet/outputs/expanded_all_data_20260930
-mkdir -p data/processed/svm_rbf_20261001
+git pull --ff-only
 ```
 
-On **macOS or Linux**:
-
-```sh
-cp ~/Downloads/rf_model.pkl data/processed/multiclass_rf_v2_20260930/model.pkl
-cp ~/Downloads/unet_model.pt experiments/unet/outputs/expanded_all_data_20260930/model.pt
-cp ~/Downloads/svm_model.pkl data/processed/svm_rbf_20261001/model.pkl
-```
-
-On **Windows/WSL**, enter your Windows user-folder name, which may differ from your Ubuntu username:
-
-```sh
-read -r -p "Your Windows user-folder name: " PW_WINDOWS_USER
-
-cp "/mnt/c/Users/$PW_WINDOWS_USER/Downloads/rf_model.pkl" \
-  data/processed/multiclass_rf_v2_20260930/model.pkl
-cp "/mnt/c/Users/$PW_WINDOWS_USER/Downloads/unet_model.pt" \
-  experiments/unet/outputs/expanded_all_data_20260930/model.pt
-cp "/mnt/c/Users/$PW_WINDOWS_USER/Downloads/svm_model.pkl" \
-  data/processed/svm_rbf_20261001/model.pkl
-```
-
-Adjust the source paths if Downloads is elsewhere. There is no automatic checkpoint download or training during startup.
+RF/U-Net requests compute **both** models and require the separate U-Net Python environment installed above. SVM runs separately when selected. Training caches, other experiment checkpoints and downloaded imagery remain excluded; the Wellington example is included. Do not substitute the historical `results/baseline_v1/model.pkl` for the active RF.
 
 ### E. Verify the installation
 
@@ -178,7 +153,7 @@ For later Windows launches, first enter Ubuntu from PowerShell:
 wsl -d Ubuntu
 ```
 
-Then run the same two Linux launch commands above. If your checkout is elsewhere, use its actual path. Do not reinstall dependencies or recopy models for each launch.
+Then run the same two Linux launch commands above. If your checkout is elsewhere, use its actual path. Do not reinstall dependencies for each launch.
 
 ### G. Use the dashboard
 

@@ -5,7 +5,7 @@ This guide covers running the current dashboard, reviewing predictions and under
 ## 1. What you need
 
 - Git and Python, with permission to create virtual environments and install packages.
-- The repository and the **three active model checkpoints**, supplied separately by the project owner.
+- The repository, which includes the **three active trained model files** and Wellington example.
 - A browser and enough memory for the source scene, model outputs and previews. Large images use considerably more memory than their compressed file size.
 
 **Verified setup:** macOS, dashboard Python 3.14.3 and a separate U-Net Python 3.12.2 environment. The commands below use that setup. Linux uses the same environment layout, but a fresh Linux installation has not been tested here. Native Windows is **not supported unchanged**: the dashboard looks for `experiments/unet/.venv/bin/python`, whereas Windows virtual environments use `Scripts/python.exe`. Windows teammates can try the Linux instructions inside WSL2, but that route has not been verified. Do not copy another machine's virtual environments; recreate them locally.
@@ -14,13 +14,13 @@ The U-Net worker uses Apple Metal/MPS when available and otherwise CPU. It does 
 
 ## 2. Download the code and install dependencies
 
-Follow the [full installation guide in README](README.md#full-installation-guide), which includes macOS commands, Windows/WSL setup, Linux environments, model-copy commands, checks and startup. Return here for the dashboard controls and pipeline explanation.
+Follow the [full installation guide in README](README.md#full-installation-guide), which includes macOS commands, Windows/WSL setup, Linux environments, included model locations, checks and startup. Return here for the dashboard controls and pipeline explanation.
 
 The dashboard and U-Net environments are separate. Run commands from the repository root and recreate environments locally rather than copying them between machines.
 
-## 3. Put the trained models in the correct folders
+## 3. Included trained models
 
-Ask the project owner for these exact artifacts and preserve their names and folder locations:
+The active model files are included in GitHub and already sit in the locations used by the dashboard:
 
 ```text
 plumewatch/
@@ -31,11 +31,9 @@ plumewatch/
     └── expanded_all_data_20260930/model.pt
 ```
 
-Create any missing folders before copying the files. Model checkpoints, training caches and most imagery are intentionally ignored by Git, so **cloning the repository is not enough to run classification**. The Wellington example TIFF is included at `hutt-test/hutt_20210723_full_scene_v1.tif`.
+No separate model transfer or training is needed. For an older checkout, run `git pull --ff-only` from the repository root. The Wellington example is included at `hutt-test/hutt_20210723_full_scene_v1.tif`. Other generated checkpoints, training caches and most imagery remain ignored.
 
-Use checkpoints from the project owner: pickle/PyTorch artifacts can execute code when loaded. Do not substitute the older tracked `results/baseline_v1/model.pkl`; it is not the active dashboard RF. Keep any supplied `protocol.json` files alongside their models for provenance, although inference does not require all training evidence files.
-
-RF and U-Net are computed together when either is requested, so that workflow requires **both** checkpoints and the U-Net environment. SVM is computed separately and requires its own checkpoint when selected. There is currently no RF-only button.
+RF and U-Net are computed together when either is requested, so install both Python environments from README. SVM runs separately when selected. Do not substitute the historical `results/baseline_v1/model.pkl`; it is not the active dashboard RF.
 
 ## 4. Start the dashboard
 

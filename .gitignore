@@ -187,7 +187,14 @@ cython_debug/
 data/raw/
 
 # Locally generated training masks
-data/processed/
+data/processed/*
+# Bundle only the fixed dashboard models; keep other generated outputs local.
+!data/processed/multiclass_rf_v2_20260930/
+data/processed/multiclass_rf_v2_20260930/*
+!data/processed/multiclass_rf_v2_20260930/model.pkl
+!data/processed/svm_rbf_20261001/
+data/processed/svm_rbf_20261001/*
+!data/processed/svm_rbf_20261001/model.pkl
 
 # Local OS metadata and Office lock files
 .DS_Store

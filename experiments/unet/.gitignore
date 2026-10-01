@@ -1,3 +1,6 @@
 .venv/
-outputs/
+outputs/*
+!outputs/expanded_all_data_20260930/
+outputs/expanded_all_data_20260930/*
+!outputs/expanded_all_data_20260930/model.pt
 __pycache__/
