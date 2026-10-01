@@ -1,179 +1,337 @@
-"""Run: shiny run --reload app.py"""
+"""PlumeWatch three-model review dashboard. Run: shiny run --reload app.py"""
 import asyncio
 import shutil
 import tempfile
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-
 from shiny import App, reactive, render, ui
-from processing import EXAMPLE, MAX_BYTES, prepare_scene, classify, summary, make_download
+from processing import (EXAMPLE, MAX_BYTES, classify_rf, classify_unet, classify_svm, disagreement_km2,
+                        make_download, prepare_scene, summary)
 
-ROOT=Path(__file__).resolve().parent
-POOL=ThreadPoolExecutor(max_workers=2)
+ROOT = Path(__file__).resolve().parent
+POOL = ThreadPoolExecutor(max_workers=2)
 
-def metric(label,value_id,unit='km²'):
-    return ui.div(ui.span(label,class_='metric-label'),ui.div(ui.output_text(value_id,inline=True),ui.span(unit,class_='unit'),class_='metric-value'),class_='metric')
 
-app_ui=ui.page_fluid(
-    ui.tags.head(ui.tags.meta(name='viewport',content='width=device-width, initial-scale=1'),
-                 ui.tags.link(rel='stylesheet',href='leaflet.css'),ui.tags.link(rel='stylesheet',href='app.css'),
-                 ui.tags.script(src='leaflet.js'),ui.tags.script(src='app.js',defer=True)),
+def class_row(name, css_class, output_id):
+    return ui.div(ui.span(class_='legend-dot ' + css_class), ui.span(name),
+                  ui.span(ui.output_text(output_id, inline=True), class_='class-value'), class_='class-row')
+
+
+app_ui = ui.page_fluid(
+    ui.tags.head(
+        ui.tags.meta(name='viewport', content='width=device-width, initial-scale=1'),
+        ui.tags.link(rel='preconnect', href='https://fonts.googleapis.com'),
+        ui.tags.link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin='anonymous'),
+        ui.tags.link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'),
+        ui.tags.link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css'),
+        ui.tags.link(rel='stylesheet', href='leaflet.css'),
+        ui.tags.link(rel='stylesheet', href='app.css?v=20261001-summary'),
+        ui.tags.script(src='leaflet.js'),
+        ui.tags.script(src='app.js?v=20261001-summary', defer=True)),
     ui.div(
-        ui.tags.header(ui.div(ui.span('P',class_='brand-mark'),ui.span('PlumeWatch'),class_='brand'),
-                       ui.div(ui.span('Coastal image workspace',class_='header-context'),
-                              ui.input_action_button('about','Model details',class_='quiet-button'),class_='header-right'),class_='glass app-header'),
-        ui.div(
-            ui.tags.aside(
-                ui.div(ui.span('01',class_='section-number'),ui.h2('Image'),class_='section-heading'),
-                ui.input_file('upload',None,accept=['.tif','.tiff'],button_label='Open GeoTIFF',placeholder='GEE scene export'),
-                ui.input_action_button('example','Load Wellington example',class_='example-button'),
-                ui.div(ui.output_text('scene_name'),class_='scene-name'),ui.div(ui.output_text('scene_details'),class_='scene-details'),
-                ui.div(class_='divider'),
-                ui.div(ui.span('02',class_='section-number'),ui.h2('Classification'),class_='section-heading'),
-                ui.p('Hutt pilot',class_='model-label'),ui.p('Normal water and plume. Multiclass model pending.',class_='muted'),
-                ui.input_task_button('run','Classify image',label_busy='Classifying…',class_='run-button',width='100%'),
-                ui.div(class_='divider'),
-                ui.div(ui.span('03',class_='section-number'),ui.h2('Display'),class_='section-heading'),
-                ui.input_checkbox_group('layers',None,choices={'1':'Plume class','0':'Normal-water class','uncertain':'Uncertain'},selected=['1','uncertain']),
-                ui.input_slider('opacity','Overlay opacity',min=0,max=100,value=45,post='%'),
-                ui.input_slider('threshold','Minimum model score',min=50,max=95,value=70,step=5,post='%'),
-                ui.p('Low-score pixels appear as uncertain. This is not an area error margin.',class_='muted'),
-                ui.div(class_='divider'),
-                ui.div(ui.download_button('download','Download results',class_='download-button'),id='export-actions',class_='export-disabled',inert=True),
-                ui.p('Classification + scores + summary',class_='download-caption'),
-                class_='glass sidebar'),
-            ui.tags.main(
-                ui.div(ui.div(ui.span('PLUMEWATCH',class_='eyebrow'),ui.h1('Scene workspace')),ui.span('Sentinel-2',class_='source-label'),class_='workspace-heading'),
+        ui.tags.aside(
+            ui.div(ui.span('plumewatch', class_='brand-word'), class_='brand'),
+            ui.p('SATELLITE INSIGHT STUDIO', class_='brand-caption'),
+            ui.div(class_='nav-rule'), ui.p('WORKSPACE', class_='nav-label'),
+            ui.tags.nav(
+                ui.tags.a(ui.tags.img(src='blue/overview.svg', alt='', class_='nav-icon'), 'Overview', href='#overview', class_='nav-link active'),
+                ui.tags.a(ui.tags.img(src='blue/scenes.svg', alt='', class_='nav-icon'), 'Scenes', href='#workspace', class_='nav-link'),
+                ui.input_action_button('model_notes', ui.span(ui.tags.img(src='blue/model-notes.svg', alt='', class_='nav-icon'), 'Model notes'),
+                                       class_='nav-link nav-button'),
+                ui.tags.a(ui.tags.img(src='blue/exports.svg', alt='', class_='nav-icon'), 'Exports', href='#export-actions', class_='nav-link'),
+                class_='side-nav'),
+            ui.div(ui.span('THREE-MODEL REVIEW', class_='eyebrow lime'),
+                   ui.strong('RF + U-Net + SVM'),
+                   ui.span('Normal water · plume · land', class_='sidebar-small'),
+                   ui.input_action_button('methodology', ui.span('View methodology', ui.tags.img(src='blue/method-arrow.svg', alt=''), class_='action-label'), class_='sidebar-method'), class_='sidebar-card'),
+            class_='site-sidebar'),
+        ui.tags.main(
+            ui.div(ui.span('PROJECT  /  PLUMEWATCH  /  OVERVIEW'),
+                   ui.span('PROTOTYPE  ·  OCT 2026'), class_='topline', id='overview'),
+            ui.div(ui.p('SATELLITE COASTAL OBSERVATION', class_='eyebrow'),
+                   ui.h1('A clearer view of coastal plumes.'),
+                   ui.p('Inspect Sentinel-2 scenes, compare model predictions, and export georeferenced results.', class_='intro'),
+                   class_='hero'),
+            ui.div(ui.div(ui.p('SCENE WORKSPACE', class_='eyebrow'),
+                          ui.h2(ui.output_text('scene_name', inline=True)),
+                          ui.p(ui.output_text('scene_details', inline=True), class_='scene-detail'),
+                          class_='workspace-title'),
+                   ui.div(ui.input_action_button('example', ui.span('Load example scene',
+                                     ui.span(ui.tags.img(src='blue/arrow-blue.svg', alt=''), class_='action-well'),
+                                     class_='action-label'), class_='example-button'),
+                          ui.div(ui.input_file('upload', None, accept=['.tif', '.tiff'],
+                                               button_label='Open a scene', placeholder='GEE GeoTIFF'),
+                                 class_='scene-upload'), class_='workspace-actions'),
+                   class_='workspace-heading', id='workspace'),
+            ui.div(
                 ui.div(
-                    ui.div(ui.div(ui.tags.button('Original',type='button',data_view='original'),
-                                  ui.tags.button('Overlay',type='button',data_view='overlay',aria_pressed='true'),
-                                  ui.tags.button('Classes',type='button',data_view='classes'),class_='view-switch'),
-                           ui.tags.button('Fit scene',type='button',id='fit-scene',class_='fit-button'),class_='glass map-toolbar'),
-                    ui.div(id='map',role='region',aria_label='Satellite scene map'),
-                    ui.div(ui.span('Loading example…',id='map-caption'),class_='glass map-caption'),
-                    ui.div(id='pixel-info',class_='glass pixel-info',hidden=True),class_='map-stage'),
-                ui.div(metric('Predicted plume class','plume_area'),metric('Analysed coverage','analysed_area'),metric('Uncertain','uncertain_area'),class_='glass metrics'),
-                ui.div(ui.output_text('status'),role='status',aria_live='polite',class_='status-line'),
-                ui.p('Pilot results include land: no water mask is applied. Area values are provisional class footprints.',class_='pilot-note'),
-                class_='workspace'),class_='app-layout'),
-        ui.tags.footer(ui.span('GISCI 341'),ui.span('Local processing · files stay in this session'),class_='app-footer'),
-        class_='app-shell'),
-    title='PlumeWatch',lang='en')
+                    ui.div(
+                    ui.div(ui.span(ui.output_text('map_title', inline=True)),
+                           ui.span('SENTINEL-2 · 10 BANDS', class_='map-source'), class_='map-topbar'),
+                    ui.div(ui.div(id='map', role='region', aria_label='Satellite scene map'),
+                           ui.div(id='pixel-info', class_='pixel-info', hidden=True),
+                           class_='map-stage'),
+                    ui.div(
+                    ui.div(ui.tags.button('Original', type='button', data_view='original'),
+                           ui.tags.button('Overlay', type='button', data_view='overlay', aria_pressed='true'),
+                           ui.tags.button('Classes', type='button', data_view='classes'),
+                           ui.tags.button('Swipe', type='button', data_view='swipe'),
+                           ui.tags.button('Plume score', type='button', data_view='score'),
+                           ui.tags.button('Disagreement', type='button', data_view='disagreement'),
+                           class_='map-switch'),
+                    ui.div(ui.tags.img(src='blue/info.svg', alt=''), ui.span('Load a scene to begin', id='map-caption'), class_='map-caption'),
+                    ui.div(ui.span('Disagreement area: ', ui.output_text('disagreement', inline=True),
+                                   class_='disagreement-area'),
+                           ui.span('Model disagreement does not indicate which model is correct.'),
+                           id='disagreement-summary', class_='disagreement-summary', hidden=True),
+                    ui.div(ui.tags.label('Score appearance', **{'for': 'score-style'}),
+                           ui.tags.select(ui.tags.option('Soft colour ramp', value='soft'),
+                                          ui.tags.option('Original colours', value='original'),
+                                          id='score-style'),
+                           ui.div(ui.tags.label(ui.tags.input(id='score-smoothing', type='checkbox', checked=True),
+                                                ' Smooth display')),
+                           ui.tags.label('Smoothing strength', **{'for': 'score-strength'}),
+                           ui.tags.select(ui.tags.option('Light · 20 m', value='light'),
+                                          ui.tags.option('Medium · 50 m', value='medium', selected=True),
+                                          ui.tags.option('Strong · 100 m', value='strong'), id='score-strength'),
+                           ui.p('Display only. Stronger smoothing hides fine detail; areas and exports use raw predictions.'),
+                           ui.div(ui.div(class_='score-ramp'),
+                                  ui.div(ui.span('0% · low'), ui.span('50%'), ui.span('100% · high'), class_='score-ramp-labels'),
+                                  id='score-legend'),
+                           id='score-controls', hidden=True),
+                    ui.div(ui.tags.label('Original ↔ classification', **{'for': 'swipe-position'}),
+                           ui.tags.input(id='swipe-position', type='range', min=0, max=100, value=50),
+                           id='swipe-control', hidden=True), class_='map-tools'),
+                    class_='map-inner'), class_='map-shell'),
+                ui.div(
+                    ui.div(
+                    ui.p('CLASSIFICATION', class_='eyebrow'), ui.h2('Scene results'),
+                    ui.p('Estimated area · selected model', class_='panel-subtitle'),
+                    ui.input_radio_buttons('model', 'Choose a model',
+                                           choices={'rf': 'Random forest', 'unet': 'U-Net', 'svm': 'SVM'}, selected='rf',
+                                           inline=True),
+                    ui.input_task_button('run', ui.span('Classify scene', ui.span(ui.tags.img(src='blue/arrow-white.svg', alt=''), class_='action-well'), class_='action-label'),
+                                         label_busy='Classifying…', class_='run-button', width='100%'),
+                    ui.div(class_row('Visible plume', 'plume', 'plume_area'),
+                           class_row('Normal water', 'water', 'water_area'),
+                           class_row('Land', 'land', 'land_area'), class_='class-list'),
+                    ui.div(ui.span('DISPLAY FILTER', class_='eyebrow'),
+                           ui.input_slider('threshold', 'Minimum predicted-class score', min=0, max=95,
+                                           value=70, step=5, post='%'),
+                           ui.p('Filters class views and area totals only. Plume-score and disagreement views retain all valid pixels. Scores are uncalibrated and cannot be compared between models.',
+                                class_='score-note'), class_='threshold-block'),
+                    ui.div(ui.strong('For visual review'),
+                           ui.p('Mapped areas are estimates for review, not measured sediment concentration.'),
+                           class_='interpretation-note'),
+                    ui.div(ui.download_button('download', ui.span('Export selected model', ui.span(ui.tags.img(src='blue/arrow-blue.svg', alt=''), class_='action-well'), class_='action-label'),
+                                              class_='export-button'), id='export-actions',
+                           class_='export-disabled', inert=True),
+                    class_='inspector-inner'), class_='inspector-shell'),
+                class_='review-grid'),
+            ui.tags.details(ui.tags.summary('Scene and model details'),
+                            ui.tags.pre(id='scene-model-details'), class_='scene-metadata'),
+            ui.p(ui.output_text('status', inline=True), role='status', aria_live='polite', class_='status-line'),
+            class_='main-content'), class_='app-shell'),
+    title='PlumeWatch · Three-model review', lang='en')
 
-def server(input,output,session):
-    temp=tempfile.TemporaryDirectory(prefix='plumewatch-')
-    scene=reactive.value(None); result=reactive.value(None); message=reactive.value('Loading the Wellington example…')
-    future=None
+
+def server(input, output, session):
+    temp = tempfile.TemporaryDirectory(prefix='plumewatch-')
+    scene = reactive.value(None)
+    results = reactive.value(None)
+    message = reactive.value('Loading the Wellington example…')
+    future = None
+    initialized = False
 
     def cleanup():
-        if future and not future.done(): future.add_done_callback(lambda _:temp.cleanup())
-        else: temp.cleanup()
+        if future and not future.done():
+            future.add_done_callback(lambda _: temp.cleanup())
+        else:
+            temp.cleanup()
     session.on_ended(cleanup)
 
     @reactive.extended_task
-    async def load(path,name):
+    async def load(path, name):
         nonlocal future
         def prepare():
-            if Path(path).stat().st_size>MAX_BYTES: raise ValueError('Maximum upload size is 250 MB.')
-            copied=Path(temp.name)/'input.tif'
-            shutil.copyfile(path,copied)
-            value=prepare_scene(copied);value['name']=name
+            if Path(path).stat().st_size > MAX_BYTES:
+                raise ValueError('Maximum upload size is 250 MB.')
+            target = Path(temp.name) / 'input.tif'
+            shutil.copyfile(path, target)
+            value = prepare_scene(target)
+            value['name'] = name
             return value
-        future=POOL.submit(prepare)
-        try: return await asyncio.wrap_future(future)
-        except Exception as error: return {'error':str(error)}
+        future = POOL.submit(prepare)
+        try:
+            return await asyncio.wrap_future(future)
+        except Exception as error:
+            return {'error': str(error)}
 
     @ui.bind_task_button(button_id='run')
     @reactive.extended_task
-    async def run_model(snapshot):
+    async def run_models(snapshot, choice):
         nonlocal future
-        future=POOL.submit(classify,snapshot,Path(temp.name)/'results')
-        try: return await asyncio.wrap_future(future)
-        except Exception as error: return {'error':str(error)}
+        def work():
+            root = Path(temp.name) / 'results'
+            if choice == 'svm':
+                return {'svm': classify_svm(snapshot, root / 'svm')}
+            rf = classify_rf(snapshot, root / 'rf')
+            unet = classify_unet(snapshot, root / 'unet')
+            return {'rf': rf, 'unet': unet}
+        future = POOL.submit(work)
+        try:
+            return await asyncio.wrap_future(future)
+        except Exception as error:
+            return {'error': str(error)}
 
-    def busy(): return load.status()=='running' or run_model.status()=='running'
+    def busy():
+        return load.status() == 'running' or run_models.status() == 'running'
 
-    def start_load(path,name):
+    def start_load(path, name):
         if busy():
-            ui.notification_show('Please wait for the current image operation to finish.',type='message');return
-        scene.set(None);result.set(None);message.set('Checking image and preparing the map…')
-        load(path,name)
+            ui.notification_show('Wait for the current scene operation to finish.', type='message')
+            return
+        scene.set(None)
+        results.set(None)
+        message.set('Checking the scene and preparing the map…')
+        load(path, name)
 
     @reactive.effect
-    @reactive.event(input.example,ignore_none=False)
+    def initial_example():
+        nonlocal initialized
+        if initialized:
+            return
+        initialized = True
+        if EXAMPLE.exists():
+            start_load(EXAMPLE, 'Wellington Harbour · 23 Jul 2021')
+        else:
+            message.set('Open a supported PlumeWatch GEE scene export to begin.')
+
+    @reactive.effect
+    @reactive.event(input.example)
     def example():
-        if EXAMPLE.exists(): start_load(EXAMPLE,'Wellington Harbour · 23 Jul 2021 NZ')
-        else: message.set('Open a PlumeWatch GEE scene export to begin.')
+        if EXAMPLE.exists():
+            start_load(EXAMPLE, 'Wellington Harbour · 23 Jul 2021')
 
     @reactive.effect
     @reactive.event(input.upload)
     def uploaded():
-        files=input.upload()
-        if files: start_load(files[0]['datapath'],files[0]['name'])
+        files = input.upload()
+        if files:
+            start_load(files[0]['datapath'], files[0]['name'])
 
     @reactive.effect
     async def show_loaded():
-        if load.status()!='success': return
-        value=load.result()
+        if load.status() != 'success':
+            return
+        value = load.result()
         if 'error' in value:
-            message.set('Could not open image: '+value['error']);await session.send_custom_message('pw-clear',{});return
-        scene.set(value);message.set('Image ready. Run classification to explore the model output.')
-        await session.send_custom_message('pw-scene',value['map'])
+            message.set('Could not open scene: ' + value['error'])
+            await session.send_custom_message('pw-clear', {})
+            return
+        scene.set(value)
+        message.set('Scene ready. Run RF / U-Net together, or select SVM to run it separately.')
+        await session.send_custom_message('pw-scene', {**value['map'], 'name': value['name'],
+            'sourceCrs': value['crs'], 'sourceWidth': value['width'], 'sourceHeight': value['height'],
+            'bands': ['B2','B3','B4','B5','B6','B7','B8','B8A','B11','B12'],
+            'sourceTags': value['source_tags']})
 
     @reactive.effect
     @reactive.event(input.run)
     def predict():
         if busy() or scene() is None:
-            ui.update_task_button('run',state='ready');return
-        result.set(None);message.set('Classifying the full-resolution image…')
-        run_model(scene())
+            ui.update_task_button('run', state='ready')
+            return
+        message.set('Running SVM on the full-resolution scene; this can take several minutes…' if input.model() == 'svm'
+                    else 'Running Random Forest, then U-Net on the full-resolution scene…')
+        run_models(scene(), input.model())
 
     @reactive.effect
     async def show_prediction():
-        if run_model.status()!='success': return
-        value=run_model.result()
-        if 'error' in value: message.set('Classification failed: '+value['error']);return
-        result.set(value);message.set('Classification complete. Display controls do not rerun the model.')
-        await session.send_custom_message('pw-result',value['map'])
+        if run_models.status() != 'success':
+            return
+        value = run_models.result()
+        if 'error' in value:
+            message.set('Classification failed: ' + value['error'])
+            return
+        with reactive.isolate():
+            merged = {**(results() or {}), **value}
+        results.set(merged)
+        message.set('Classification ready. Select a model to inspect it; run SVM separately if needed.')
+        await session.send_custom_message('pw-result', {key: item['map'] for key, item in merged.items()})
 
     @reactive.effect
     async def display_settings():
-        await session.send_custom_message('pw-style',{'layers':input.layers(),'opacity':input.opacity()/100,'threshold':input.threshold()})
+        await session.send_custom_message('pw-style', {'model': input.model(),
+            'threshold': input.threshold(), 'opacity': .58})
 
     @reactive.effect
     async def controls():
-        await session.send_custom_message('pw-controls',{'busy':busy(),'ready':scene() is not None,'download':result() is not None})
-
-    @render.text
-    def scene_name(): return scene()['name'] if scene() else 'No image selected'
-    @render.text
-    def scene_details():
-        s=scene()
-        return f"{s['width']:,} × {s['height']:,} pixels · 10 m · {s['crs']}" if s else '12-band GEE GeoTIFF · up to 250 MB'
-    @render.text
-    def status(): return message()
+        await session.send_custom_message('pw-controls', {'busy': busy(), 'ready': scene() is not None,
+                                                           'download': selected() is not None})
 
     @reactive.calc
-    def stats(): return summary(result(),input.threshold()/100) if result() else None
-    @render.text
-    def plume_area(): return f"{stats()['predicted_plume_class_km2']:.2f}" if stats() else '—'
-    @render.text
-    def analysed_area(): return f"{stats()['analysed_km2']:.2f}" if stats() else '—'
-    @render.text
-    def uncertain_area(): return f"{stats()['uncertain_km2']:.2f}" if stats() else '—'
+    def selected():
+        current = results()
+        return current.get(input.model()) if current else None
 
-    @render.download_button(filename='plumewatch_results.zip')
+    @reactive.calc
+    def stats():
+        return summary(selected(), input.threshold() / 100) if selected() else None
+
+    @render.text
+    def scene_name():
+        return scene()['name'] if scene() else 'River mouth / Wellington Harbour'
+
+    @render.text
+    def map_title():
+        return scene()['name'].upper() if scene() else 'COASTAL SCENE / WELLINGTON HARBOUR'
+
+    @render.text
+    def scene_details():
+        value = scene()
+        return (f"{value['width']:,} × {value['height']:,} pixels · 10 m · {value['crs']}" if value
+                else 'Single acquisition · 10 reflectance bands · example loads automatically')
+
+    @render.text
+    def status():
+        return message()
+
+    @render.text
+    def plume_area():
+        return f"{stats()['visible_plume_km2']:.2f} km²" if stats() else '—'
+
+    @render.text
+    def water_area():
+        return f"{stats()['normal_water_km2']:.2f} km²" if stats() else '—'
+
+    @render.text
+    def land_area():
+        return f"{stats()['land_km2']:.2f} km²" if stats() else '—'
+
+    @render.text
+    def disagreement():
+        value = results()
+        other = value.get('svm' if input.model() == 'svm' else 'unet') if value else None
+        return f"{disagreement_km2(value['rf'], other):.2f} km² vs RF" if value and 'rf' in value and other else '—'
+
+    @render.download_button(filename='plumewatch_selected_model.zip')
     def download():
-        if result() is None: raise ValueError('Classify an image first.')
-        return str(make_download(result(),input.threshold()/100))
+        value = selected()
+        if value is None:
+            raise ValueError('Classify a scene first.')
+        return str(make_download(value, input.threshold() / 100))
 
     @reactive.effect
-    @reactive.event(input.about)
-    def about():
-        ui.modal_show(ui.modal(ui.p('This dashboard currently uses the original two-class Random Forest trained on the Hutt scene.'),
-            ui.p('It predicts normal water and plume. It has no land/shallow-water classes yet and no water mask; some land is predicted as plume.'),
-            ui.p('The model score is the forest’s class score, not a calibrated confidence interval. The area strip counts native 10 m pixels above your score threshold.'),
-            ui.p('Downloads contain raw class IDs, winning-class scores, and a threshold-specific summary. The map is a smaller preview; area is calculated on the original grid.'),
-            title='Model details',easy_close=True,footer=ui.modal_button('Close')))
+    @reactive.event(input.model_notes, input.methodology)
+    def model_notes_handler():
+        if input.model_notes() or input.methodology():
+            ui.modal_show(ui.modal(
+                ui.p('RF v2, the final LayerNorm U-Net and the RBF SVM use ten Sentinel-2 bands and map normal water (0), visible plume (1), and land (3).'),
+                ui.p('The SVM uses saved StandardScaler preprocessing and native SVC class predictions. Its displayed score belongs to that predicted class; it need not be the highest probability. All 49 reviewed frames contributed balanced pixel samples. No independent SVM accuracy has been established.'),
+                ui.p('The U-Net was trained on all 49 reviewed frames and has no independent accuracy score. RF v2 held-out scores describe reference-annotation agreement, not physical sediment accuracy. Scene appearance alone cannot determine which model is more accurate.'),
+                ui.p('Excluded pixels are 255. The score control hides low predicted-class scores in the preview; downloads retain raw class IDs and separate scores. Footprint areas remain estimates for review.'),
+                title='Model and interpretation notes', easy_close=True,
+                footer=ui.modal_button('Close')))
 
-app=App(app_ui,server,static_assets=ROOT/'www')
+app = App(app_ui, server, static_assets=ROOT / 'www')

@@ -1,0 +1,322 @@
+{
+  "group": "group_08",
+  "train_samples": 259000,
+  "original_only_train_samples": 111000,
+  "train_frames": 47,
+  "test_frames": 2,
+  "sites": [
+    "Pineios"
+  ],
+  "scenes": [
+    {
+      "png": "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+      "cohort": "new",
+      "group": "group_08",
+      "site": "Pineios",
+      "date": "20230831",
+      "labelled_pixel_counts": {
+        "0": 310208,
+        "1": 0,
+        "3": 1556944
+      },
+      "expanded_rf": {
+        "accuracy": 0.9994,
+        "macro_f1_present_classes": 0.999617612703209,
+        "classes": {
+          "normal_water": {
+            "support": 2464,
+            "precision": 0.9991889699918897,
+            "recall": 1.0,
+            "f1": 0.9995943204868154,
+            "iou": 0.9991889699918897
+          },
+          "plume": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "land": {
+            "support": 12536,
+            "precision": 1.0,
+            "recall": 0.9992820676451819,
+            "f1": 0.9996409049196027,
+            "iou": 0.9992820676451819
+          }
+        },
+        "confusion_matrix": [
+          [
+            2464,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            7,
+            12527
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9990666666666667,
+        "macro_f1_present_classes": 0.9991126221539761,
+        "classes": {
+          "normal_water": {
+            "support": 2464,
+            "precision": 0.9975708502024292,
+            "recall": 1.0,
+            "f1": 0.9987839481151196,
+            "iou": 0.9975708502024292
+          },
+          "plume": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "land": {
+            "support": 12536,
+            "precision": 1.0,
+            "recall": 0.9988832163369495,
+            "f1": 0.9994412961928326,
+            "iou": 0.9988832163369495
+          }
+        },
+        "confusion_matrix": [
+          [
+            2464,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            8,
+            12522
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9990666666666667,
+        "macro_f1_present_classes": 0.9991126221539761,
+        "classes": {
+          "normal_water": {
+            "support": 2464,
+            "precision": 0.9975708502024292,
+            "recall": 1.0,
+            "f1": 0.9987839481151196,
+            "iou": 0.9975708502024292
+          },
+          "plume": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "land": {
+            "support": 12536,
+            "precision": 1.0,
+            "recall": 0.9988832163369495,
+            "f1": 0.9994412961928326,
+            "iou": 0.9988832163369495
+          }
+        },
+        "confusion_matrix": [
+          [
+            2464,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            8,
+            12522
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          2477,
+          12523
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "png": "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+      "cohort": "new",
+      "group": "group_08",
+      "site": "Pineios",
+      "date": "20230910",
+      "labelled_pixel_counts": {
+        "0": 633721,
+        "1": 1217232,
+        "3": 1804981
+      },
+      "expanded_rf": {
+        "accuracy": 0.9963333333333333,
+        "macro_f1_present_classes": 0.9947774805859421,
+        "classes": {
+          "normal_water": {
+            "support": 2661,
+            "precision": 0.980110497237569,
+            "recall": 1.0,
+            "f1": 0.9899553571428571,
+            "iou": 0.980110497237569
+          },
+          "plume": {
+            "support": 4977,
+            "precision": 0.9997969130787977,
+            "recall": 0.9891500904159132,
+            "f1": 0.9944450055549945,
+            "iou": 0.9889513860988349
+          },
+          "land": {
+            "support": 7362,
+            "precision": 1.0,
+            "recall": 0.99986416734583,
+            "f1": 0.9999320790599742,
+            "iou": 0.99986416734583
+          }
+        },
+        "confusion_matrix": [
+          [
+            2661,
+            0,
+            0
+          ],
+          [
+            54,
+            4923,
+            0
+          ],
+          [
+            0,
+            1,
+            7361
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9952666666666666,
+        "macro_f1_present_classes": 0.9936026651311779,
+        "classes": {
+          "normal_water": {
+            "support": 2661,
+            "precision": 0.9775900073475385,
+            "recall": 1.0,
+            "f1": 0.9886680289801226,
+            "iou": 0.9775900073475385
+          },
+          "plume": {
+            "support": 4977,
+            "precision": 0.9995926680244399,
+            "recall": 0.9861362266425557,
+            "f1": 0.9928188530393446,
+            "iou": 0.9857401084555132
+          },
+          "land": {
+            "support": 7362,
+            "precision": 0.998914223669924,
+            "recall": 0.9997283346916599,
+            "f1": 0.9993211133740666,
+            "iou": 0.9986431478968792
+          }
+        },
+        "confusion_matrix": [
+          [
+            2661,
+            0,
+            0
+          ],
+          [
+            61,
+            4908,
+            8
+          ],
+          [
+            0,
+            2,
+            7360
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9952666666666666,
+        "macro_f1_present_classes": 0.9936026651311779,
+        "classes": {
+          "normal_water": {
+            "support": 2661,
+            "precision": 0.9775900073475385,
+            "recall": 1.0,
+            "f1": 0.9886680289801226,
+            "iou": 0.9775900073475385
+          },
+          "plume": {
+            "support": 4977,
+            "precision": 0.9995926680244399,
+            "recall": 0.9861362266425557,
+            "f1": 0.9928188530393446,
+            "iou": 0.9857401084555132
+          },
+          "land": {
+            "support": 7362,
+            "precision": 0.998914223669924,
+            "recall": 0.9997283346916599,
+            "f1": 0.9993211133740666,
+            "iou": 0.9986431478968792
+          }
+        },
+        "confusion_matrix": [
+          [
+            2661,
+            0,
+            0
+          ],
+          [
+            61,
+            4908,
+            8
+          ],
+          [
+            0,
+            2,
+            7360
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          2675,
+          7348
+        ],
+        [
+          1232,
+          3745
+        ]
+      ]
+    }
+  ]
+}

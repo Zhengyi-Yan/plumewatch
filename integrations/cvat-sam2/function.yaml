@@ -1,0 +1,51 @@
+metadata:
+  name: plumewatch-sam2-small
+  namespace: nuclio
+  annotations:
+    name: SAM 2.1 Small (PlumeWatch)
+    type: interactor
+    version: 2
+    spec:
+    min_pos_points: 0
+    min_neg_points: 0
+    startswith_box: true
+    help_message: Draw a box, then add positive and negative points. Review the mask before saving.
+spec:
+  description: CPU SAM 2.1 Small for interactive annotation
+  runtime: python:3.12
+  handler: main:handler
+  eventTimeout: 120s
+  env:
+    - name: YOLO_CONFIG_DIR
+      value: /tmp
+    - name: SAM2_CHECKPOINT
+      value: /opt/nuclio/sam2.1_s.pt
+  build:
+    image: plumewatch.sam2-small
+    baseImage: python:3.12-slim
+    directives:
+      preCopy:
+        - kind: WORKDIR
+          value: /opt/nuclio
+        - kind: RUN
+          value: apt-get update && apt-get install -y --no-install-recommends curl libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
+        - kind: RUN
+          value: pip install --no-cache-dir torch==2.9.0 torchvision==0.24.0 --index-url https://download.pytorch.org/whl/cpu
+        - kind: RUN
+          value: pip install --no-cache-dir ultralytics==8.4.154
+        - kind: RUN
+          value: 'mkdir -p /home/nuclio/bin/py3.12-whl && pip download --only-binary=:all: --no-deps --dest /home/nuclio/bin/py3.12-whl msgpack==1.1.1'
+        - kind: RUN
+          value: curl --fail --location --retry 3 https://github.com/ultralytics/assets/releases/download/v8.4.0/sam2.1_s.pt -o /opt/nuclio/sam2.1_s.pt
+  triggers:
+    http:
+      kind: http
+      numWorkers: 1
+      workerAvailabilityTimeoutMilliseconds: 120000
+      attributes:
+        maxRequestBodySize: 33554432
+  platform:
+    attributes:
+      restartPolicy:
+        name: unless-stopped
+      mountMode: volume

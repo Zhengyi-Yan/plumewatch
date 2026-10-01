@@ -1,0 +1,34 @@
+// node test_export_all_plume_scenes.cjs — local checks, not authenticated GEE execution.
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const code=fs.readFileSync(__dirname+'/export_all_plume_scenes.js','utf8');
+new vm.Script(code);
+const ctx={};vm.createContext(ctx);
+vm.runInContext(code.slice(0,code.indexOf('var panel =')),ctx);
+assert.equal(ctx.rows.length,20);
+assert.equal(new Set(ctx.rows.map(r=>r.task_id)).size,20);
+assert.equal(ctx.rows.filter(r=>r.asset_id).length,2);
+assert.equal(ctx.rows.find(r=>r.task_id==='P1-04').split,'development');
+ctx.PERSON_FILTER='Person 2';assert.equal(ctx.selectedRows(ctx.ASSIGNMENTS).length,6);
+ctx.PERSON_FILTER='';ctx.TASK_IDS=['P3-05'];assert.equal(ctx.selectedRows(ctx.ASSIGNMENTS)[0].task_id,'P3-05');
+assert(!ctx.validDate('2023-02-29'));assert(ctx.validDate('2024-02-29'));
+assert.match(ctx.resultProblem(null,'timeout'),/SEARCH FAILED/);
+assert.match(ctx.resultProblem({count:0}),/NO MATCH/);
+assert.match(ctx.resultProblem({count:31}),/TOO MANY/);
+assert.equal(ctx.resultProblem({count:30}),'');
+const tasks=[];
+const chain=new Proxy({}, {get:()=>()=>chain});
+ctx.ee={Image:()=>chain,Reducer:{min:()=>chain}};
+ctx.region=()=>chain;
+ctx.Export={image:{toDrive:x=>tasks.push(x)}};
+vm.runInContext(code.slice(code.indexOf('function prepareImage'),code.indexOf('function finishSearch')),ctx);
+const item={row:ctx.rows[0],scene:{scene_key:'test_scene',grid:{crs:'EPSG:32760',transform:[10,0,300000,0,-10,5500000]}}};
+ctx.prepareImage(item);ctx.prepareImage(item); // Double clicks cannot duplicate the same task.
+assert.equal(tasks.length,1);
+assert.equal(tasks[0].crs,'EPSG:32760');
+assert.deepEqual(tasks[0].crsTransform,item.scene.grid.transform);
+assert.equal(tasks[0].scale,undefined);assert.equal(tasks[0].fileDimensions%tasks[0].shardSize,0);
+assert.equal(tasks[0].formatOptions.noData,-9999);
+ctx.Export.image.toDrive=()=>{throw new Error('export setup failed');};
+assert.throws(()=>ctx.prepareImage({...item,scene:{...item.scene,scene_key:'failed'}}));
+assert(!ctx.prepared[ctx.exportStem(item.row,{scene_key:'failed'})]);
+console.log('PASS: 20 rows, exact IDs/splits, filters, date validation, search failures, native grid and duplicate-export guard.');

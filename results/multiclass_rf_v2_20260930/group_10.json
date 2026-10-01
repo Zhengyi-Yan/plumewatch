@@ -1,0 +1,167 @@
+{
+  "group": "group_10",
+  "train_samples": 268000,
+  "original_only_train_samples": 111000,
+  "train_frames": 48,
+  "test_frames": 1,
+  "sites": [
+    "Murray"
+  ],
+  "scenes": [
+    {
+      "png": "AU_Murray_20230101_x0_y0_cvat.png",
+      "cohort": "new",
+      "group": "group_10",
+      "site": "Murray",
+      "date": "20230101",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 1157247,
+        "3": 1706023
+      },
+      "expanded_rf": {
+        "accuracy": 0.9998666666666667,
+        "macro_f1_present_classes": 0.9999028267399022,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 6085,
+            "precision": 1.0,
+            "recall": 0.9998356614626129,
+            "f1": 0.9999178239789629,
+            "iou": 0.9998356614626129
+          },
+          "land": {
+            "support": 8915,
+            "precision": 0.9998878295008413,
+            "recall": 0.9998878295008413,
+            "f1": 0.9998878295008413,
+            "iou": 0.999775684163302
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6084,
+            1
+          ],
+          [
+            1,
+            0,
+            8914
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9980666666666667,
+        "macro_f1_present_classes": 0.9987217732449181,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 6085,
+            "precision": 0.9998349290194783,
+            "recall": 0.9953985209531635,
+            "f1": 0.9976117928024376,
+            "iou": 0.9952349654945777
+          },
+          "land": {
+            "support": 8915,
+            "precision": 0.999775684163302,
+            "recall": 0.9998878295008413,
+            "f1": 0.9998317536873984,
+            "iou": 0.9996635639789166
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            26,
+            6057,
+            2
+          ],
+          [
+            0,
+            1,
+            8914
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9980666666666667,
+        "macro_f1_present_classes": 0.9987217732449181,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 6085,
+            "precision": 0.9998349290194783,
+            "recall": 0.9953985209531635,
+            "f1": 0.9976117928024376,
+            "iou": 0.9952349654945777
+          },
+          "land": {
+            "support": 8915,
+            "precision": 0.999775684163302,
+            "recall": 0.9998878295008413,
+            "f1": 0.9998317536873984,
+            "iou": 0.9996635639789166
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            26,
+            6057,
+            2
+          ],
+          [
+            0,
+            1,
+            8914
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          0,
+          8915
+        ],
+        [
+          648,
+          5437
+        ]
+      ]
+    }
+  ]
+}

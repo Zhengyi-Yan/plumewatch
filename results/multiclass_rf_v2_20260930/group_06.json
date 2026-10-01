@@ -1,0 +1,632 @@
+{
+  "group": "group_06",
+  "train_samples": 248000,
+  "original_only_train_samples": 111000,
+  "train_frames": 45,
+  "test_frames": 4,
+  "sites": [
+    "Arno"
+  ],
+  "scenes": [
+    {
+      "png": "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+      "cohort": "new",
+      "group": "group_06",
+      "site": "Arno",
+      "date": "20200226",
+      "labelled_pixel_counts": {
+        "0": 89790,
+        "1": 2069245,
+        "3": 781344
+      },
+      "expanded_rf": {
+        "accuracy": 0.9665333333333334,
+        "macro_f1_present_classes": 0.6635324767373203,
+        "classes": {
+          "normal_water": {
+            "support": 492,
+            "precision": 1.0,
+            "recall": 0.008130081300813009,
+            "f1": 0.01612903225806452,
+            "iou": 0.008130081300813009
+          },
+          "plume": {
+            "support": 10487,
+            "precision": 0.9557481751824818,
+            "recall": 0.9988557261371221,
+            "f1": 0.9768265957942837,
+            "iou": 0.9547028800583303
+          },
+          "land": {
+            "support": 4021,
+            "precision": 0.9957879088206145,
+            "recall": 0.9995026112907237,
+            "f1": 0.9976418021596128,
+            "iou": 0.9952947003467063
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            483,
+            5
+          ],
+          [
+            0,
+            10475,
+            12
+          ],
+          [
+            0,
+            2,
+            4019
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9664,
+        "macro_f1_present_classes": 0.662160470784582,
+        "classes": {
+          "normal_water": {
+            "support": 492,
+            "precision": 0.75,
+            "recall": 0.006097560975609756,
+            "f1": 0.012096774193548388,
+            "iou": 0.006085192697768763
+          },
+          "plume": {
+            "support": 10487,
+            "precision": 0.955158585490339,
+            "recall": 0.9993325069133212,
+            "f1": 0.9767463535113472,
+            "iou": 0.9545495946807542
+          },
+          "land": {
+            "support": 4021,
+            "precision": 0.9972664015904572,
+            "recall": 0.9980104451628948,
+            "f1": 0.9976382846488503,
+            "iou": 0.9952876984126984
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            485,
+            4
+          ],
+          [
+            0,
+            10480,
+            7
+          ],
+          [
+            1,
+            7,
+            4013
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9664,
+        "macro_f1_present_classes": 0.662160470784582,
+        "classes": {
+          "normal_water": {
+            "support": 492,
+            "precision": 0.75,
+            "recall": 0.006097560975609756,
+            "f1": 0.012096774193548388,
+            "iou": 0.006085192697768763
+          },
+          "plume": {
+            "support": 10487,
+            "precision": 0.955158585490339,
+            "recall": 0.9993325069133212,
+            "f1": 0.9767463535113472,
+            "iou": 0.9545495946807542
+          },
+          "land": {
+            "support": 4021,
+            "precision": 0.9972664015904572,
+            "recall": 0.9980104451628948,
+            "f1": 0.9976382846488503,
+            "iou": 0.9952876984126984
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            485,
+            4
+          ],
+          [
+            0,
+            10480,
+            7
+          ],
+          [
+            1,
+            7,
+            4013
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          7,
+          4506
+        ],
+        [
+          0,
+          10487
+        ]
+      ]
+    },
+    {
+      "png": "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+      "cohort": "new",
+      "group": "group_06",
+      "site": "Arno",
+      "date": "20200228",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 2031423,
+        "3": 791815
+      },
+      "expanded_rf": {
+        "accuracy": 0.9999333333333333,
+        "macro_f1_present_classes": 0.9999173099908037,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10801,
+            "precision": 0.9999074245510091,
+            "recall": 1.0,
+            "f1": 0.999953710132852,
+            "iou": 0.9999074245510091
+          },
+          "land": {
+            "support": 4199,
+            "precision": 1.0,
+            "recall": 0.9997618480590617,
+            "f1": 0.9998809098487556,
+            "iou": 0.9997618480590617
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            10801,
+            0
+          ],
+          [
+            0,
+            1,
+            4198
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9998,
+        "macro_f1_present_classes": 0.9997981772820306,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10801,
+            "precision": 0.9999074245510091,
+            "recall": 1.0,
+            "f1": 0.999953710132852,
+            "iou": 0.9999074245510091
+          },
+          "land": {
+            "support": 4199,
+            "precision": 1.0,
+            "recall": 0.9992855441771851,
+            "f1": 0.9996426444312091,
+            "iou": 0.9992855441771851
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            10801,
+            0
+          ],
+          [
+            2,
+            1,
+            4196
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9998,
+        "macro_f1_present_classes": 0.9997981772820306,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10801,
+            "precision": 0.9999074245510091,
+            "recall": 1.0,
+            "f1": 0.999953710132852,
+            "iou": 0.9999074245510091
+          },
+          "land": {
+            "support": 4199,
+            "precision": 1.0,
+            "recall": 0.9992855441771851,
+            "f1": 0.9996426444312091,
+            "iou": 0.9992855441771851
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            10801,
+            0
+          ],
+          [
+            2,
+            1,
+            4196
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          208,
+          3991
+        ],
+        [
+          229,
+          10572
+        ]
+      ]
+    },
+    {
+      "png": "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+      "cohort": "new",
+      "group": "group_06",
+      "site": "Arno",
+      "date": "20200304",
+      "labelled_pixel_counts": {
+        "0": 54890,
+        "1": 1606470,
+        "3": 741046
+      },
+      "expanded_rf": {
+        "accuracy": 0.9764,
+        "macro_f1_present_classes": 0.660711392830562,
+        "classes": {
+          "normal_water": {
+            "support": 349,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10011,
+            "precision": 0.9660297239915074,
+            "recall": 0.9999001098791329,
+            "f1": 0.9826731458302655,
+            "iou": 0.9659365048731062
+          },
+          "land": {
+            "support": 4640,
+            "precision": 0.9997843433254259,
+            "recall": 0.9991379310344828,
+            "f1": 0.9994610326614207,
+            "iou": 0.9989226459814695
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            349,
+            0
+          ],
+          [
+            0,
+            10010,
+            1
+          ],
+          [
+            1,
+            3,
+            4636
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9764,
+        "macro_f1_present_classes": 0.6607435520485953,
+        "classes": {
+          "normal_water": {
+            "support": 349,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10011,
+            "precision": 0.9662162162162162,
+            "recall": 0.9999001098791329,
+            "f1": 0.982769623484365,
+            "iou": 0.9661229611041405
+          },
+          "land": {
+            "support": 4640,
+            "precision": 0.9997843433254259,
+            "recall": 0.9991379310344828,
+            "f1": 0.9994610326614207,
+            "iou": 0.9989226459814695
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            349,
+            0
+          ],
+          [
+            0,
+            10010,
+            1
+          ],
+          [
+            3,
+            1,
+            4636
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9764,
+        "macro_f1_present_classes": 0.6607435520485953,
+        "classes": {
+          "normal_water": {
+            "support": 349,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10011,
+            "precision": 0.9662162162162162,
+            "recall": 0.9999001098791329,
+            "f1": 0.982769623484365,
+            "iou": 0.9661229611041405
+          },
+          "land": {
+            "support": 4640,
+            "precision": 0.9997843433254259,
+            "recall": 0.9991379310344828,
+            "f1": 0.9994610326614207,
+            "iou": 0.9989226459814695
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            349,
+            0
+          ],
+          [
+            0,
+            10010,
+            1
+          ],
+          [
+            3,
+            1,
+            4636
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          509,
+          4480
+        ],
+        [
+          7060,
+          2951
+        ]
+      ]
+    },
+    {
+      "png": "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+      "cohort": "new",
+      "group": "group_06",
+      "site": "Arno",
+      "date": "20210126",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 2896232,
+        "3": 1347710
+      },
+      "expanded_rf": {
+        "accuracy": 0.9980666666666667,
+        "macro_f1_present_classes": 0.9978681091731965,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10219,
+            "precision": 0.9975595470519328,
+            "recall": 1.0,
+            "f1": 0.9987782827542393,
+            "iou": 0.9975595470519328
+          },
+          "land": {
+            "support": 4781,
+            "precision": 1.0,
+            "recall": 0.9939343233633131,
+            "f1": 0.9969579355921536,
+            "iou": 0.9939343233633131
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            10219,
+            0
+          ],
+          [
+            4,
+            25,
+            4752
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9979333333333333,
+        "macro_f1_present_classes": 0.9977872748983324,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10219,
+            "precision": 0.997656936444401,
+            "recall": 1.0,
+            "f1": 0.9988270941256964,
+            "iou": 0.997656936444401
+          },
+          "land": {
+            "support": 4781,
+            "precision": 1.0,
+            "recall": 0.993516000836645,
+            "f1": 0.9967474556709685,
+            "iou": 0.993516000836645
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            10219,
+            0
+          ],
+          [
+            7,
+            24,
+            4750
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9979333333333333,
+        "macro_f1_present_classes": 0.9977872748983324,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10219,
+            "precision": 0.997656936444401,
+            "recall": 1.0,
+            "f1": 0.9988270941256964,
+            "iou": 0.997656936444401
+          },
+          "land": {
+            "support": 4781,
+            "precision": 1.0,
+            "recall": 0.993516000836645,
+            "f1": 0.9967474556709685,
+            "iou": 0.993516000836645
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            10219,
+            0
+          ],
+          [
+            7,
+            24,
+            4750
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          945,
+          3836
+        ],
+        [
+          8567,
+          1652
+        ]
+      ]
+    }
+  ]
+}

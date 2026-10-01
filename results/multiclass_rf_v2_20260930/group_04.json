@@ -1,0 +1,817 @@
+{
+  "group": "group_04",
+  "train_samples": 244000,
+  "original_only_train_samples": 81000,
+  "train_frames": 41,
+  "test_frames": 8,
+  "sites": [
+    "Mohaka mouth",
+    "N\u016bhaka mouth",
+    "Uawa / Tolaga Bay",
+    "Waiapu mouth",
+    "Waipaoa / T\u016branganui-a-Kiwa",
+    "Wairoa mouth"
+  ],
+  "scenes": [
+    {
+      "png": "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_04",
+      "site": "Mohaka mouth",
+      "date": "20230219",
+      "labelled_pixel_counts": {
+        "0": 159486,
+        "1": 538098,
+        "3": 970781
+      },
+      "expanded_rf": {
+        "accuracy": 0.9998666666666667,
+        "macro_f1_present_classes": 0.9998922525755084,
+        "classes": {
+          "normal_water": {
+            "support": 1415,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "iou": 1.0
+          },
+          "plume": {
+            "support": 4766,
+            "precision": 1.0,
+            "recall": 0.9995803608896349,
+            "f1": 0.9997901364113325,
+            "iou": 0.9995803608896349
+          },
+          "land": {
+            "support": 8819,
+            "precision": 0.9997732683369233,
+            "recall": 1.0,
+            "f1": 0.9998866213151928,
+            "iou": 0.9997732683369233
+          }
+        },
+        "confusion_matrix": [
+          [
+            1415,
+            0,
+            0
+          ],
+          [
+            0,
+            4764,
+            2
+          ],
+          [
+            0,
+            0,
+            8819
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9895333333333334,
+        "macro_f1_present_classes": 0.9856742256296428,
+        "classes": {
+          "normal_water": {
+            "support": 1415,
+            "precision": 0.9593220338983051,
+            "recall": 1.0,
+            "f1": 0.9792387543252595,
+            "iou": 0.9593220338983051
+          },
+          "plume": {
+            "support": 4766,
+            "precision": 1.0,
+            "recall": 0.9670583298363408,
+            "f1": 0.9832533333333334,
+            "iou": 0.9670583298363408
+          },
+          "land": {
+            "support": 8819,
+            "precision": 0.9891206819201436,
+            "recall": 1.0,
+            "f1": 0.9945305892303354,
+            "iou": 0.9891206819201436
+          }
+        },
+        "confusion_matrix": [
+          [
+            1415,
+            0,
+            0
+          ],
+          [
+            60,
+            4609,
+            97
+          ],
+          [
+            0,
+            0,
+            8819
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_04",
+      "site": "Wairoa mouth",
+      "date": "20230219",
+      "labelled_pixel_counts": {
+        "0": 68937,
+        "1": 733711,
+        "3": 1253875
+      },
+      "expanded_rf": {
+        "accuracy": 0.9706666666666667,
+        "macro_f1_present_classes": 0.7449423735530029,
+        "classes": {
+          "normal_water": {
+            "support": 480,
+            "precision": 0.9069767441860465,
+            "recall": 0.1625,
+            "f1": 0.2756183745583039,
+            "iou": 0.1598360655737705
+          },
+          "plume": {
+            "support": 5405,
+            "precision": 0.9261929282526605,
+            "recall": 0.9983348751156337,
+            "f1": 0.9609117620870805,
+            "iou": 0.924764353041988
+          },
+          "land": {
+            "support": 9115,
+            "precision": 0.9997799295774648,
+            "recall": 0.9968184311574328,
+            "f1": 0.9982969840136241,
+            "iou": 0.9965997586925524
+          }
+        },
+        "confusion_matrix": [
+          [
+            78,
+            401,
+            1
+          ],
+          [
+            8,
+            5396,
+            1
+          ],
+          [
+            0,
+            29,
+            9086
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9712666666666666,
+        "macro_f1_present_classes": 0.8833776654781779,
+        "classes": {
+          "normal_water": {
+            "support": 480,
+            "precision": 0.5339366515837104,
+            "recall": 0.9833333333333333,
+            "f1": 0.6920821114369501,
+            "iou": 0.5291479820627802
+          },
+          "plume": {
+            "support": 5405,
+            "precision": 0.9966061090037932,
+            "recall": 0.9235892691951897,
+            "f1": 0.9587094296139812,
+            "iou": 0.9206934710438952
+          },
+          "land": {
+            "support": 9115,
+            "precision": 0.9997803887119798,
+            "recall": 0.9989029072956664,
+            "f1": 0.9993414553836023,
+            "iou": 0.9986837775584074
+          }
+        },
+        "confusion_matrix": [
+          [
+            472,
+            7,
+            1
+          ],
+          [
+            412,
+            4992,
+            1
+          ],
+          [
+            0,
+            10,
+            9105
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_04",
+      "site": "N\u016bhaka mouth",
+      "date": "20230219",
+      "labelled_pixel_counts": {
+        "0": 239171,
+        "1": 309739,
+        "3": 1253462
+      },
+      "expanded_rf": {
+        "accuracy": 0.9884666666666667,
+        "macro_f1_present_classes": 0.9744878666524673,
+        "classes": {
+          "normal_water": {
+            "support": 2001,
+            "precision": 0.937350549976088,
+            "recall": 0.9795102448775612,
+            "f1": 0.9579667644183772,
+            "iou": 0.9193245778611632
+          },
+          "plume": {
+            "support": 2555,
+            "precision": 0.9829683698296837,
+            "recall": 0.9487279843444227,
+            "f1": 0.9655447122087234,
+            "iou": 0.9333846746245668
+          },
+          "land": {
+            "support": 10444,
+            "precision": 1.0,
+            "recall": 0.9999042512447338,
+            "f1": 0.9999521233303011,
+            "iou": 0.9999042512447338
+          }
+        },
+        "confusion_matrix": [
+          [
+            1960,
+            41,
+            0
+          ],
+          [
+            131,
+            2424,
+            0
+          ],
+          [
+            0,
+            1,
+            10443
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.881,
+        "macro_f1_present_classes": 0.7183913247254617,
+        "classes": {
+          "normal_water": {
+            "support": 2001,
+            "precision": 0.5288054968287527,
+            "recall": 1.0,
+            "f1": 0.6917891097666379,
+            "iou": 0.5288054968287527
+          },
+          "plume": {
+            "support": 2555,
+            "precision": 0.9987046632124352,
+            "recall": 0.30176125244618396,
+            "f1": 0.46348061316501354,
+            "iou": 0.30164319248826293
+          },
+          "land": {
+            "support": 10444,
+            "precision": 0.9999042512447338,
+            "recall": 0.9999042512447338,
+            "f1": 0.9999042512447338,
+            "iou": 0.9998085208233605
+          }
+        },
+        "confusion_matrix": [
+          [
+            2001,
+            0,
+            0
+          ],
+          [
+            1783,
+            771,
+            1
+          ],
+          [
+            0,
+            1,
+            10443
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_04",
+      "site": "Waipaoa / T\u016branganui-a-Kiwa",
+      "date": "20230219",
+      "labelled_pixel_counts": {
+        "0": 82906,
+        "1": 567327,
+        "3": 985320
+      },
+      "expanded_rf": {
+        "accuracy": 0.9966,
+        "macro_f1_present_classes": 0.9900314146241885,
+        "classes": {
+          "normal_water": {
+            "support": 762,
+            "precision": 0.9525,
+            "recall": 1.0,
+            "f1": 0.9756722151088347,
+            "iou": 0.9525
+          },
+          "plume": {
+            "support": 5221,
+            "precision": 0.9978817639129598,
+            "recall": 0.9925301666347442,
+            "f1": 0.9951987708853466,
+            "iou": 0.9904434250764526
+          },
+          "land": {
+            "support": 9017,
+            "precision": 0.9997779504829577,
+            "recall": 0.9986691804369524,
+            "f1": 0.9992232578783843,
+            "iou": 0.9984477214768821
+          }
+        },
+        "confusion_matrix": [
+          [
+            762,
+            0,
+            0
+          ],
+          [
+            37,
+            5182,
+            2
+          ],
+          [
+            1,
+            11,
+            9005
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9971333333333333,
+        "macro_f1_present_classes": 0.9925394135830384,
+        "classes": {
+          "normal_water": {
+            "support": 762,
+            "precision": 0.9657794676806084,
+            "recall": 1.0,
+            "f1": 0.9825918762088975,
+            "iou": 0.9657794676806084
+          },
+          "plume": {
+            "support": 5221,
+            "precision": 0.9980765531833045,
+            "recall": 0.9938709059567132,
+            "f1": 0.9959692898272553,
+            "iou": 0.991970942458421
+          },
+          "land": {
+            "support": 9017,
+            "precision": 0.9993342210386151,
+            "recall": 0.9987800820672064,
+            "f1": 0.9990570747129623,
+            "iou": 0.9981159259669733
+          }
+        },
+        "confusion_matrix": [
+          [
+            762,
+            0,
+            0
+          ],
+          [
+            26,
+            5189,
+            6
+          ],
+          [
+            1,
+            10,
+            9006
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_04",
+      "site": "Waipaoa / T\u016branganui-a-Kiwa",
+      "date": "20230221",
+      "labelled_pixel_counts": {
+        "0": 82072,
+        "1": 267681,
+        "3": 1333086
+      },
+      "expanded_rf": {
+        "accuracy": 0.9756,
+        "macro_f1_present_classes": 0.8972597702771238,
+        "classes": {
+          "normal_water": {
+            "support": 754,
+            "precision": 0.76657824933687,
+            "recall": 0.76657824933687,
+            "f1": 0.76657824933687,
+            "iou": 0.621505376344086
+          },
+          "plume": {
+            "support": 2424,
+            "precision": 0.9222585924713584,
+            "recall": 0.9298679867986799,
+            "f1": 0.9260476581758422,
+            "iou": 0.8622800306044377
+          },
+          "land": {
+            "support": 11822,
+            "precision": 1.0,
+            "recall": 0.9983082388766706,
+            "f1": 0.999153403318659,
+            "iou": 0.9983082388766706
+          }
+        },
+        "confusion_matrix": [
+          [
+            578,
+            176,
+            0
+          ],
+          [
+            170,
+            2254,
+            0
+          ],
+          [
+            6,
+            14,
+            11802
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9824,
+        "macro_f1_present_classes": 0.9331627836596978,
+        "classes": {
+          "normal_water": {
+            "support": 754,
+            "precision": 0.7502487562189055,
+            "recall": 1.0,
+            "f1": 0.8573052870949404,
+            "iou": 0.7502487562189055
+          },
+          "plume": {
+            "support": 2424,
+            "precision": 0.994053064958829,
+            "recall": 0.8964521452145214,
+            "f1": 0.9427331887201736,
+            "iou": 0.8916700861715223
+          },
+          "land": {
+            "support": 11822,
+            "precision": 1.0,
+            "recall": 0.9989003552698359,
+            "f1": 0.9994498751639795,
+            "iou": 0.9989003552698359
+          }
+        },
+        "confusion_matrix": [
+          [
+            754,
+            0,
+            0
+          ],
+          [
+            251,
+            2173,
+            0
+          ],
+          [
+            0,
+            13,
+            11809
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_04",
+      "site": "Waipaoa / T\u016branganui-a-Kiwa",
+      "date": "20230224",
+      "labelled_pixel_counts": {
+        "0": 108111,
+        "1": 843514,
+        "3": 841302
+      },
+      "expanded_rf": {
+        "accuracy": 0.9856666666666667,
+        "macro_f1_present_classes": 0.9544874416107051,
+        "classes": {
+          "normal_water": {
+            "support": 921,
+            "precision": 0.982573726541555,
+            "recall": 0.7958740499457112,
+            "f1": 0.8794241151769646,
+            "iou": 0.784796573875803
+          },
+          "plume": {
+            "support": 7099,
+            "precision": 0.9730695245946689,
+            "recall": 0.9976052965206367,
+            "f1": 0.9851846699589623,
+            "iou": 0.9708019191226868
+          },
+          "land": {
+            "support": 6980,
+            "precision": 0.9991399082568807,
+            "recall": 0.998567335243553,
+            "f1": 0.998853539696188,
+            "iou": 0.9977097051245348
+          }
+        },
+        "confusion_matrix": [
+          [
+            733,
+            188,
+            0
+          ],
+          [
+            11,
+            7082,
+            6
+          ],
+          [
+            2,
+            8,
+            6970
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9759333333333333,
+        "macro_f1_present_classes": 0.9806970288744198,
+        "classes": {
+          "normal_water": {
+            "support": 921,
+            "precision": 0.9967141292442497,
+            "recall": 0.988056460369164,
+            "f1": 0.9923664122137404,
+            "iou": 0.9848484848484849
+          },
+          "plume": {
+            "support": 7099,
+            "precision": 0.9998518957345972,
+            "recall": 0.950979011128328,
+            "f1": 0.9748032633022887,
+            "iou": 0.9508450704225352
+          },
+          "land": {
+            "support": 6980,
+            "precision": 0.9513292433537832,
+            "recall": 0.9997134670487106,
+            "f1": 0.9749214111072302,
+            "iou": 0.9510699195856617
+          }
+        },
+        "confusion_matrix": [
+          [
+            910,
+            1,
+            10
+          ],
+          [
+            1,
+            6751,
+            347
+          ],
+          [
+            2,
+            0,
+            6978
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_04",
+      "site": "Uawa / Tolaga Bay",
+      "date": "20230221",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 70958,
+        "3": 1637837
+      },
+      "expanded_rf": {
+        "accuracy": 0.7587333333333334,
+        "macro_f1_present_classes": 0.8600998974389837,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 626,
+            "precision": 0.8226744186046512,
+            "recall": 0.9041533546325878,
+            "f1": 0.8614916286149162,
+            "iou": 0.7566844919786097
+          },
+          "land": {
+            "support": 14374,
+            "precision": 1.0,
+            "recall": 0.7524001669681369,
+            "f1": 0.8587081662630514,
+            "iou": 0.7524001669681369
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            60,
+            566,
+            0
+          ],
+          [
+            3437,
+            122,
+            10815
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.7627333333333334,
+        "macro_f1_present_classes": 0.9031694001126791,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 626,
+            "precision": 0.9030390738060782,
+            "recall": 0.9968051118210862,
+            "f1": 0.9476082004555808,
+            "iou": 0.9004329004329005
+          },
+          "land": {
+            "support": 14374,
+            "precision": 0.9998151400314262,
+            "recall": 0.7525393070822318,
+            "f1": 0.8587305997697773,
+            "iou": 0.7524346132442961
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            624,
+            2
+          ],
+          [
+            3490,
+            67,
+            10817
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_04",
+      "site": "Waiapu mouth",
+      "date": "20230221",
+      "labelled_pixel_counts": {
+        "0": 793396,
+        "1": 667647,
+        "3": 232173
+      },
+      "expanded_rf": {
+        "accuracy": 0.9215333333333333,
+        "macro_f1_present_classes": 0.9379342618374474,
+        "classes": {
+          "normal_water": {
+            "support": 7068,
+            "precision": 0.8602176837470955,
+            "recall": 0.9951895868704018,
+            "f1": 0.922794358806166,
+            "iou": 0.856655705760565
+          },
+          "plume": {
+            "support": 5954,
+            "precision": 0.9929824561403509,
+            "recall": 0.8080282163251595,
+            "f1": 0.8910084267061764,
+            "iou": 0.8034402137608551
+          },
+          "land": {
+            "support": 1978,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "iou": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            7034,
+            34,
+            0
+          ],
+          [
+            1143,
+            4811,
+            0
+          ],
+          [
+            0,
+            0,
+            1978
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9510666666666666,
+        "macro_f1_present_classes": 0.9607539818046678,
+        "classes": {
+          "normal_water": {
+            "support": 7068,
+            "precision": 0.9077120822622108,
+            "recall": 0.9991511035653651,
+            "f1": 0.951239224137931,
+            "iou": 0.9070125866940663
+          },
+          "plume": {
+            "support": 5954,
+            "precision": 0.9998086856705567,
+            "recall": 0.8777292576419214,
+            "f1": 0.9348001073249262,
+            "iou": 0.8775818639798488
+          },
+          "land": {
+            "support": 1978,
+            "precision": 0.9924736578023081,
+            "recall": 1.0,
+            "f1": 0.9962226139511459,
+            "iou": 0.9924736578023081
+          }
+        },
+        "confusion_matrix": [
+          [
+            7062,
+            1,
+            5
+          ],
+          [
+            718,
+            5226,
+            10
+          ],
+          [
+            0,
+            0,
+            1978
+          ]
+        ]
+      }
+    }
+  ]
+}

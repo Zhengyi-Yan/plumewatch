@@ -1,0 +1,1253 @@
+{
+  "group": "group_09",
+  "train_samples": 244000,
+  "original_only_train_samples": 111000,
+  "train_frames": 41,
+  "test_frames": 8,
+  "sites": [
+    "Burdekin",
+    "Tully"
+  ],
+  "scenes": [
+    {
+      "png": "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+      "cohort": "new",
+      "group": "group_09",
+      "site": "Burdekin",
+      "date": "20250218",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 1155133,
+        "3": 563536
+      },
+      "expanded_rf": {
+        "accuracy": 0.9907333333333334,
+        "macro_f1_present_classes": 0.989622209349259,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10100,
+            "precision": 0.9922955353615172,
+            "recall": 0.9946534653465346,
+            "f1": 0.9934731012658227,
+            "iou": 0.9870308508547848
+          },
+          "land": {
+            "support": 4900,
+            "precision": 0.988909426987061,
+            "recall": 0.9826530612244898,
+            "f1": 0.9857713174326953,
+            "iou": 0.9719418651594671
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            10046,
+            54
+          ],
+          [
+            7,
+            78,
+            4815
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9823333333333333,
+        "macro_f1_present_classes": 0.9823247480665458,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10100,
+            "precision": 0.9969739761952794,
+            "recall": 0.9786138613861386,
+            "f1": 0.9877086039772159,
+            "iou": 0.975715695952616
+          },
+          "land": {
+            "support": 4900,
+            "precision": 0.964221824686941,
+            "recall": 0.99,
+            "f1": 0.9769408921558755,
+            "iou": 0.9549212598425196
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            36,
+            9884,
+            180
+          ],
+          [
+            19,
+            30,
+            4851
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9823333333333333,
+        "macro_f1_present_classes": 0.9823247480665458,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 10100,
+            "precision": 0.9969739761952794,
+            "recall": 0.9786138613861386,
+            "f1": 0.9877086039772159,
+            "iou": 0.975715695952616
+          },
+          "land": {
+            "support": 4900,
+            "precision": 0.964221824686941,
+            "recall": 0.99,
+            "f1": 0.9769408921558755,
+            "iou": 0.9549212598425196
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            36,
+            9884,
+            180
+          ],
+          [
+            19,
+            30,
+            4851
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          70,
+          4830
+        ],
+        [
+          178,
+          9922
+        ]
+      ]
+    },
+    {
+      "png": "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+      "cohort": "new",
+      "group": "group_09",
+      "site": "Burdekin",
+      "date": "20250218",
+      "labelled_pixel_counts": {
+        "0": 47020,
+        "1": 1070429,
+        "3": 318006
+      },
+      "expanded_rf": {
+        "accuracy": 0.7200666666666666,
+        "macro_f1_present_classes": 0.6581316691452922,
+        "classes": {
+          "normal_water": {
+            "support": 553,
+            "precision": 0.11686390532544379,
+            "recall": 1.0,
+            "f1": 0.20927152317880793,
+            "iou": 0.11686390532544379
+          },
+          "plume": {
+            "support": 11155,
+            "precision": 1.0,
+            "recall": 0.6235768713581353,
+            "f1": 0.7681519518524653,
+            "iou": 0.6235768713581353
+          },
+          "land": {
+            "support": 3292,
+            "precision": 0.9939613526570048,
+            "recall": 1.0,
+            "f1": 0.9969715324046032,
+            "iou": 0.9939613526570048
+          }
+        },
+        "confusion_matrix": [
+          [
+            553,
+            0,
+            0
+          ],
+          [
+            4179,
+            6956,
+            20
+          ],
+          [
+            0,
+            0,
+            3292
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.31893333333333335,
+        "macro_f1_present_classes": 0.411770238457931,
+        "classes": {
+          "normal_water": {
+            "support": 553,
+            "precision": 0.04998117469879518,
+            "recall": 0.9602169981916817,
+            "f1": 0.09501655184754405,
+            "iou": 0.04987788840879204
+          },
+          "plume": {
+            "support": 11155,
+            "precision": 1.0,
+            "recall": 0.08614970865082923,
+            "f1": 0.15863321228128097,
+            "iou": 0.08614970865082923
+          },
+          "land": {
+            "support": 3292,
+            "precision": 0.96398243045388,
+            "recall": 1.0,
+            "f1": 0.981660951244968,
+            "iou": 0.96398243045388
+          }
+        },
+        "confusion_matrix": [
+          [
+            531,
+            0,
+            22
+          ],
+          [
+            10093,
+            961,
+            101
+          ],
+          [
+            0,
+            0,
+            3292
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.31893333333333335,
+        "macro_f1_present_classes": 0.411770238457931,
+        "classes": {
+          "normal_water": {
+            "support": 553,
+            "precision": 0.04998117469879518,
+            "recall": 0.9602169981916817,
+            "f1": 0.09501655184754405,
+            "iou": 0.04987788840879204
+          },
+          "plume": {
+            "support": 11155,
+            "precision": 1.0,
+            "recall": 0.08614970865082923,
+            "f1": 0.15863321228128097,
+            "iou": 0.08614970865082923
+          },
+          "land": {
+            "support": 3292,
+            "precision": 0.96398243045388,
+            "recall": 1.0,
+            "f1": 0.981660951244968,
+            "iou": 0.96398243045388
+          }
+        },
+        "confusion_matrix": [
+          [
+            531,
+            0,
+            22
+          ],
+          [
+            10093,
+            961,
+            101
+          ],
+          [
+            0,
+            0,
+            3292
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          553,
+          3292
+        ],
+        [
+          10219,
+          936
+        ]
+      ]
+    },
+    {
+      "png": "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+      "cohort": "new",
+      "group": "group_09",
+      "site": "Burdekin",
+      "date": "20250228",
+      "labelled_pixel_counts": {
+        "0": 40434,
+        "1": 1717160,
+        "3": 565487
+      },
+      "expanded_rf": {
+        "accuracy": 0.9922,
+        "macro_f1_present_classes": 0.969115537742498,
+        "classes": {
+          "normal_water": {
+            "support": 282,
+            "precision": 0.8571428571428571,
+            "recall": 1.0,
+            "f1": 0.923076923076923,
+            "iou": 0.8571428571428571
+          },
+          "plume": {
+            "support": 11078,
+            "precision": 0.9941436165420308,
+            "recall": 0.9960281639285069,
+            "f1": 0.9950849979708707,
+            "iou": 0.9902180741272548
+          },
+          "land": {
+            "support": 3640,
+            "precision": 0.9986002239641657,
+            "recall": 0.9799450549450549,
+            "f1": 0.9891846921797004,
+            "iou": 0.9786008230452675
+          }
+        },
+        "confusion_matrix": [
+          [
+            282,
+            0,
+            0
+          ],
+          [
+            39,
+            11034,
+            5
+          ],
+          [
+            8,
+            65,
+            3567
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9945333333333334,
+        "macro_f1_present_classes": 0.9862121184932405,
+        "classes": {
+          "normal_water": {
+            "support": 282,
+            "precision": 0.9463087248322147,
+            "recall": 1.0,
+            "f1": 0.9724137931034482,
+            "iou": 0.9463087248322147
+          },
+          "plume": {
+            "support": 11078,
+            "precision": 0.9945183321351546,
+            "recall": 0.9990070409821268,
+            "f1": 0.9967576330721426,
+            "iou": 0.9935362240775654
+          },
+          "land": {
+            "support": 3640,
+            "precision": 0.9986010072747622,
+            "recall": 0.9804945054945055,
+            "f1": 0.9894649293041309,
+            "iou": 0.9791495198902607
+          }
+        },
+        "confusion_matrix": [
+          [
+            282,
+            0,
+            0
+          ],
+          [
+            6,
+            11067,
+            5
+          ],
+          [
+            10,
+            61,
+            3569
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9945333333333334,
+        "macro_f1_present_classes": 0.9862121184932405,
+        "classes": {
+          "normal_water": {
+            "support": 282,
+            "precision": 0.9463087248322147,
+            "recall": 1.0,
+            "f1": 0.9724137931034482,
+            "iou": 0.9463087248322147
+          },
+          "plume": {
+            "support": 11078,
+            "precision": 0.9945183321351546,
+            "recall": 0.9990070409821268,
+            "f1": 0.9967576330721426,
+            "iou": 0.9935362240775654
+          },
+          "land": {
+            "support": 3640,
+            "precision": 0.9986010072747622,
+            "recall": 0.9804945054945055,
+            "f1": 0.9894649293041309,
+            "iou": 0.9791495198902607
+          }
+        },
+        "confusion_matrix": [
+          [
+            282,
+            0,
+            0
+          ],
+          [
+            6,
+            11067,
+            5
+          ],
+          [
+            10,
+            61,
+            3569
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          331,
+          3591
+        ],
+        [
+          8489,
+          2589
+        ]
+      ]
+    },
+    {
+      "png": "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+      "cohort": "new",
+      "group": "group_09",
+      "site": "Burdekin",
+      "date": "20250228",
+      "labelled_pixel_counts": {
+        "0": 371677,
+        "1": 807367,
+        "3": 293074
+      },
+      "expanded_rf": {
+        "accuracy": 0.9691333333333333,
+        "macro_f1_present_classes": 0.9706883782316288,
+        "classes": {
+          "normal_water": {
+            "support": 3734,
+            "precision": 0.8944965152607546,
+            "recall": 0.9967862881628281,
+            "f1": 0.9428752374920837,
+            "iou": 0.8919242751018452
+          },
+          "plume": {
+            "support": 8251,
+            "precision": 0.9984639016897081,
+            "recall": 0.9453399587928736,
+            "f1": 0.9711759945215713,
+            "iou": 0.9439670821735447
+          },
+          "land": {
+            "support": 3015,
+            "precision": 0.9960356788899901,
+            "recall": 1.0,
+            "f1": 0.9980139026812315,
+            "iou": 0.9960356788899901
+          }
+        },
+        "confusion_matrix": [
+          [
+            3722,
+            12,
+            0
+          ],
+          [
+            439,
+            7800,
+            12
+          ],
+          [
+            0,
+            0,
+            3015
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.989,
+        "macro_f1_present_classes": 0.9892485212095191,
+        "classes": {
+          "normal_water": {
+            "support": 3734,
+            "precision": 0.9618163054695562,
+            "recall": 0.998393144081414,
+            "f1": 0.9797634691195796,
+            "iou": 0.9603297269448737
+          },
+          "plume": {
+            "support": 8251,
+            "precision": 0.9993824873409904,
+            "recall": 0.9807296085322991,
+            "f1": 0.9899681918277465,
+            "iou": 0.9801356589147286
+          },
+          "land": {
+            "support": 3015,
+            "precision": 0.9960356788899901,
+            "recall": 1.0,
+            "f1": 0.9980139026812315,
+            "iou": 0.9960356788899901
+          }
+        },
+        "confusion_matrix": [
+          [
+            3728,
+            5,
+            1
+          ],
+          [
+            148,
+            8092,
+            11
+          ],
+          [
+            0,
+            0,
+            3015
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.989,
+        "macro_f1_present_classes": 0.9892485212095191,
+        "classes": {
+          "normal_water": {
+            "support": 3734,
+            "precision": 0.9618163054695562,
+            "recall": 0.998393144081414,
+            "f1": 0.9797634691195796,
+            "iou": 0.9603297269448737
+          },
+          "plume": {
+            "support": 8251,
+            "precision": 0.9993824873409904,
+            "recall": 0.9807296085322991,
+            "f1": 0.9899681918277465,
+            "iou": 0.9801356589147286
+          },
+          "land": {
+            "support": 3015,
+            "precision": 0.9960356788899901,
+            "recall": 1.0,
+            "f1": 0.9980139026812315,
+            "iou": 0.9960356788899901
+          }
+        },
+        "confusion_matrix": [
+          [
+            3728,
+            5,
+            1
+          ],
+          [
+            148,
+            8092,
+            11
+          ],
+          [
+            0,
+            0,
+            3015
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          3728,
+          3021
+        ],
+        [
+          8102,
+          149
+        ]
+      ]
+    },
+    {
+      "png": "AU_Tully_20250216_cvat.png",
+      "cohort": "new",
+      "group": "group_09",
+      "site": "Tully",
+      "date": "20250216",
+      "labelled_pixel_counts": {
+        "0": 116590,
+        "1": 777834,
+        "3": 1371910
+      },
+      "expanded_rf": {
+        "accuracy": 0.6968,
+        "macro_f1_present_classes": 0.4834278951174751,
+        "classes": {
+          "normal_water": {
+            "support": 775,
+            "precision": 0.14559458951718957,
+            "recall": 1.0,
+            "f1": 0.25418169891767795,
+            "iou": 0.14559458951718957
+          },
+          "plume": {
+            "support": 5099,
+            "precision": 1.0,
+            "recall": 0.10884487154343989,
+            "f1": 0.1963211885390874,
+            "iou": 0.10884487154343989
+          },
+          "land": {
+            "support": 9126,
+            "precision": 1.0,
+            "recall": 0.9995616918693842,
+            "f1": 0.9997807978956598,
+            "iou": 0.9995616918693842
+          }
+        },
+        "confusion_matrix": [
+          [
+            775,
+            0,
+            0
+          ],
+          [
+            4544,
+            555,
+            0
+          ],
+          [
+            4,
+            0,
+            9122
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.6814666666666667,
+        "macro_f1_present_classes": 0.45504834950884937,
+        "classes": {
+          "normal_water": {
+            "support": 775,
+            "precision": 0.13956419953178462,
+            "recall": 1.0,
+            "f1": 0.24494310998735774,
+            "iou": 0.13956419953178462
+          },
+          "plume": {
+            "support": 5099,
+            "precision": 1.0,
+            "recall": 0.0641302216120808,
+            "f1": 0.12053077773682272,
+            "iou": 0.0641302216120808
+          },
+          "land": {
+            "support": 9126,
+            "precision": 1.0,
+            "recall": 0.9993425378040762,
+            "f1": 0.9996711608023676,
+            "iou": 0.9993425378040762
+          }
+        },
+        "confusion_matrix": [
+          [
+            775,
+            0,
+            0
+          ],
+          [
+            4772,
+            327,
+            0
+          ],
+          [
+            6,
+            0,
+            9120
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.6814666666666667,
+        "macro_f1_present_classes": 0.45504834950884937,
+        "classes": {
+          "normal_water": {
+            "support": 775,
+            "precision": 0.13956419953178462,
+            "recall": 1.0,
+            "f1": 0.24494310998735774,
+            "iou": 0.13956419953178462
+          },
+          "plume": {
+            "support": 5099,
+            "precision": 1.0,
+            "recall": 0.0641302216120808,
+            "f1": 0.12053077773682272,
+            "iou": 0.0641302216120808
+          },
+          "land": {
+            "support": 9126,
+            "precision": 1.0,
+            "recall": 0.9993425378040762,
+            "f1": 0.9996711608023676,
+            "iou": 0.9993425378040762
+          }
+        },
+        "confusion_matrix": [
+          [
+            775,
+            0,
+            0
+          ],
+          [
+            4772,
+            327,
+            0
+          ],
+          [
+            6,
+            0,
+            9120
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          815,
+          9086
+        ],
+        [
+          5082,
+          17
+        ]
+      ]
+    },
+    {
+      "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+      "cohort": "new",
+      "group": "group_09",
+      "site": "Burdekin",
+      "date": "20190210",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 1203040,
+        "3": 2860610
+      },
+      "expanded_rf": {
+        "accuracy": 0.9728,
+        "macro_f1_present_classes": 0.9688486415661552,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 4515,
+            "precision": 0.9196410361003468,
+            "recall": 0.998671096345515,
+            "f1": 0.9575281376088343,
+            "iou": 0.9185170095742514
+          },
+          "land": {
+            "support": 10485,
+            "precision": 0.9994052928932501,
+            "recall": 0.9616595135908441,
+            "f1": 0.9801691455234763,
+            "iou": 0.9611095224478124
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4509,
+            6
+          ],
+          [
+            8,
+            394,
+            10083
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9785333333333334,
+        "macro_f1_present_classes": 0.9766109222073187,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 4515,
+            "precision": 0.9459687631912199,
+            "recall": 0.9926910299003322,
+            "f1": 0.9687668864152167,
+            "iou": 0.9394256969188849
+          },
+          "land": {
+            "support": 10485,
+            "precision": 0.9967738781894613,
+            "recall": 0.9724368144969003,
+            "f1": 0.9844549579994206,
+            "iou": 0.969385814793687
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4482,
+            33
+          ],
+          [
+            33,
+            256,
+            10196
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9785333333333334,
+        "macro_f1_present_classes": 0.9766109222073187,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 4515,
+            "precision": 0.9459687631912199,
+            "recall": 0.9926910299003322,
+            "f1": 0.9687668864152167,
+            "iou": 0.9394256969188849
+          },
+          "land": {
+            "support": 10485,
+            "precision": 0.9967738781894613,
+            "recall": 0.9724368144969003,
+            "f1": 0.9844549579994206,
+            "iou": 0.969385814793687
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4482,
+            33
+          ],
+          [
+            33,
+            256,
+            10196
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          110,
+          10375
+        ],
+        [
+          15,
+          4500
+        ]
+      ]
+    },
+    {
+      "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+      "cohort": "new",
+      "group": "group_09",
+      "site": "Burdekin",
+      "date": "20190210",
+      "labelled_pixel_counts": {
+        "0": 4206341,
+        "1": 3804052,
+        "3": 0
+      },
+      "expanded_rf": {
+        "accuracy": 0.9988,
+        "macro_f1_present_classes": 0.9987981657552341,
+        "classes": {
+          "normal_water": {
+            "support": 7784,
+            "precision": 0.9976928992566009,
+            "recall": 1.0,
+            "f1": 0.9988451174130629,
+            "iou": 0.9976928992566009
+          },
+          "plume": {
+            "support": 7216,
+            "precision": 1.0,
+            "recall": 0.9975055432372506,
+            "f1": 0.9987512140974053,
+            "iou": 0.9975055432372506
+          },
+          "land": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            7784,
+            0,
+            0
+          ],
+          [
+            18,
+            7198,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9980666666666667,
+        "macro_f1_present_classes": 0.9980635993305502,
+        "classes": {
+          "normal_water": {
+            "support": 7784,
+            "precision": 0.9962882375527966,
+            "recall": 1.0,
+            "f1": 0.9981406680771944,
+            "iou": 0.9962882375527966
+          },
+          "plume": {
+            "support": 7216,
+            "precision": 1.0,
+            "recall": 0.9959811529933481,
+            "f1": 0.9979865305839061,
+            "iou": 0.9959811529933481
+          },
+          "land": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            7784,
+            0,
+            0
+          ],
+          [
+            29,
+            7187,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9980666666666667,
+        "macro_f1_present_classes": 0.9980635993305502,
+        "classes": {
+          "normal_water": {
+            "support": 7784,
+            "precision": 0.9962882375527966,
+            "recall": 1.0,
+            "f1": 0.9981406680771944,
+            "iou": 0.9962882375527966
+          },
+          "plume": {
+            "support": 7216,
+            "precision": 1.0,
+            "recall": 0.9959811529933481,
+            "f1": 0.9979865305839061,
+            "iou": 0.9959811529933481
+          },
+          "land": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            7784,
+            0,
+            0
+          ],
+          [
+            29,
+            7187,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          7784,
+          0
+        ],
+        [
+          1757,
+          5459
+        ]
+      ]
+    },
+    {
+      "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+      "cohort": "new",
+      "group": "group_09",
+      "site": "Burdekin",
+      "date": "20190210",
+      "labelled_pixel_counts": {
+        "0": 217848,
+        "1": 5748566,
+        "3": 1006736
+      },
+      "expanded_rf": {
+        "accuracy": 0.9912666666666666,
+        "macro_f1_present_classes": 0.9450556531685311,
+        "classes": {
+          "normal_water": {
+            "support": 440,
+            "precision": 0.8883374689826302,
+            "recall": 0.8136363636363636,
+            "f1": 0.8493475682087781,
+            "iou": 0.7381443298969073
+          },
+          "plume": {
+            "support": 12408,
+            "precision": 0.9931144915932746,
+            "recall": 0.9996776273372018,
+            "f1": 0.9963852518274561,
+            "iou": 0.9927965423403233
+          },
+          "land": {
+            "support": 2152,
+            "precision": 1.0,
+            "recall": 0.979089219330855,
+            "f1": 0.9894341394693591,
+            "iou": 0.979089219330855
+          }
+        },
+        "confusion_matrix": [
+          [
+            358,
+            82,
+            0
+          ],
+          [
+            4,
+            12404,
+            0
+          ],
+          [
+            41,
+            4,
+            2107
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9958,
+        "macro_f1_present_classes": 0.974863269056558,
+        "classes": {
+          "normal_water": {
+            "support": 440,
+            "precision": 0.8782435129740519,
+            "recall": 1.0,
+            "f1": 0.9351753453772582,
+            "iou": 0.8782435129740519
+          },
+          "plume": {
+            "support": 12408,
+            "precision": 0.9998385534388118,
+            "recall": 0.99822695035461,
+            "f1": 0.9990321019519278,
+            "iou": 0.9980660757453667
+          },
+          "land": {
+            "support": 2152,
+            "precision": 1.0,
+            "recall": 0.9809479553903345,
+            "f1": 0.990382359840488,
+            "iou": 0.9809479553903345
+          }
+        },
+        "confusion_matrix": [
+          [
+            440,
+            0,
+            0
+          ],
+          [
+            22,
+            12386,
+            0
+          ],
+          [
+            39,
+            2,
+            2111
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9958,
+        "macro_f1_present_classes": 0.974863269056558,
+        "classes": {
+          "normal_water": {
+            "support": 440,
+            "precision": 0.8782435129740519,
+            "recall": 1.0,
+            "f1": 0.9351753453772582,
+            "iou": 0.8782435129740519
+          },
+          "plume": {
+            "support": 12408,
+            "precision": 0.9998385534388118,
+            "recall": 0.99822695035461,
+            "f1": 0.9990321019519278,
+            "iou": 0.9980660757453667
+          },
+          "land": {
+            "support": 2152,
+            "precision": 1.0,
+            "recall": 0.9809479553903345,
+            "f1": 0.990382359840488,
+            "iou": 0.9809479553903345
+          }
+        },
+        "confusion_matrix": [
+          [
+            440,
+            0,
+            0
+          ],
+          [
+            22,
+            12386,
+            0
+          ],
+          [
+            39,
+            2,
+            2111
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          518,
+          2074
+        ],
+        [
+          441,
+          11967
+        ]
+      ]
+    }
+  ]
+}

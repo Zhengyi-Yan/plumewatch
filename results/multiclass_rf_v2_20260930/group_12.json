@@ -1,0 +1,323 @@
+{
+  "group": "group_12",
+  "train_samples": 259000,
+  "original_only_train_samples": 111000,
+  "train_frames": 47,
+  "test_frames": 2,
+  "sites": [
+    "Maitai",
+    "Wakapuaka"
+  ],
+  "scenes": [
+    {
+      "png": "Nelson_Maitai_20220822_cvat.png",
+      "cohort": "new",
+      "group": "group_12",
+      "site": "Maitai",
+      "date": "20220822",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 524972,
+        "3": 520417
+      },
+      "expanded_rf": {
+        "accuracy": 0.9979333333333333,
+        "macro_f1_present_classes": 0.9988713619183467,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 7555,
+            "precision": 1.0,
+            "recall": 0.9958967571144937,
+            "f1": 0.9979441607533656,
+            "iou": 0.9958967571144937
+          },
+          "land": {
+            "support": 7445,
+            "precision": 0.9995972073039742,
+            "recall": 1.0,
+            "f1": 0.9997985630833278,
+            "iou": 0.9995972073039742
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            28,
+            7524,
+            3
+          ],
+          [
+            0,
+            0,
+            7445
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9960666666666667,
+        "macro_f1_present_classes": 0.997972847194639,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 7555,
+            "precision": 1.0,
+            "recall": 0.9921906022501654,
+            "f1": 0.9960799946847385,
+            "iou": 0.9921906022501654
+          },
+          "land": {
+            "support": 7445,
+            "precision": 0.9997314354773734,
+            "recall": 1.0,
+            "f1": 0.9998656997045393,
+            "iou": 0.9997314354773734
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            57,
+            7496,
+            2
+          ],
+          [
+            0,
+            0,
+            7445
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9960666666666667,
+        "macro_f1_present_classes": 0.997972847194639,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 7555,
+            "precision": 1.0,
+            "recall": 0.9921906022501654,
+            "f1": 0.9960799946847385,
+            "iou": 0.9921906022501654
+          },
+          "land": {
+            "support": 7445,
+            "precision": 0.9997314354773734,
+            "recall": 1.0,
+            "f1": 0.9998656997045393,
+            "iou": 0.9997314354773734
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            57,
+            7496,
+            2
+          ],
+          [
+            0,
+            0,
+            7445
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          1294,
+          6151
+        ],
+        [
+          6723,
+          832
+        ]
+      ]
+    },
+    {
+      "png": "Nelson_Wakapuaka_20220831_cvat.png",
+      "cohort": "new",
+      "group": "group_12",
+      "site": "Wakapuaka",
+      "date": "20220831",
+      "labelled_pixel_counts": {
+        "0": 102999,
+        "1": 726096,
+        "3": 368972
+      },
+      "expanded_rf": {
+        "accuracy": 0.5038,
+        "macro_f1_present_classes": 0.5231952120322632,
+        "classes": {
+          "normal_water": {
+            "support": 1211,
+            "precision": 0.1396854764107308,
+            "recall": 0.9975227085053675,
+            "f1": 0.24505527944010552,
+            "iou": 0.13963703618078835
+          },
+          "plume": {
+            "support": 9228,
+            "precision": 0.998324958123953,
+            "recall": 0.19375812743823148,
+            "f1": 0.32453035665668395,
+            "iou": 0.19369515762105946
+          },
+          "land": {
+            "support": 4561,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "iou": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            1208,
+            3,
+            0
+          ],
+          [
+            7440,
+            1788,
+            0
+          ],
+          [
+            0,
+            0,
+            4561
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.5352,
+        "macro_f1_present_classes": 0.5502395349766745,
+        "classes": {
+          "normal_water": {
+            "support": 1211,
+            "precision": 0.14798973481608213,
+            "recall": 1.0,
+            "f1": 0.2578241430700447,
+            "iou": 0.14798973481608213
+          },
+          "plume": {
+            "support": 9228,
+            "precision": 1.0,
+            "recall": 0.2444733420026008,
+            "f1": 0.3928944618599791,
+            "iou": 0.2444733420026008
+          },
+          "land": {
+            "support": 4561,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "iou": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            1211,
+            0,
+            0
+          ],
+          [
+            6972,
+            2256,
+            0
+          ],
+          [
+            0,
+            0,
+            4561
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.5352,
+        "macro_f1_present_classes": 0.5502395349766745,
+        "classes": {
+          "normal_water": {
+            "support": 1211,
+            "precision": 0.14798973481608213,
+            "recall": 1.0,
+            "f1": 0.2578241430700447,
+            "iou": 0.14798973481608213
+          },
+          "plume": {
+            "support": 9228,
+            "precision": 1.0,
+            "recall": 0.2444733420026008,
+            "f1": 0.3928944618599791,
+            "iou": 0.2444733420026008
+          },
+          "land": {
+            "support": 4561,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "iou": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            1211,
+            0,
+            0
+          ],
+          [
+            6972,
+            2256,
+            0
+          ],
+          [
+            0,
+            0,
+            4561
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          1758,
+          4014
+        ],
+        [
+          9199,
+          29
+        ]
+      ]
+    }
+  ]
+}

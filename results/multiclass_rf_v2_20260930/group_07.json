@@ -1,0 +1,322 @@
+{
+  "group": "group_07",
+  "train_samples": 259000,
+  "original_only_train_samples": 111000,
+  "train_frames": 47,
+  "test_frames": 2,
+  "sites": [
+    "Var"
+  ],
+  "scenes": [
+    {
+      "png": "France_Var_20200928_S2_L2A_12band_cvat.png",
+      "cohort": "new",
+      "group": "group_07",
+      "site": "Var",
+      "date": "20200928",
+      "labelled_pixel_counts": {
+        "0": 2254182,
+        "1": 0,
+        "3": 1569631
+      },
+      "expanded_rf": {
+        "accuracy": 0.9995333333333334,
+        "macro_f1_present_classes": 0.9996447662396972,
+        "classes": {
+          "normal_water": {
+            "support": 8785,
+            "precision": 0.9998861436866674,
+            "recall": 0.9996585088218555,
+            "f1": 0.9997723132969034,
+            "iou": 0.9995447302526748
+          },
+          "plume": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "land": {
+            "support": 6215,
+            "precision": 0.9996780943183647,
+            "recall": 0.9993563958165728,
+            "f1": 0.9995172191824911,
+            "iou": 0.9990349042946759
+          }
+        },
+        "confusion_matrix": [
+          [
+            8782,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            3,
+            6211
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9994666666666666,
+        "macro_f1_present_classes": 0.9996045118427866,
+        "classes": {
+          "normal_water": {
+            "support": 8785,
+            "precision": 0.9998861436866674,
+            "recall": 0.9996585088218555,
+            "f1": 0.9997723132969034,
+            "iou": 0.9995447302526748
+          },
+          "plume": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "land": {
+            "support": 6215,
+            "precision": 0.9996780424983902,
+            "recall": 0.999195494770716,
+            "f1": 0.9994367103886699,
+            "iou": 0.9988740550104552
+          }
+        },
+        "confusion_matrix": [
+          [
+            8782,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            4,
+            6210
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9994666666666666,
+        "macro_f1_present_classes": 0.9996045118427866,
+        "classes": {
+          "normal_water": {
+            "support": 8785,
+            "precision": 0.9998861436866674,
+            "recall": 0.9996585088218555,
+            "f1": 0.9997723132969034,
+            "iou": 0.9995447302526748
+          },
+          "plume": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "land": {
+            "support": 6215,
+            "precision": 0.9996780424983902,
+            "recall": 0.999195494770716,
+            "f1": 0.9994367103886699,
+            "iou": 0.9988740550104552
+          }
+        },
+        "confusion_matrix": [
+          [
+            8782,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            4,
+            6210
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          8791,
+          6209
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "png": "France_Var_20201003_S2_L2A_12band_cvat.png",
+      "cohort": "new",
+      "group": "group_07",
+      "site": "Var",
+      "date": "20201003",
+      "labelled_pixel_counts": {
+        "0": 585204,
+        "1": 1849436,
+        "3": 1496838
+      },
+      "expanded_rf": {
+        "accuracy": 0.9200666666666667,
+        "macro_f1_present_classes": 0.899329639855281,
+        "classes": {
+          "normal_water": {
+            "support": 2240,
+            "precision": 0.657948868645313,
+            "recall": 0.9995535714285714,
+            "f1": 0.7935495303916356,
+            "iou": 0.6577555816686251
+          },
+          "plume": {
+            "support": 7074,
+            "precision": 0.9998298451590948,
+            "recall": 0.8306474413344642,
+            "f1": 0.9074202764265307,
+            "iou": 0.830530035335689
+          },
+          "land": {
+            "support": 5686,
+            "precision": 0.9940559440559441,
+            "recall": 1.0,
+            "f1": 0.9970191127476767,
+            "iou": 0.9940559440559441
+          }
+        },
+        "confusion_matrix": [
+          [
+            2239,
+            1,
+            0
+          ],
+          [
+            1164,
+            5876,
+            34
+          ],
+          [
+            0,
+            0,
+            5686
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9467333333333333,
+        "macro_f1_present_classes": 0.9307661779206852,
+        "classes": {
+          "normal_water": {
+            "support": 2240,
+            "precision": 0.7502517623363545,
+            "recall": 0.9977678571428571,
+            "f1": 0.8564859168423069,
+            "iou": 0.7489946380697051
+          },
+          "plume": {
+            "support": 7074,
+            "precision": 0.9992044550517104,
+            "recall": 0.8877579869946283,
+            "f1": 0.9401901339920653,
+            "iou": 0.8871309506992513
+          },
+          "land": {
+            "support": 5686,
+            "precision": 0.9912831241283124,
+            "recall": 1.0,
+            "f1": 0.9956224829276834,
+            "iou": 0.9912831241283124
+          }
+        },
+        "confusion_matrix": [
+          [
+            2235,
+            5,
+            0
+          ],
+          [
+            744,
+            6280,
+            50
+          ],
+          [
+            0,
+            0,
+            5686
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9467333333333333,
+        "macro_f1_present_classes": 0.9307661779206852,
+        "classes": {
+          "normal_water": {
+            "support": 2240,
+            "precision": 0.7502517623363545,
+            "recall": 0.9977678571428571,
+            "f1": 0.8564859168423069,
+            "iou": 0.7489946380697051
+          },
+          "plume": {
+            "support": 7074,
+            "precision": 0.9992044550517104,
+            "recall": 0.8877579869946283,
+            "f1": 0.9401901339920653,
+            "iou": 0.8871309506992513
+          },
+          "land": {
+            "support": 5686,
+            "precision": 0.9912831241283124,
+            "recall": 1.0,
+            "f1": 0.9956224829276834,
+            "iou": 0.9912831241283124
+          }
+        },
+        "confusion_matrix": [
+          [
+            2235,
+            5,
+            0
+          ],
+          [
+            744,
+            6280,
+            50
+          ],
+          [
+            0,
+            0,
+            5686
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          2260,
+          5666
+        ],
+        [
+          3437,
+          3637
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,788 @@
+{
+  "group": "group_13",
+  "train_samples": 245000,
+  "original_only_train_samples": 111000,
+  "train_frames": 44,
+  "test_frames": 5,
+  "sites": [
+    "Hawkesbury",
+    "Hunter"
+  ],
+  "scenes": [
+    {
+      "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+      "cohort": "new",
+      "group": "group_13",
+      "site": "Hawkesbury",
+      "date": "20220410",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 1263775,
+        "3": 1451969
+      },
+      "expanded_rf": {
+        "accuracy": 0.9913333333333333,
+        "macro_f1_present_classes": 0.9950884777245258,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 6983,
+            "precision": 0.9989806320081549,
+            "recall": 0.9823857940713161,
+            "f1": 0.9906137184115523,
+            "iou": 0.9814020028612304
+          },
+          "land": {
+            "support": 8017,
+            "precision": 1.0,
+            "recall": 0.9991268554322066,
+            "f1": 0.9995632370374993,
+            "iou": 0.9991268554322066
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            123,
+            6860,
+            0
+          ],
+          [
+            0,
+            7,
+            8010
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9934666666666667,
+        "macro_f1_present_classes": 0.9962825681857901,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 6983,
+            "precision": 0.9991300565463245,
+            "recall": 0.9868251467850494,
+            "f1": 0.9929394812680115,
+            "iou": 0.9859779653741594
+          },
+          "land": {
+            "support": 8017,
+            "precision": 1.0,
+            "recall": 0.9992515903704627,
+            "f1": 0.9996256551035687,
+            "iou": 0.9992515903704627
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            92,
+            6891,
+            0
+          ],
+          [
+            0,
+            6,
+            8011
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9934666666666667,
+        "macro_f1_present_classes": 0.9962825681857901,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 6983,
+            "precision": 0.9991300565463245,
+            "recall": 0.9868251467850494,
+            "f1": 0.9929394812680115,
+            "iou": 0.9859779653741594
+          },
+          "land": {
+            "support": 8017,
+            "precision": 1.0,
+            "recall": 0.9992515903704627,
+            "f1": 0.9996256551035687,
+            "iou": 0.9992515903704627
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            92,
+            6891,
+            0
+          ],
+          [
+            0,
+            6,
+            8011
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          151,
+          7866
+        ],
+        [
+          6458,
+          525
+        ]
+      ]
+    },
+    {
+      "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+      "cohort": "new",
+      "group": "group_13",
+      "site": "Hawkesbury",
+      "date": "20220410",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 986831,
+        "3": 760967
+      },
+      "expanded_rf": {
+        "accuracy": 0.7516666666666667,
+        "macro_f1_present_classes": 0.8577760805487087,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 8410,
+            "precision": 0.999786734911495,
+            "recall": 0.5574316290130796,
+            "f1": 0.7157798305214138,
+            "iou": 0.5573653548924028
+          },
+          "land": {
+            "support": 6590,
+            "precision": 1.0,
+            "recall": 0.9995447647951442,
+            "f1": 0.9997723305760036,
+            "iou": 0.9995447647951442
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            3722,
+            4688,
+            0
+          ],
+          [
+            2,
+            1,
+            6587
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.7346,
+        "macro_f1_present_classes": 0.8449768761810953,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 8410,
+            "precision": 0.9997744191292578,
+            "recall": 0.5269916765755054,
+            "f1": 0.690181421786187,
+            "iou": 0.5269290215194389
+          },
+          "land": {
+            "support": 6590,
+            "precision": 1.0,
+            "recall": 0.9995447647951442,
+            "f1": 0.9997723305760036,
+            "iou": 0.9995447647951442
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            3978,
+            4432,
+            0
+          ],
+          [
+            2,
+            1,
+            6587
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.7346,
+        "macro_f1_present_classes": 0.8449768761810953,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 8410,
+            "precision": 0.9997744191292578,
+            "recall": 0.5269916765755054,
+            "f1": 0.690181421786187,
+            "iou": 0.5269290215194389
+          },
+          "land": {
+            "support": 6590,
+            "precision": 1.0,
+            "recall": 0.9995447647951442,
+            "f1": 0.9997723305760036,
+            "iou": 0.9995447647951442
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            3978,
+            4432,
+            0
+          ],
+          [
+            2,
+            1,
+            6587
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          36,
+          6554
+        ],
+        [
+          8102,
+          308
+        ]
+      ]
+    },
+    {
+      "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+      "cohort": "new",
+      "group": "group_13",
+      "site": "Hawkesbury",
+      "date": "20220410",
+      "labelled_pixel_counts": {
+        "0": 566398,
+        "1": 150027,
+        "3": 641003
+      },
+      "expanded_rf": {
+        "accuracy": 0.8956666666666667,
+        "macro_f1_present_classes": 0.6649430667827265,
+        "classes": {
+          "normal_water": {
+            "support": 6247,
+            "precision": 0.8003843689942345,
+            "recall": 1.0,
+            "f1": 0.8891261030458298,
+            "iou": 0.8003843689942345
+          },
+          "plume": {
+            "support": 1648,
+            "precision": 0.93,
+            "recall": 0.05643203883495146,
+            "f1": 0.10640732265446225,
+            "iou": 0.056193353474320244
+          },
+          "land": {
+            "support": 7105,
+            "precision": 1.0,
+            "recall": 0.9985925404644617,
+            "f1": 0.9992957746478874,
+            "iou": 0.9985925404644617
+          }
+        },
+        "confusion_matrix": [
+          [
+            6247,
+            0,
+            0
+          ],
+          [
+            1555,
+            93,
+            0
+          ],
+          [
+            3,
+            7,
+            7095
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.8965333333333333,
+        "macro_f1_present_classes": 0.6688843596396173,
+        "classes": {
+          "normal_water": {
+            "support": 6247,
+            "precision": 0.8011028468838164,
+            "recall": 1.0,
+            "f1": 0.8895692417230331,
+            "iou": 0.8011028468838164
+          },
+          "plume": {
+            "support": 1648,
+            "precision": 1.0,
+            "recall": 0.0625,
+            "f1": 0.11764705882352941,
+            "iou": 0.0625
+          },
+          "land": {
+            "support": 7105,
+            "precision": 0.9998591350894492,
+            "recall": 0.9990147783251232,
+            "f1": 0.9994367783722894,
+            "iou": 0.9988741908246552
+          }
+        },
+        "confusion_matrix": [
+          [
+            6247,
+            0,
+            0
+          ],
+          [
+            1544,
+            103,
+            1
+          ],
+          [
+            7,
+            0,
+            7098
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.8965333333333333,
+        "macro_f1_present_classes": 0.6688843596396173,
+        "classes": {
+          "normal_water": {
+            "support": 6247,
+            "precision": 0.8011028468838164,
+            "recall": 1.0,
+            "f1": 0.8895692417230331,
+            "iou": 0.8011028468838164
+          },
+          "plume": {
+            "support": 1648,
+            "precision": 1.0,
+            "recall": 0.0625,
+            "f1": 0.11764705882352941,
+            "iou": 0.0625
+          },
+          "land": {
+            "support": 7105,
+            "precision": 0.9998591350894492,
+            "recall": 0.9990147783251232,
+            "f1": 0.9994367783722894,
+            "iou": 0.9988741908246552
+          }
+        },
+        "confusion_matrix": [
+          [
+            6247,
+            0,
+            0
+          ],
+          [
+            1544,
+            103,
+            1
+          ],
+          [
+            7,
+            0,
+            7098
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          6301,
+          7051
+        ],
+        [
+          1644,
+          4
+        ]
+      ]
+    },
+    {
+      "png": "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+      "cohort": "new",
+      "group": "group_13",
+      "site": "Hunter",
+      "date": "20220410",
+      "labelled_pixel_counts": {
+        "0": 243974,
+        "1": 283786,
+        "3": 3705930
+      },
+      "expanded_rf": {
+        "accuracy": 0.9903333333333333,
+        "macro_f1_present_classes": 0.9530899188349551,
+        "classes": {
+          "normal_water": {
+            "support": 890,
+            "precision": 0.8632395732298739,
+            "recall": 1.0,
+            "f1": 0.92660072878709,
+            "iou": 0.8632395732298739
+          },
+          "plume": {
+            "support": 1022,
+            "precision": 0.9955654101995566,
+            "recall": 0.8786692759295499,
+            "f1": 0.9334719334719335,
+            "iou": 0.8752436647173489
+          },
+          "land": {
+            "support": 13088,
+            "precision": 1.0,
+            "recall": 0.9983954767726161,
+            "f1": 0.9991970942458421,
+            "iou": 0.9983954767726161
+          }
+        },
+        "confusion_matrix": [
+          [
+            890,
+            0,
+            0
+          ],
+          [
+            124,
+            898,
+            0
+          ],
+          [
+            17,
+            4,
+            13067
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9922,
+        "macro_f1_present_classes": 0.9622534679249822,
+        "classes": {
+          "normal_water": {
+            "support": 890,
+            "precision": 0.8864541832669323,
+            "recall": 1.0,
+            "f1": 0.9398099260823654,
+            "iou": 0.8864541832669323
+          },
+          "plume": {
+            "support": 1022,
+            "precision": 0.9967602591792657,
+            "recall": 0.9031311154598826,
+            "f1": 0.9476386036960984,
+            "iou": 0.9004878048780488
+          },
+          "land": {
+            "support": 13088,
+            "precision": 1.0,
+            "recall": 0.9986246943765281,
+            "f1": 0.9993118739964829,
+            "iou": 0.9986246943765281
+          }
+        },
+        "confusion_matrix": [
+          [
+            890,
+            0,
+            0
+          ],
+          [
+            99,
+            923,
+            0
+          ],
+          [
+            15,
+            3,
+            13070
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.9922,
+        "macro_f1_present_classes": 0.9622534679249822,
+        "classes": {
+          "normal_water": {
+            "support": 890,
+            "precision": 0.8864541832669323,
+            "recall": 1.0,
+            "f1": 0.9398099260823654,
+            "iou": 0.8864541832669323
+          },
+          "plume": {
+            "support": 1022,
+            "precision": 0.9967602591792657,
+            "recall": 0.9031311154598826,
+            "f1": 0.9476386036960984,
+            "iou": 0.9004878048780488
+          },
+          "land": {
+            "support": 13088,
+            "precision": 1.0,
+            "recall": 0.9986246943765281,
+            "f1": 0.9993118739964829,
+            "iou": 0.9986246943765281
+          }
+        },
+        "confusion_matrix": [
+          [
+            890,
+            0,
+            0
+          ],
+          [
+            99,
+            923,
+            0
+          ],
+          [
+            15,
+            3,
+            13070
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          1135,
+          12843
+        ],
+        [
+          1017,
+          5
+        ]
+      ]
+    },
+    {
+      "png": "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png",
+      "cohort": "new",
+      "group": "group_13",
+      "site": "Hunter",
+      "date": "20220410",
+      "labelled_pixel_counts": {
+        "0": 1468863,
+        "1": 2482718,
+        "3": 1113660
+      },
+      "expanded_rf": {
+        "accuracy": 0.5664,
+        "macro_f1_present_classes": 0.5913132574882048,
+        "classes": {
+          "normal_water": {
+            "support": 4344,
+            "precision": 0.40159008967366183,
+            "recall": 1.0,
+            "f1": 0.5730492711562561,
+            "iou": 0.40159008967366183
+          },
+          "plume": {
+            "support": 7307,
+            "precision": 0.9650112866817155,
+            "recall": 0.11701108526070891,
+            "f1": 0.20871475649945076,
+            "iou": 0.11651676206050696
+          },
+          "land": {
+            "support": 3349,
+            "precision": 1.0,
+            "recall": 0.9844729770080621,
+            "f1": 0.9921757448089076,
+            "iou": 0.9844729770080621
+          }
+        },
+        "confusion_matrix": [
+          [
+            4344,
+            0,
+            0
+          ],
+          [
+            6452,
+            855,
+            0
+          ],
+          [
+            21,
+            31,
+            3297
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.5562,
+        "macro_f1_present_classes": 0.5780319985055712,
+        "classes": {
+          "normal_water": {
+            "support": 4344,
+            "precision": 0.3959168793292016,
+            "recall": 1.0,
+            "f1": 0.5672499347088013,
+            "iou": 0.3959168793292016
+          },
+          "plume": {
+            "support": 7307,
+            "precision": 0.960328317373461,
+            "recall": 0.09607225947721364,
+            "f1": 0.17467031599900476,
+            "iou": 0.09569247546346783
+          },
+          "land": {
+            "support": 3349,
+            "precision": 1.0,
+            "recall": 0.9844729770080621,
+            "f1": 0.9921757448089076,
+            "iou": 0.9844729770080621
+          }
+        },
+        "confusion_matrix": [
+          [
+            4344,
+            0,
+            0
+          ],
+          [
+            6605,
+            702,
+            0
+          ],
+          [
+            23,
+            29,
+            3297
+          ]
+        ]
+      },
+      "frozen_v1_seen_site": false,
+      "frozen_v1": {
+        "accuracy": 0.5562,
+        "macro_f1_present_classes": 0.5780319985055712,
+        "classes": {
+          "normal_water": {
+            "support": 4344,
+            "precision": 0.3959168793292016,
+            "recall": 1.0,
+            "f1": 0.5672499347088013,
+            "iou": 0.3959168793292016
+          },
+          "plume": {
+            "support": 7307,
+            "precision": 0.960328317373461,
+            "recall": 0.09607225947721364,
+            "f1": 0.17467031599900476,
+            "iou": 0.09569247546346783
+          },
+          "land": {
+            "support": 3349,
+            "precision": 1.0,
+            "recall": 0.9844729770080621,
+            "f1": 0.9921757448089076,
+            "iou": 0.9844729770080621
+          }
+        },
+        "confusion_matrix": [
+          [
+            4344,
+            0,
+            0
+          ],
+          [
+            6605,
+            702,
+            0
+          ],
+          [
+            23,
+            29,
+            3297
+          ]
+        ]
+      },
+      "pilot_binary_confusion": [
+        [
+          4400,
+          3293
+        ],
+        [
+          7307,
+          0
+        ]
+      ]
+    }
+  ]
+}

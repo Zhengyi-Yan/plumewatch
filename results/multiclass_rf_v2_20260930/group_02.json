@@ -1,0 +1,314 @@
+{
+  "group": "group_02",
+  "train_samples": 250000,
+  "original_only_train_samples": 87000,
+  "train_frames": 46,
+  "test_frames": 3,
+  "sites": [
+    "Manawat\u016b mouth",
+    "Rangit\u012bkei mouth",
+    "Whanganui mouth"
+  ],
+  "scenes": [
+    {
+      "png": "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_02",
+      "site": "Whanganui mouth",
+      "date": "20191003",
+      "labelled_pixel_counts": {
+        "0": 0,
+        "1": 1203107,
+        "3": 1717942
+      },
+      "expanded_rf": {
+        "accuracy": 0.998,
+        "macro_f1_present_classes": 0.9985467610995163,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 6194,
+            "precision": 0.9977437550362611,
+            "recall": 0.9995156603164352,
+            "f1": 0.9986289216872328,
+            "iou": 0.9972615979381443
+          },
+          "land": {
+            "support": 8806,
+            "precision": 1.0,
+            "recall": 0.9969339086986145,
+            "f1": 0.9984646005117999,
+            "iou": 0.9969339086986145
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            6191,
+            0
+          ],
+          [
+            13,
+            14,
+            8779
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9982,
+        "macro_f1_present_classes": 0.9989902476498003,
+        "classes": {
+          "normal_water": {
+            "support": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          "plume": {
+            "support": 6194,
+            "precision": 0.9990322580645161,
+            "recall": 1.0,
+            "f1": 0.9995158947878006,
+            "iou": 0.9990322580645161
+          },
+          "land": {
+            "support": 8806,
+            "precision": 1.0,
+            "recall": 0.9969339086986145,
+            "f1": 0.9984646005117999,
+            "iou": 0.9969339086986145
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6194,
+            0
+          ],
+          [
+            21,
+            6,
+            8779
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_02",
+      "site": "Rangit\u012bkei mouth",
+      "date": "20191003",
+      "labelled_pixel_counts": {
+        "0": 532044,
+        "1": 975511,
+        "3": 1783509
+      },
+      "expanded_rf": {
+        "accuracy": 0.8758666666666667,
+        "macro_f1_present_classes": 0.7586506224152805,
+        "classes": {
+          "normal_water": {
+            "support": 2331,
+            "precision": 0.7151841868823001,
+            "recall": 0.3414843414843415,
+            "f1": 0.462253193960511,
+            "iou": 0.30060422960725075
+          },
+          "plume": {
+            "support": 4404,
+            "precision": 0.7262053015477673,
+            "recall": 0.9268846503178928,
+            "f1": 0.8143640897755611,
+            "iou": 0.6868584889786303
+          },
+          "land": {
+            "support": 8265,
+            "precision": 0.999274135010888,
+            "recall": 0.999395039322444,
+            "f1": 0.9993345835097696,
+            "iou": 0.9986700519888768
+          }
+        },
+        "confusion_matrix": [
+          [
+            796,
+            1535,
+            0
+          ],
+          [
+            316,
+            4082,
+            6
+          ],
+          [
+            1,
+            4,
+            8260
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9124,
+        "macro_f1_present_classes": 0.855039207539924,
+        "classes": {
+          "normal_water": {
+            "support": 2331,
+            "precision": 0.7596899224806202,
+            "recall": 0.6726726726726727,
+            "f1": 0.7135381114903301,
+            "iou": 0.554651574106827
+          },
+          "plume": {
+            "support": 4404,
+            "precision": 0.8358241282217891,
+            "recall": 0.8762488646684832,
+            "f1": 0.8555592506374016,
+            "iou": 0.7475784579620303
+          },
+          "land": {
+            "support": 8265,
+            "precision": 0.9927875946628201,
+            "recall": 0.9992740471869328,
+            "f1": 0.9960202604920404,
+            "iou": 0.992072072072072
+          }
+        },
+        "confusion_matrix": [
+          [
+            1568,
+            757,
+            6
+          ],
+          [
+            491,
+            3859,
+            54
+          ],
+          [
+            5,
+            1,
+            8259
+          ]
+        ]
+      }
+    },
+    {
+      "png": "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+      "cohort": "original",
+      "group": "group_02",
+      "site": "Manawat\u016b mouth",
+      "date": "20191003",
+      "labelled_pixel_counts": {
+        "0": 93615,
+        "1": 1045686,
+        "3": 1931557
+      },
+      "expanded_rf": {
+        "accuracy": 0.9494,
+        "macro_f1_present_classes": 0.7898638009895044,
+        "classes": {
+          "normal_water": {
+            "support": 461,
+            "precision": 0.34382284382284384,
+            "recall": 0.6399132321041214,
+            "f1": 0.4473085670962851,
+            "iou": 0.2880859375
+          },
+          "plume": {
+            "support": 5165,
+            "precision": 0.9611041405269761,
+            "recall": 0.8898354307841239,
+            "f1": 0.9240977179048959,
+            "iou": 0.8589048775929733
+          },
+          "land": {
+            "support": 9374,
+            "precision": 0.9989316239316239,
+            "recall": 0.9974397269042031,
+            "f1": 0.9981851179673321,
+            "iou": 0.9963768115942029
+          }
+        },
+        "confusion_matrix": [
+          [
+            295,
+            166,
+            0
+          ],
+          [
+            559,
+            4596,
+            10
+          ],
+          [
+            4,
+            20,
+            9350
+          ]
+        ]
+      },
+      "original_only_rf": {
+        "accuracy": 0.9294,
+        "macro_f1_present_classes": 0.7924037904350164,
+        "classes": {
+          "normal_water": {
+            "support": 461,
+            "precision": 0.3302292263610315,
+            "recall": 1.0,
+            "f1": 0.4964997307485191,
+            "iou": 0.3302292263610315
+          },
+          "plume": {
+            "support": 5165,
+            "precision": 0.9995159728944821,
+            "recall": 0.7996127783155856,
+            "f1": 0.888458642572873,
+            "iou": 0.7993032707567254
+          },
+          "land": {
+            "support": 9374,
+            "precision": 0.9871199324324325,
+            "recall": 0.9974397269042031,
+            "f1": 0.9922529979836571,
+            "iou": 0.9846251053074979
+          }
+        },
+        "confusion_matrix": [
+          [
+            461,
+            0,
+            0
+          ],
+          [
+            913,
+            4130,
+            122
+          ],
+          [
+            22,
+            2,
+            9350
+          ]
+        ]
+      }
+    }
+  ]
+}

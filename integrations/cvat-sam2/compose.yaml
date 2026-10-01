@@ -1,0 +1,24 @@
+services:
+  nuclio:
+    container_name: nuclio
+    image: quay.io/nuclio/dashboard:1.16.3-arm64
+    restart: unless-stopped
+    networks: [cvat, sam2]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "127.0.0.1:8070:8070"
+    environment:
+      NUCLIO_CHECK_FUNCTION_CONTAINERS_HEALTHINESS: 'true'
+      NUCLIO_DASHBOARD_DEFAULT_FUNCTION_MOUNT_MODE: volume
+  cvat_server:
+    environment:
+      CVAT_SERVERLESS: 1
+      CVAT_NUCLIO_HOST: nuclio
+      CVAT_NUCLIO_INVOKE_METHOD: dashboard
+networks:
+  sam2:
+    name: cvat_sam2
+    internal: true
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
