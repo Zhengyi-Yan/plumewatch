@@ -8,7 +8,7 @@ This guide covers running the current dashboard, reviewing predictions and under
 - The repository, which includes the **three active trained model files** and Wellington example.
 - A browser and enough memory for the source scene, model outputs and previews. Large images use considerably more memory than their compressed file size.
 
-**Verified setup:** macOS, dashboard Python 3.14.3 and a separate U-Net Python 3.12.2 environment. The commands below use that setup. Linux uses the same environment layout, but a fresh Linux installation has not been tested here. Native Windows is **not supported unchanged**: the dashboard looks for `experiments/unet/.venv/bin/python`, whereas Windows virtual environments use `Scripts/python.exe`. Windows teammates can try the Linux instructions inside WSL2, but that route has not been verified. Do not copy another machine's virtual environments; recreate them locally.
+**Verified setup:** macOS, dashboard Python 3.14.3 and a separate U-Net Python 3.12.2 environment. The commands below use that setup. Linux x86-64 dependency resolution with prebuilt wheels has been checked for both environments; a full Linux installation and runtime have not been tested here. Native Windows is **not supported unchanged**: the dashboard looks for `experiments/unet/.venv/bin/python`, whereas Windows virtual environments use `Scripts/python.exe`. Windows teammates can try the Linux instructions inside WSL2, but that route has not been verified. Do not copy another machine's virtual environments; recreate them locally.
 
 The U-Net worker uses Apple Metal/MPS when available and otherwise CPU. It does not currently select CUDA. CPU inference may be substantially slower.
 

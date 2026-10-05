@@ -11,7 +11,7 @@ Start with [the teammate setup and dashboard guide](TEAM_GUIDE.md) for installat
 The dashboard needs two Python environments. The three active trained models are included in the repository. You do **not** need CVAT, SAM, a GEE account, Node.js or training data to run inference on an existing supported image.
 
 - **Verified locally:** macOS with dashboard Python 3.14.3 and U-Net Python 3.12.2.
-- **Linux:** compatible environment paths, but a fresh installation has not been tested.
+- **Linux x86-64:** dependency resolution with prebuilt wheels has been checked for both environments; a full Linux runtime installation has not been tested.
 - **Windows:** use Ubuntu through WSL2. Native Windows needs a change to the hardcoded U-Net executable path; the full WSL installation has not been tested.
 - **Hardware:** Apple Silicon uses MPS when available. Other machines currently use CPU for U-Net; CUDA is not selected automatically. Large images need substantially more RAM than their compressed file size.
 
@@ -89,15 +89,29 @@ cd plumewatch
 
 uv python install 3.14.3 3.12.2
 
+# Limit simultaneous installation work on memory-constrained machines.
+export UV_CONCURRENT_INSTALLS=1
+export UV_CONCURRENT_DOWNLOADS=1
+export UV_CONCURRENT_BUILDS=1
+
 uv venv --python 3.14.3 .venv
-uv pip install --python .venv/bin/python -r requirements.txt
+uv pip install --python .venv/bin/python --only-binary :all: -r requirements.txt
 
 uv venv --python 3.12.2 experiments/unet/.venv
 uv pip install --python experiments/unet/.venv/bin/python \
-  -r experiments/unet/requirements.txt
+  --torch-backend cpu --only-binary :all: -r experiments/unet/requirements.txt
 ```
 
-Keep the checkout in the Linux home directory under WSL. If a dependency fails to install, retain the error rather than silently changing pinned versions or retraining. PyTorch downloads can be large. Continue with section D.
+Keep the checkout in the Linux home directory under WSL. If a dependency fails to install, retain the error rather than silently changing pinned versions or retraining. The CPU backend avoids downloading CUDA packages that the current worker does not use. These commands resolve successfully against Linux x86-64 wheels; they do not prove successful installation or inference on every Linux/WSL machine. Concurrency limits may reduce memory pressure but cannot guarantee installation when the system is short of memory. Continue with section D.
+
+If installation reports `Cannot allocate memory (os error 12)`, check:
+
+```sh
+free -h
+ps -eo pid,comm,rss --sort=-rss | head -15
+```
+
+Save any work running in WSL before restarting it: `wsl --shutdown` in Windows PowerShell stops **all** WSL sessions. Reopen with `wsl -d Ubuntu`, enter `~/projects/plumewatch`, set the concurrency variables above again and retry the failed install command. There is no need to delete the repository. If it still fails, retain the error and memory/process output for diagnosis; do not increase WSL's memory limit without checking the host's available RAM.
 
 ### D. Included trained models
 
