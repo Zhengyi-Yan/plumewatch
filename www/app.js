@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateView() {
     if (rgb) rgb.setOpacity(view === 'classes' && chosen() ? .17 : 1);
     if (overlay) overlay.setOpacity(!chosen() || view === 'original' ? 0 : ['classes','swipe','score'].includes(view) ? 1 : settings.opacity);
-    document.getElementById('swipe-control').hidden=view!=='swipe';
+    document.getElementById('swipe-control').hidden=view!=='swipe' || !chosen();
     document.getElementById('score-controls').hidden=view!=='score';
     document.getElementById('disagreement-summary').hidden=view!=='disagreement';
     document.getElementById('score-legend').hidden=scoreStyle.value!=='soft';
@@ -93,6 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function clipSwipe() {
+    const position=Number(swipe.value);
+    document.getElementById('swipe-divider').style.left=position+'%';
+    document.getElementById('swipe-handle').style.left=position+'%';
     if (!overlay) return;
     const element=overlay.getElement();
     element.style.clipPath='';
@@ -167,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Shiny.addCustomMessageHandler('pw-clear', _data => {
     if (rgb) map.removeLayer(rgb);
     if (overlay) map.removeLayer(overlay);
-    rgb=overlay=scene=results=null; inspector.hidden=true;updateDetails();
+    rgb=overlay=scene=results=null; inspector.hidden=true;updateDetails();updateView();
     caption.textContent='Open a supported scene';
   });
   Shiny.addCustomMessageHandler('pw-controls', data => {

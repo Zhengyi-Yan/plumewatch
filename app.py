@@ -25,9 +25,9 @@ app_ui = ui.page_fluid(
         ui.tags.link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'),
         ui.tags.link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css'),
         ui.tags.link(rel='stylesheet', href='leaflet.css'),
-        ui.tags.link(rel='stylesheet', href='app.css?v=20261002-type'),
+        ui.tags.link(rel='stylesheet', href='app.css?v=20261005-sidebar'),
         ui.tags.script(src='leaflet.js'),
-        ui.tags.script(src='app.js?v=20261001-summary', defer=True)),
+        ui.tags.script(src='app.js?v=20261003-swipe', defer=True)),
     ui.div(
         ui.tags.aside(
             ui.div(ui.span('plumewatch', class_='brand-word'), class_='brand'),
@@ -40,10 +40,6 @@ app_ui = ui.page_fluid(
                                        class_='nav-link nav-button'),
                 ui.tags.a(ui.tags.img(src='blue/exports.svg', alt='', class_='nav-icon'), 'Exports', href='#export-actions', class_='nav-link'),
                 class_='side-nav'),
-            ui.div(ui.span('THREE-MODEL REVIEW', class_='eyebrow lime'),
-                   ui.strong('RF + U-Net + SVM'),
-                   ui.span('Normal water · plume · land', class_='sidebar-small'),
-                   ui.input_action_button('methodology', ui.span('View methodology', ui.tags.img(src='blue/method-arrow.svg', alt=''), class_='action-label'), class_='sidebar-method'), class_='sidebar-card'),
             class_='site-sidebar'),
         ui.tags.main(
             ui.div(ui.span('PROJECT  /  PLUMEWATCH  /  OVERVIEW'),
@@ -70,6 +66,15 @@ app_ui = ui.page_fluid(
                            ui.span('SENTINEL-2 · 10 BANDS', class_='map-source'), class_='map-topbar'),
                     ui.div(ui.div(id='map', role='region', aria_label='Satellite scene map'),
                            ui.div(id='pixel-info', class_='pixel-info', hidden=True),
+                           ui.div(
+                               ui.span('Original', class_='swipe-label swipe-original'),
+                               ui.span('Classification', class_='swipe-label swipe-classification'),
+                               ui.div(class_='swipe-divider', id='swipe-divider'),
+                               ui.tags.input(id='swipe-position', type='range', min=0, max=100, value=50,
+                                             aria_label='Original versus classification comparison position'),
+                               ui.div(ui.span('‹', aria_hidden='true'), ui.span('›', aria_hidden='true'),
+                                      id='swipe-handle', class_='swipe-handle', aria_hidden='true'),
+                               id='swipe-control', hidden=True),
                            class_='map-stage'),
                     ui.div(
                     ui.div(ui.tags.button('Original', type='button', data_view='original'),
@@ -99,9 +104,7 @@ app_ui = ui.page_fluid(
                                   ui.div(ui.span('0% · low'), ui.span('50%'), ui.span('100% · high'), class_='score-ramp-labels'),
                                   id='score-legend'),
                            id='score-controls', hidden=True),
-                    ui.div(ui.tags.label('Original ↔ classification', **{'for': 'swipe-position'}),
-                           ui.tags.input(id='swipe-position', type='range', min=0, max=100, value=50),
-                           id='swipe-control', hidden=True), class_='map-tools'),
+                    class_='map-tools'),
                     class_='map-inner'), class_='map-shell'),
                 ui.div(
                     ui.div(
@@ -323,9 +326,9 @@ def server(input, output, session):
         return str(make_download(value, input.threshold() / 100))
 
     @reactive.effect
-    @reactive.event(input.model_notes, input.methodology)
+    @reactive.event(input.model_notes)
     def model_notes_handler():
-        if input.model_notes() or input.methodology():
+        if input.model_notes():
             ui.modal_show(ui.modal(
                 ui.p('RF v2, the final LayerNorm U-Net and the RBF SVM use ten Sentinel-2 bands and map normal water (0), visible plume (1), and land (3).'),
                 ui.p('The SVM uses saved StandardScaler preprocessing and native SVC class predictions. Its displayed score belongs to that predicted class; it need not be the highest probability. All 49 reviewed frames contributed balanced pixel samples. No independent SVM accuracy has been established.'),
