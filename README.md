@@ -159,6 +159,51 @@ Then run the same two Linux launch commands above. If your checkout is elsewhere
 
 Open a supported scene, choose a model and click **Classify scene**. RF/U-Net runs their comparison; SVM runs separately. Completed results remain available until you load a different image. Large-scene SVM inference can take several minutes.
 
+Enter the **Sentinel-2 acquisition date** next to the upload controls: the date the image was captured,
+not a separate weather date. The known Wellington example fills in 2021-07-23; opening another image
+clears the date so you can supply that scene's acquisition date. Classification still works without it.
+
+**Antecedent rainfall near the uploaded scene** appears immediately below the class-area results.
+The dashboard transforms the native raster centre from its CRS to WGS84 latitude/longitude and
+makes one keyless request to the [Open-Meteo Historical Weather API](https://open-meteo.com/en/docs/historical-weather-api).
+It requests `daily=precipitation_sum`, `precipitation_unit=mm`, `timezone=auto`, and the nearest
+weather grid cell for the seven days before acquisition. For acquisition date D, the 1-day value
+is D−1, the 3-day value sums D−3 through D−1, and the 7-day value sums D−7 through D−1, inclusive.
+These are complete calendar days in the location's timezone; acquisition-day precipitation is excluded.
+For example, 14 February uses 13 February, 11–13 February, and 7–13 February.
+
+Rainfall is context only: Open-Meteo's precipitation includes rain, showers and snow, represents a
+nearby weather grid estimate, and is not a rain-gauge measurement at the plume or a catchment average.
+The section links the data source and its CC BY 4.0 attribution. It does not feed any model, area
+calculation or model export. No API key, coordinates or rainfall files are needed.
+
+The acquisition date must be 1940-01-08 or later (to allow a full seven-day archive window) and
+no later than the current UTC date. Recent archive days can still be unavailable. Invalid dates,
+missing coordinates, timeouts, HTTP errors, malformed responses and missing daily values produce
+messages rather than zeros. Weather requests run separately from inference, with a 15-second
+network timeout, a retry button after service failures and up to 32 successful location/date results
+cached per session. Changing the date clears outdated rainfall without rerunning classification.
+The existing supported-raster validation still rejects non-georeferenced or incompatible GeoTIFFs.
+
+Rainfall checks (no network required):
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p 'test_rainfall.py' -v
+```
+
+Optional workflow checks exercise Shiny's actual upload HTTP endpoint, reactive session, map
+payloads, RF/U-Net inference and downloads with controlled weather responses. After setting up
+the dashboard and U-Net environments above:
+
+```sh
+PLUMEWATCH_WORKFLOW_TESTS=1 .venv/bin/python tests/test_rainfall_workflow.py
+```
+
+For an isolated test U-Net environment, set `PLUMEWATCH_TEST_UNET_PYTHON` to its executable.
+This changes only the test server's interpreter selection; model and inference code remain the same.
+Set `PLUMEWATCH_LIVE_WEATHER_TESTS=1` as well to opt in to live archive retrieval for uploaded
+New Zealand and Germany test scenes. The regular rainfall unit tests require no live service.
+
 Supported inputs are twelve-band GeoTIFFs from the [PlumeWatch scene exporter](export_all_plume_scenes.js), with exact band descriptions/order `B2, B3, B4, B5, B6, B7, B8, B8A, B11, B12, SCL, valid`, scaled floating-point reflectance and a north-up projected 10 m grid. Maximum file size is 250 MiB and maximum scene size is ten million pixels. RGB-only files are not suitable. The models use ten reflectance bands; `SCL` and `valid` screen input pixels.
 
 The threshold slider filters class previews and displayed areas, not raw exported classifications. Score smoothing changes display only. Exports contain `classification.tif`, `model_score.tif`, `plume_score.tif`, `summary.csv` and `metadata.json`; TIFFs preserve the native source grid. Save exports before closing the session.

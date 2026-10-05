@@ -16,6 +16,7 @@ from PIL import Image
 import numpy as np
 import rasterio
 from scipy.ndimage import gaussian_filter
+from rainfall import scene_location
 
 ROOT = Path(__file__).resolve().parent
 SVM_MODEL = ROOT / 'data/processed/svm_rbf_20261001/model.pkl'
@@ -84,6 +85,7 @@ def prepare_scene(path):
                 'crs': str(src.crs), 'pixel_area': abs(src.transform.a * src.transform.e),
                 'grid': (transform, width, height),
                 'source_tags': src.tags(),
+                'rainfall_location': scene_location(src),
                 'map': {'rgb': image_url(rgba), 'bounds': [[south, west], [north, east]],
                         'width': width, 'height': height, 'projectedBounds': list(bounds_m)}}
 

@@ -7,6 +7,7 @@ from pathlib import Path
 from shiny import App, reactive, render, ui
 from processing import (EXAMPLE, MAX_BYTES, classify_rf, classify_unet, classify_svm, disagreement_km2,
                         make_download, prepare_scene, summary)
+from rainfall import MIN_ACQUISITION_DATE, RainfallError, acquisition_date, fetch_rainfall, valid_location
 
 ROOT = Path(__file__).resolve().parent
 POOL = ThreadPoolExecutor(max_workers=2)
@@ -25,9 +26,9 @@ app_ui = ui.page_fluid(
         ui.tags.link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'),
         ui.tags.link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css'),
         ui.tags.link(rel='stylesheet', href='leaflet.css'),
-        ui.tags.link(rel='stylesheet', href='app.css?v=20261005-sidebar'),
+        ui.tags.link(rel='stylesheet', href='app.css?v=20261005-rainfall-layout'),
         ui.tags.script(src='leaflet.js'),
-        ui.tags.script(src='app.js?v=20261003-swipe', defer=True)),
+        ui.tags.script(src='app.js?v=20261005-rainfall-layout', defer=True)),
     ui.div(
         ui.tags.aside(
             ui.div(ui.span('plumewatch', class_='brand-word'), class_='brand'),
@@ -59,6 +60,10 @@ app_ui = ui.page_fluid(
                                                button_label='Open a scene', placeholder='GEE GeoTIFF'),
                                  class_='scene-upload'), class_='workspace-actions'),
                    class_='workspace-heading', id='workspace'),
+            ui.div(ui.input_date('acquisition_date', 'Sentinel-2 acquisition date', value='',
+                                 min=MIN_ACQUISITION_DATE, format='yyyy-mm-dd'),
+                   ui.p('Date the uploaded image was captured. Used for preceding rainfall context only.'),
+                   class_='scene-date'),
             ui.div(
                 ui.div(
                     ui.div(
@@ -118,6 +123,14 @@ app_ui = ui.page_fluid(
                     ui.div(class_row('Visible plume', 'plume', 'plume_area'),
                            class_row('Normal water', 'water', 'water_area'),
                            class_row('Land', 'land', 'land_area'), class_='class-list'),
+                    ui.div(ui.h3('Antecedent rainfall near the uploaded scene'),
+                           ui.div(ui.output_ui('rainfall_content'), role='status', aria_live='polite'),
+                           ui.p(ui.tags.a('Open-Meteo historical weather data',
+                                          href='https://open-meteo.com/en/docs/historical-weather-api',
+                                          target='_blank', rel='noopener'), ' · ',
+                                ui.tags.a('CC BY 4.0', href='https://creativecommons.org/licenses/by/4.0/',
+                                          target='_blank', rel='noopener'), class_='rainfall-source'),
+                           id='rainfall-section', class_='rainfall-block'),
                     ui.div(ui.span('DISPLAY FILTER', class_='eyebrow'),
                            ui.input_slider('threshold', 'Minimum predicted-class score', min=0, max=95,
                                            value=70, step=5, post='%'),
@@ -143,15 +156,86 @@ def server(input, output, session):
     scene = reactive.value(None)
     results = reactive.value(None)
     message = reactive.value('Loading the Wellington example…')
+    rainfall = reactive.value({'message': 'Open a scene and enter its Sentinel-2 acquisition date.'})
+    rainfall_key = reactive.value(None)
+    rainfall_cache = {}  # Successful results only, bounded and private to this session.
     future = None
     initialized = False
 
     def cleanup():
+        retrieve_rainfall.cancel()
         if future and not future.done():
             future.add_done_callback(lambda _: temp.cleanup())
         else:
             temp.cleanup()
     session.on_ended(cleanup)
+
+    @reactive.extended_task
+    async def retrieve_rainfall(key):
+        lat, lon, observed = key
+        try:
+            value = await asyncio.to_thread(fetch_rainfall, (lat, lon), observed)
+            return {'key': key, 'data': value}
+        except RainfallError as error:
+            return {'key': key, 'message': 'Rainfall data unavailable for this scene/date. ' + str(error)}
+        except Exception:
+            return {'key': key, 'message': 'Rainfall data unavailable for this scene/date. Try again later.'}
+
+    def request_rainfall(value, *, retry=False):
+        retrieve_rainfall.cancel()
+        rainfall_key.set(None)
+        if value is None:
+            rainfall.set({'message': 'Open a scene and enter its Sentinel-2 acquisition date.'})
+            return
+        try:
+            observed = acquisition_date(value.get('acquisition_date'))
+            lat, lon = valid_location(value.get('rainfall_location'))
+        except RainfallError as error:
+            rainfall.set({'message': str(error)})
+            return
+        key = (lat, lon, observed)
+        rainfall_key.set(key)
+        if key in rainfall_cache and not retry:
+            rainfall.set({'data': rainfall_cache[key]})
+            return
+        rainfall.set({'message': 'Loading historical rainfall from Open-Meteo…'})
+        retrieve_rainfall(key)
+
+    @reactive.effect
+    def rainfall_for_scene():
+        request_rainfall(scene())
+
+    @reactive.effect
+    def show_rainfall():
+        if retrieve_rainfall.status() != 'success':
+            return
+        value = retrieve_rainfall.result()
+        with reactive.isolate():
+            if value['key'] != rainfall_key():
+                return  # Never display a response belonging to an earlier scene/date.
+        if 'data' in value:
+            if len(rainfall_cache) >= 32:
+                rainfall_cache.pop(next(iter(rainfall_cache)))
+            rainfall_cache[value['key']] = value['data']
+        rainfall.set(value)
+
+    @reactive.effect
+    @reactive.event(input.retry_rainfall, ignore_init=True)
+    def retry_rainfall():
+        request_rainfall(scene(), retry=True)
+
+    @reactive.effect
+    @reactive.event(input.acquisition_date, ignore_none=False)
+    def date_changed():
+        value = scene()
+        if value is not None:
+            scene.set({**value, 'acquisition_date': entered_date()})
+
+    def entered_date():
+        try:
+            return input.acquisition_date()
+        except (TypeError, ValueError):
+            return 'invalid'  # A malformed client value must clear older rainfall too.
 
     @reactive.extended_task
     async def load(path, name):
@@ -190,12 +274,13 @@ def server(input, output, session):
     def busy():
         return load.status() == 'running' or run_models.status() == 'running'
 
-    def start_load(path, name):
+    def start_load(path, name, observed=''):
         if busy():
             ui.notification_show('Wait for the current scene operation to finish.', type='message')
             return
         scene.set(None)
         results.set(None)
+        ui.update_date('acquisition_date', value=observed)
         message.set('Checking the scene and preparing the map…')
         load(path, name)
 
@@ -206,7 +291,7 @@ def server(input, output, session):
             return
         initialized = True
         if EXAMPLE.exists():
-            start_load(EXAMPLE, 'Wellington Harbour · 23 Jul 2021')
+            start_load(EXAMPLE, 'Wellington Harbour · 23 Jul 2021', '2021-07-23')
         else:
             message.set('Open a supported PlumeWatch GEE scene export to begin.')
 
@@ -214,7 +299,7 @@ def server(input, output, session):
     @reactive.event(input.example)
     def example():
         if EXAMPLE.exists():
-            start_load(EXAMPLE, 'Wellington Harbour · 23 Jul 2021')
+            start_load(EXAMPLE, 'Wellington Harbour · 23 Jul 2021', '2021-07-23')
 
     @reactive.effect
     @reactive.event(input.upload)
@@ -232,6 +317,8 @@ def server(input, output, session):
             message.set('Could not open scene: ' + value['error'])
             await session.send_custom_message('pw-clear', {})
             return
+        with reactive.isolate():
+            value['acquisition_date'] = entered_date()
         scene.set(value)
         message.set('Scene ready. Run RF / U-Net together, or select SVM to run it separately.')
         await session.send_custom_message('pw-scene', {**value['map'], 'name': value['name'],
@@ -311,6 +398,25 @@ def server(input, output, session):
     @render.text
     def land_area():
         return f"{stats()['land_km2']:.2f} km²" if stats() else '—'
+
+    @render.ui
+    def rainfall_content():
+        value = rainfall()
+        if 'data' not in value:
+            return ui.div(ui.p(value['message'], class_='rainfall-note'),
+                          ui.input_action_button('retry_rainfall', 'Retry rainfall',
+                                                 class_='rainfall-retry') if 'key' in value else None)
+        data = value['data']
+        return ui.div(
+            ui.tags.table(
+                ui.tags.thead(ui.tags.tr(ui.tags.th('Period', scope='col'), ui.tags.th('Rainfall', scope='col'))),
+                ui.tags.tbody(*[ui.tags.tr(ui.tags.th(f'Previous {n} day' + ('s' if n > 1 else ''), scope='row'),
+                                           ui.tags.td(f"{data['totals_mm'][n]:.1f} mm")) for n in (1, 3, 7)]),
+                class_='rainfall-table'),
+            ui.p(f"Before {data['acquisition_date']} · {data['timezone']}. "
+                 f"7-day window: {data['start_date']} to {data['end_date']}.", class_='rainfall-note'),
+            ui.p('Estimated precipitation near the raster centre, including rain and snow. '
+                 'Environmental context; not a plume rain-gauge measurement.', class_='rainfall-note'))
 
     @render.text
     def disagreement():

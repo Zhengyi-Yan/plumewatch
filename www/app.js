@@ -10,6 +10,30 @@ function plumeColor(score, soft) {
 if (typeof module !== 'undefined') module.exports={disagrees,plumeColor};
 /* Leaflet is display only. Areas and exports come from native-grid GeoTIFFs. */
 document.addEventListener('DOMContentLoaded', () => {
+  // Keep the pre-rainfall card height; extra context scrolls inside the inspector.
+  const review = document.querySelector('.review-grid');
+  const resultsPanel = document.querySelector('.inspector-inner');
+  const resultsShell = document.querySelector('.inspector-shell');
+  const originalSections = [...resultsPanel.children].filter(element => element.id !== 'rainfall-section');
+  function preserveReviewHeight() {
+    const verticalBox = element => {
+      const style = getComputedStyle(element);
+      return ['paddingTop','paddingBottom','borderTopWidth','borderBottomWidth']
+        .reduce((total, property) => total + parseFloat(style[property]), 0);
+    };
+    const height = originalSections.reduce((total, element) => {
+      const style = getComputedStyle(element);
+      return total + element.getBoundingClientRect().height +
+        parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+    }, verticalBox(resultsPanel) + verticalBox(resultsShell));
+    const value = Math.ceil(height) + 'px';
+    if (review.style.getPropertyValue('--review-height') !== value)
+      review.style.setProperty('--review-height', value);
+  }
+  const reviewResize = new ResizeObserver(preserveReviewHeight);
+  originalSections.forEach(element => reviewResize.observe(element));
+  reviewResize.observe(resultsPanel);
+  preserveReviewHeight();
   const map = L.map('map', {zoomControl:false, maxZoom:19, minZoom:2, zoomSnap:.1});
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

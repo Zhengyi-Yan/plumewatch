@@ -28,3 +28,26 @@
 #swipe-position:hover+.swipe-handle{box-shadow:0 3px 18px #012a4a50}
 .swipe-label{position:absolute;bottom:36px;background:#012a4ae6;color:white;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:500}
 .swipe-original{left:12px}.swipe-classification{right:12px}
+/* Scene date and contextual rainfall follow the existing inspector palette. */
+.inspector-shell{height:var(--review-height,832px);min-height:0}
+.inspector-inner{overflow-y:auto;overscroll-behavior:contain}
+.inspector-inner>*{flex-shrink:0}
+@media(min-width:981px){
+  .review-grid{height:var(--review-height,832px);grid-template-rows:minmax(0,1fr)}
+  .map-shell{min-height:0}
+  .map-stage{min-height:0}
+}
+.scene-date{display:flex;align-items:center;gap:18px;margin:0 0 20px;flex-wrap:wrap}
+.scene-date .shiny-input-container{width:240px;max-width:100%;margin:0}
+.scene-date label{font-size:13px;font-weight:600;color:var(--ink)}
+.scene-date input{border:1px solid var(--line);border-radius:12px;color:var(--ink);background:white}
+.scene-date p{font-size:12px;color:var(--muted);margin:0;flex:1;min-width:220px}
+.rainfall-block{border-top:1px solid var(--line);padding-top:16px;margin:0 0 16px}
+.rainfall-block h3{font-size:14px;font-weight:600;line-height:1.5;margin:0 0 10px}
+.rainfall-table{width:100%;font-size:13px;border-collapse:collapse;margin:0 0 10px}
+.rainfall-table th,.rainfall-table td{padding:6px 0;font-weight:400;text-align:left}
+.rainfall-table thead th{font-size:11px;color:var(--muted);border-bottom:1px solid var(--line)}
+.rainfall-table td,.rainfall-table th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.rainfall-note,.rainfall-source{font-size:11px;color:var(--muted);line-height:1.5;margin:6px 0 0}
+.rainfall-source a{color:var(--blue)}
+.rainfall-retry.btn{font-size:12px;color:var(--blue);background:var(--pale);border:1px solid var(--line);border-radius:12px;margin-top:8px}
