@@ -12,7 +12,7 @@ The dashboard needs two Python environments. The three active trained models are
 
 - **Verified locally:** macOS with dashboard Python 3.14.3 and U-Net Python 3.12.2.
 - **Linux x86-64:** dependency resolution with prebuilt wheels has been checked for both environments; a full Linux runtime installation has not been tested.
-- **Windows:** use Ubuntu through WSL2. Native Windows needs a change to the hardcoded U-Net executable path; the full WSL installation has not been tested.
+- **Windows:** use Ubuntu through WSL2. Native Windows needs a change to the hardcoded U-Net executable path; the current WSL setup commands have been tested and confirmed by a teammate. The new double-click launcher still needs a Windows test.
 - **Hardware:** Apple Silicon uses MPS when available. Other machines currently use CPU for U-Net; CUDA is not selected automatically. Large images need substantially more RAM than their compressed file size.
 
 Do not copy virtual environments between computers. Recreate them using the commands below. Homebrew installs the latest patch release in each Python series; the exact local patch versions above describe the tested machine, not a guarantee for every fresh installation.
@@ -48,7 +48,7 @@ If you already cloned the repository, enter that existing checkout rather than c
 
 ### B. Windows installation through WSL2
 
-Requires Windows 11 or Windows 10 version 2004/build 19041 or newer. See [Microsoft's WSL installation instructions](https://learn.microsoft.com/en-us/windows/wsl/install). This is a proposed compatible route, not an end-to-end verified Windows installation.
+Requires Windows 11 or Windows 10 version 2004/build 19041 or newer. See [Microsoft's WSL installation instructions](https://learn.microsoft.com/en-us/windows/wsl/install). The current setup commands have been tested and confirmed on Windows through Ubuntu/WSL. Native Windows without WSL remains unverified.
 
 Open **PowerShell as Administrator**:
 
@@ -160,6 +160,23 @@ For later launches on macOS/Linux:
 cd ~/projects/plumewatch
 .venv/bin/python -m shiny run --host 127.0.0.1 --port 8000 app.py
 ```
+
+#### Windows double-click launcher
+
+After completing installation once, open the Ubuntu checkout in Windows File Explorer:
+
+```sh
+cd ~/projects/plumewatch
+explorer.exe .
+```
+
+Double-click **`Start Dashboard.bat`** in that folder. The file is included in the repository; no separate launcher download is needed. You can create a Windows desktop shortcut to it for later use.
+
+The launcher checks the two environments and all three models, starts the same Shiny command shown above through Ubuntu, and opens your default Windows browser when the server responds. Keep its terminal window open and press **Ctrl+C** there to stop. It does not install packages, update the repository, train models or change dashboard settings.
+
+It defaults to the `Ubuntu` distribution, `~/projects/plumewatch` and port `8000`. If yours differs, edit `PW_DISTRO`, `PW_REPO` or `PW_PORT` at the top of the file; use a Linux path for `PW_REPO`. A busy port produces a message rather than stopping another process. Startup errors remain visible. If the browser does not open automatically, use the URL printed in the terminal.
+
+The launcher has been inspected here but has not been executed on Windows. The existing manual startup remains available:
 
 For later Windows launches, first enter Ubuntu from PowerShell:
 

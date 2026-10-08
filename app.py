@@ -26,9 +26,9 @@ app_ui = ui.page_fluid(
         ui.tags.link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'),
         ui.tags.link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css'),
         ui.tags.link(rel='stylesheet', href='leaflet.css'),
-        ui.tags.link(rel='stylesheet', href='app.css?v=20261005-rainfall-layout'),
+        ui.tags.link(rel='stylesheet', href='app.css?v=20261008-ui-cleanup'),
         ui.tags.script(src='leaflet.js'),
-        ui.tags.script(src='app.js?v=20261005-rainfall-layout', defer=True)),
+        ui.tags.script(src='app.js?v=20261008-ui-cleanup', defer=True)),
     ui.div(
         ui.tags.aside(
             ui.div(ui.span('plumewatch', class_='brand-word'), class_='brand'),
@@ -43,12 +43,10 @@ app_ui = ui.page_fluid(
                 class_='side-nav'),
             class_='site-sidebar'),
         ui.tags.main(
-            ui.div(ui.span('PROJECT  /  PLUMEWATCH  /  OVERVIEW'),
-                   ui.span('PROTOTYPE  ·  OCT 2026'), class_='topline', id='overview'),
-            ui.div(ui.p('SATELLITE COASTAL OBSERVATION', class_='eyebrow'),
+            ui.div(ui.p('COASTAL MONITORING', class_='eyebrow'),
                    ui.h1('A clearer view of coastal plumes.'),
-                   ui.p('Inspect Sentinel-2 scenes, compare model predictions, and export georeferenced results.', class_='intro'),
-                   class_='hero'),
+                   ui.p('Sentinel-2 image classification and georeferenced exports.', class_='intro'),
+                   class_='hero', id='overview'),
             ui.div(ui.div(ui.p('SCENE WORKSPACE', class_='eyebrow'),
                           ui.h2(ui.output_text('scene_name', inline=True)),
                           ui.p(ui.output_text('scene_details', inline=True), class_='scene-detail'),
@@ -62,7 +60,6 @@ app_ui = ui.page_fluid(
                    class_='workspace-heading', id='workspace'),
             ui.div(ui.input_date('acquisition_date', 'Sentinel-2 acquisition date', value='',
                                  min=MIN_ACQUISITION_DATE, format='yyyy-mm-dd'),
-                   ui.p('Date the uploaded image was captured. Used for preceding rainfall context only.'),
                    class_='scene-date'),
             ui.div(
                 ui.div(
@@ -89,7 +86,6 @@ app_ui = ui.page_fluid(
                            ui.tags.button('Plume score', type='button', data_view='score'),
                            ui.tags.button('Disagreement', type='button', data_view='disagreement'),
                            class_='map-switch'),
-                    ui.div(ui.tags.img(src='blue/info.svg', alt=''), ui.span('Load a scene to begin', id='map-caption'), class_='map-caption'),
                     ui.div(ui.span('Disagreement area: ', ui.output_text('disagreement', inline=True),
                                    class_='disagreement-area'),
                            ui.span('Model disagreement does not indicate which model is correct.'),
@@ -385,7 +381,8 @@ def server(input, output, session):
 
     @render.text
     def status():
-        return message()
+        value = message()
+        return '' if value.startswith('Scene ready.') else value
 
     @render.text
     def plume_area():

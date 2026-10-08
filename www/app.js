@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
   L.control.zoom({position:'topright'}).addTo(map);
   L.control.scale({position:'bottomright', imperial:false}).addTo(map);
   map.setView([-41.26,174.89],11);
-  const caption = document.getElementById('map-caption');
   const inspector = document.getElementById('pixel-info');
   const canvas = document.createElement('canvas');
   const colors = {'0':[57,113,121],'1':[215,239,144],'3':[215,199,165]};
@@ -70,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (rgb) rgb.setOpacity(1);
       inspector.hidden=true;
       updateView();
-      if (scene) caption.textContent=modelNames[settings.model] + ' · classify to view';
       return;
     }
     canvas.width = result.width; canvas.height = result.height;
@@ -96,10 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     else overlay = L.imageOverlay(canvas.toDataURL('image/png'), scene.bounds, {
       interactive:false, alt:'Selected model classification overlay'
     }).addTo(map);
-    caption.textContent = view==='score' ? (scoreStyle.value==='soft' ? 'Plume score · lower scores fade into the image · uncalibrated' : 'Plume score: dark 0% → lime 100% · uncalibrated') :
-      view==='disagreement' ? (otherResult() ? 'Orange: RF vs ' + (settings.model==='svm' ? 'SVM' : 'U-Net') + ' · shared valid pixels' : 'Run RF + U-Net, or RF + SVM, to compare') :
-      modelNames[settings.model] + ' · preview only';
-    if(view==='score' && scoreSmoothing.checked) caption.textContent+=' · '+scoreStrength.selectedOptions[0].text+' · display only';
     updateView();
   }
 
@@ -153,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay = null;
     rgb = L.imageOverlay(data.rgb, data.bounds, {alt:'Sentinel-2 scene preview'}).addTo(map);
     map.fitBounds(data.bounds, {padding:[20,20]});
-    caption.textContent = 'Sentinel-2 · quality-screened image';
     updateView();
   }
 
@@ -195,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rgb) map.removeLayer(rgb);
     if (overlay) map.removeLayer(overlay);
     rgb=overlay=scene=results=null; inspector.hidden=true;updateDetails();updateView();
-    caption.textContent='Open a supported scene';
   });
   Shiny.addCustomMessageHandler('pw-controls', data => {
     document.getElementById('run').disabled=data.busy || !data.ready;
