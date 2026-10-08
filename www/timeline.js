@@ -1,6 +1,6 @@
 /* Metrics are calculated on the native grid; map images are previews. */
 document.addEventListener('DOMContentLoaded',()=>{
-  let data=null, maps=[], layers=[], timer=null, syncing=false, analysisPair=[0,1];
+  let data=null, maps=[], layers=[], timer=null, syncing=false, analysisPair=[0,1], visibleChanges={1:true,2:true,3:false};
   const $=id=>document.getElementById(id);
   const decode=value=>Uint8Array.from(atob(value),c=>c.charCodeAt(0));
   const format=value=>Number(value).toFixed(2);
@@ -35,12 +35,12 @@ document.addEventListener('DOMContentLoaded',()=>{
       const t=(n-1)/(data.rows.length-1);
       colors[n]=n===data.rows.length?[...plume,220]:[Math.round(169-168*t),Math.round(214-141*t),Math.round(229-105*t),220];
     }
-    for(let i=0;i<mask.length;i++)if(data.valid[i]&&colors[mask[i]])image.data.set(colors[mask[i]],i*4);
+    for(let i=0;i<mask.length;i++)if(data.valid[i]&&colors[mask[i]]&&(kind!=='change'||visibleChanges[mask[i]]))image.data.set(colors[mask[i]],i*4);
     context.putImageData(image,0,0);return canvas.toDataURL('image/png');
   }
   function replaceMap(j,index,mask,kind){
     layers[j].forEach(layer=>maps[j].removeLayer(layer));layers[j]=[];
-    layers[j].push(L.imageOverlay(data.maps[index].rgb,data.bounds,{alt:'Sentinel-2 '+data.rows[index].date}).addTo(maps[j]));
+    layers[j].push(L.imageOverlay(data.maps[index].rgb,data.bounds,{alt:'Sentinel-2 '+data.rows[index].date,className:j===2?'series-analysis-background':''}).addTo(maps[j]));
     if(mask)layers[j].push(L.imageOverlay(overlay(mask,kind),data.bounds,{alt:kind==='change'?'Plume change between compared dates':kind==='frequency'?'Number of dates classified as plume':'Predicted plume footprint'}).addTo(maps[j]));
   }
   function paintMaps(){
@@ -54,31 +54,47 @@ document.addEventListener('DOMContentLoaded',()=>{
     $('series-compare').disabled=a===b;
     $('series-compare-feedback').textContent=a===b?'Choose a different viewing date to compare changes.':'';
   }
-  function legendKey(text,color){const key=el('span',text,'series-key');key.style.setProperty('--key-color',color);return key;}
+  function layerCard(label,note,value,color,key){
+    const card=el(key?'button':'div',undefined,'series-layer-card');
+    card.style.setProperty('--key-color',color);
+    const title=el('span',label,'series-layer-title');
+    card.append(title,el('strong',format(value)+' km²','series-layer-value'),el('span',note,'series-layer-note'));
+    if(key){
+      card.type='button';card.dataset.layer=key;card.setAttribute('aria-pressed',String(visibleChanges[key]));
+      card.append(el('span',visibleChanges[key]?'Shown on map':'Hidden · click to show','series-layer-state'));
+      card.addEventListener('click',()=>{
+        visibleChanges[key]=!visibleChanges[key];paintAnalysis();
+        $('series-footprint-legend').querySelector(`[data-layer="${key}"]`).focus({preventScroll:true});
+      });
+    }
+    return card;
+  }
   function paintAnalysis(){
     if(!data)return;
-    const stats=$('series-change-stats'),legend=$('series-footprint-legend');stats.replaceChildren();legend.replaceChildren();
+    const legend=$('series-footprint-legend');legend.replaceChildren();
     if($('series-footprint-mode').value==='frequency'){
       replaceMap(2,data.rows.length-1,data.frequency,'frequency');
-      $('series-change-description').textContent='Each colour shows how many of the '+data.rows.length+' uploaded dates that pixel was predicted as plume.';
+      $('series-change-title').textContent='How often was plume predicted here?';
+      $('series-change-description').textContent=dateText(data.rows[0].date)+' to '+dateText(data.rows[data.rows.length-1].date)+' · '+data.rows.length+' acquisitions';
+      $('series-change-instructions').textContent='Match each map colour to its count below. The area is where plume was predicted on exactly that many dates.';
       for(let n=1;n<=data.rows.length;n++){
         const t=(n-1)/(data.rows.length-1),color=n===data.rows.length?'#d7ef90':`rgb(${Math.round(169-168*t)},${Math.round(214-141*t)},${Math.round(229-105*t)})`;
-        legend.append(legendKey(n+' of '+data.rows.length+' dates',color));
+        legend.append(layerCard(n+' of '+data.rows.length+' dates','Predicted plume on exactly '+n+(n===1?' date':' dates'),data.frequency_km2[String(n)]||0,color));
       }
-      const any=Object.entries(data.frequency_km2).filter(([n])=>Number(n)>0).reduce((sum,[,v])=>sum+v,0);
-      [['Plume on at least one date',any],['Plume on every date',data.frequency_km2[String(data.rows.length)]]].forEach(([label,value])=>{const block=el('div');block.append(el('span',label),el('strong',format(value)+' km²'));stats.append(block);});
       return;
     }
-    const [low,high]=analysisPair,earlier=dateText(data.rows[low].date),later=dateText(data.rows[high].date);
-    $('series-change-description').textContent=earlier+' compared with '+later+'. This comparison stays fixed until you click “Compare these dates” again.';
-    legend.append(legendKey('Only '+dateText(data.rows[low].date),'#2a6f97'),legendKey('Only '+dateText(data.rows[high].date),'#ef8754'),legendKey('Plume on both dates','#d7ef90'));
+    const [low,high]=analysisPair,earlier=dateText(data.rows[low].date),later=dateText(data.rows[high].date),pair=data.pairs[`${low}-${high}`];
+    const delta=pair.later_only_km2-pair.earlier_only_km2;
+    $('series-change-title').textContent=Math.abs(delta)<.005?'No net change in predicted plume area':
+      'Predicted plume '+(delta>0?'increased':'decreased')+' by '+format(Math.abs(delta))+' km²';
+    $('series-change-description').textContent=earlier+' → '+later+' · Fixed comparison';
+    $('series-change-instructions').textContent='Blue marks removed plume; orange marks added plume. Click a card to show or hide its map layer.';
+    legend.append(layerCard('Removed plume','Predicted on '+earlier+' only',pair.earlier_only_km2,'#2a6f97','1'),
+      layerCard('Added plume','Predicted on '+later+' only',pair.later_only_km2,'#ef8754','2'),
+      layerCard('Unchanged plume','Predicted on both dates',pair.both_km2,'#d7ef90','3'));
     const change=new Uint8Array(data.width*data.height);
     for(let i=0;i<change.length;i++)change[i]=data.maps[low].plume[i]+2*data.maps[high].plume[i];
     replaceMap(2,high,change,'change');
-    const pair=data.pairs[`${low}-${high}`];
-    [['Only '+dateText(data.rows[low].date),pair.earlier_only_km2],['Only '+dateText(data.rows[high].date),pair.later_only_km2],['On both dates',pair.both_km2]].forEach(([label,value])=>{
-      const block=el('div');block.append(el('span',label),el('strong',format(value)+' km²'));stats.append(block);
-    });
   }
   function chart(id,field,unit,color){
     const values=data.rows.map(r=>r[field]),available=values.filter(v=>v!==null),largest=Math.max(...available,0);
@@ -116,7 +132,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const firstDisplay=!data,previousLeft=$('series-left-date').value,previousRight=$('series-right-date').value;
     stop();data=value;$('series-results').hidden=!data;if(!data){$('series-change-section').open=false;return;}
     data.valid=decode(data.valid);data.frequency=decode(data.frequency);data.maps.forEach(m=>m.plume=decode(m.plume));
-    if(firstDisplay){analysisPair=[0,data.rows.length-1];$('series-change-section').open=false;$('series-footprint-mode').value='pair';}
+    if(firstDisplay){visibleChanges={1:true,2:true,3:false};analysisPair=[0,data.rows.length-1];$('series-change-section').open=false;$('series-footprint-mode').value='pair';}
     $('series-observations').replaceChildren();
     $('series-observations').style.setProperty('--observation-count',data.rows.length);
     data.rows.forEach((r,i)=>{
@@ -134,7 +150,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
     $('series-coverage-note').textContent='Areas use '+format(data.shared_km2)+' km² valid on every date ('+data.coverage_percent.toFixed(1)+'% of the geographic overlap). Model: '+({rf:'Random Forest',unet:'U-Net',svm:'SVM'}[data.model])+'. Fixed score filter: '+Math.round(data.threshold*100)+'%. Adding a cloudy image can reduce this shared area.';
     charts();table();initMaps();
-    requestAnimationFrame(()=>{syncing=true;maps.slice(0,2).forEach(map=>{map.invalidateSize();map.fitBounds(data.bounds,{padding:[12,12],animate:false});});maps[2].setView(maps[0].getCenter(),maps[0].getZoom(),{animate:false});syncing=false;paintMaps();paintAnalysis();if(firstDisplay)$('series-results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
+    requestAnimationFrame(()=>{syncing=true;maps.slice(0,2).forEach(map=>map.invalidateSize());maps[1].fitBounds(data.bounds,{padding:[12,12],animate:false});[maps[0],maps[2]].forEach(map=>map.setView(maps[1].getCenter(),maps[1].getZoom(),{animate:false}));syncing=false;paintMaps();paintAnalysis();if(firstDisplay)$('series-results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
     $('series_retry_weather').hidden=data.rows.every(r=>r.weather!==null);
   }
   ['series-left-date','series-right-date','series-show-plume'].forEach(id=>$(id).addEventListener('change',()=>{stop();paintMaps();}));
@@ -142,7 +158,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('series-compare').addEventListener('click',()=>{
     if(!data)return;stop();
     const a=Number($('series-left-date').value),b=Number($('series-right-date').value);if(a===b)return;
-    analysisPair=[Math.min(a,b),Math.max(a,b)];$('series-footprint-mode').value='pair';$('series-change-section').open=true;
+    analysisPair=[Math.min(a,b),Math.max(a,b)];visibleChanges={1:true,2:true,3:false};$('series-footprint-mode').value='pair';$('series-change-section').open=true;
     paintAnalysis();requestAnimationFrame(()=>{maps[2].invalidateSize();maps[2].setView(maps[0].getCenter(),maps[0].getZoom(),{animate:false});});
     $('series-change-section').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
   });
