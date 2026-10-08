@@ -122,3 +122,18 @@ button.series-layer-card:hover{transform:translateY(-2px)}
 #series-change-map .leaflet-tile-pane{filter:grayscale(1)}
 .series-map-footnote{margin-top:12px}
 @media(max-width:900px){.series-maps{grid-template-columns:1fr}.series-reference{margin-top:0}.series-reference .series-map{height:230px}.series-layer-cards{grid-template-columns:1fr}.series-viewing .series-map{height:380px}}
+
+.series-date-confirmation{background:var(--pale);padding:16px 18px;border:2px solid transparent;border-radius:14px;margin:18px 0 0;transition:border-color 250ms var(--ease),background 250ms var(--ease)}
+.series-date-confirmation .shiny-input-container{margin:0;width:100%!important}
+.series-date-confirmation .checkbox{margin:0}
+.series-date-confirmation label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;padding:0}
+.series-date-confirmation input[type=checkbox]{position:static!important;margin:0!important;width:20px;height:20px;flex-shrink:0;accent-color:var(--blue)}
+.series-date-confirmation:has(input:checked){border-color:var(--sky-blue-light)}
+.series-date-confirmation.needs-confirmation{border-color:#c46d16;background:#fff7eb}
+#series-confirm-error{color:#87420a;font-size:13px;font-weight:600;line-height:1.5;margin:10px 0 0;padding-left:30px}
+#series-confirm-error[hidden]{display:none!important}
+.series-threshold-control{background:var(--pale);border-radius:14px;padding:16px 18px}
+.series-threshold-endpoints{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin:0 0 10px}
+.series-threshold-control .irs-min,.series-threshold-control .irs-max{display:none}
+.series-threshold-control .irs-single{font-size:12px}
+.series-threshold-control .series-muted{margin:0}

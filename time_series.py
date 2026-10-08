@@ -18,13 +18,16 @@ MAX_SERIES_PIXELS = 20_000_000
 
 
 def suggested_date(name):
-    matches = re.findall(r'(?<!\d)(20\d{2})-?(\d{2})-?(\d{2})(?!\d)', name)
-    for y, m, d in matches:
+    """Suggest one distinct year-first date; never guess between conflicting dates."""
+    pattern = r'(?<!\d)(20\d{2})(?:(\d{2})(\d{2})|([-_.])(\d{2})\4(\d{2}))(?!\d)'
+    dates = set()
+    for match in re.finditer(pattern, name):
+        y, compact_m, compact_d, _, m, d = match.groups()
         try:
-            return acquisition_date(f'{y}-{m}-{d}').isoformat()
+            dates.add(acquisition_date(f'{y}-{compact_m or m}-{compact_d or d}').isoformat())
         except ValueError:
             pass
-    return ''
+    return dates.pop() if len(dates) == 1 else ''
 
 
 def inspect_files(files, folder):

@@ -8,6 +8,38 @@ document.addEventListener('DOMContentLoaded',()=>{
   const plume=[215,239,144]; // Same visible-plume colour as the classification page.
   function el(tag,text,className){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;}
   function stop(){if(timer)clearInterval(timer);timer=null;$('series-play').textContent='Play dates';$('series-play').setAttribute('aria-pressed','false');}
+  function confirmationError(required){
+    $('series-confirm-panel').classList.toggle('needs-confirmation',required);
+    $('series-confirm-error').hidden=!required;
+    $('series_confirm').setAttribute('aria-invalid',String(required));
+    if(required){
+      $('series_confirm').setAttribute('aria-describedby','series-confirm-error');
+      $('series_confirm').focus({preventScroll:true});
+      $('series-confirm-panel').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+    }else $('series_confirm').removeAttribute('aria-describedby');
+  }
+  // Catch a missing confirmation before Shiny starts the task button's busy state.
+  $('series_run').addEventListener('click',event=>{
+    if(!$('series_confirm').checked){event.preventDefault();event.stopImmediatePropagation();confirmationError(true);}
+  },true);
+  $('series_confirm').addEventListener('change',()=>confirmationError(false));
+  function scoreGuide(value){
+    $('series-threshold-note').textContent=value===0?'0% · No filter. Start here to compare all predicted plume pixels.':
+      value+'% · Keep only plume predictions scoring at least '+value+'%. Lower-score predictions are excluded; faint plume may also be removed.';
+    const line=document.querySelector('.series-threshold-control .irs-line');
+    if(line){
+      line.setAttribute('role','slider');line.setAttribute('aria-labelledby','series_threshold-label');
+      line.setAttribute('aria-describedby','series-threshold-note');
+      line.setAttribute('aria-valuemin','0');line.setAttribute('aria-valuemax','95');
+      line.setAttribute('aria-valuenow',String(value));line.setAttribute('aria-valuetext',value===0?'0 percent, no filter':value+' percent minimum model score');
+      line.setAttribute('aria-disabled',String($('series_threshold').disabled));
+    }
+  }
+  jQuery(document).on('shiny:inputchanged',event=>{
+    if(event.name==='series_upload'||event.name==='series_confirm'&&event.value)confirmationError(false);
+    if(event.name==='series_threshold')scoreGuide(Number(event.value));
+  });
+  Shiny.addCustomMessageHandler('series-date-confirmation',confirmationError);
   function initMaps(){
     if(maps.length)return;
     ['series-left-map','series-right-map','series-change-map'].forEach((id,index)=>{
@@ -173,6 +205,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   Shiny.addCustomMessageHandler('series-progress',text=>{$('series_status').textContent=text;});
   Shiny.addCustomMessageHandler('series-controls',state=>{
     document.querySelectorAll('.series-setup input,.series-setup select,.series-setup button').forEach(e=>e.disabled=state.busy);
+    const scoreSlider=jQuery('#series_threshold').data('ionRangeSlider');
+    if(scoreSlider){scoreSlider.update({disable:state.busy});scoreGuide(scoreSlider.result.from);}
     $('series_run').disabled=state.busy||!state.ready;
     $('series_retry_weather').disabled=state.busy||!data||data.rows.every(r=>r.weather!==null);
     $('series-results').classList.toggle('series-busy',state.busy);

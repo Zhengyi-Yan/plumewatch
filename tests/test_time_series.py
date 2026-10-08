@@ -76,6 +76,16 @@ class SeriesTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'No pixels are valid'):
                 assemble(entries,outputs,'rf',0,folder/'invalid')
 
+    def test_filename_date_formats_and_ambiguity(self):
+        for name in ('river_20200226.tif','river_2020-02-26.tif','river_2020_02_26.tif',
+                     'river_2020.02.26.tif','S2A_MSIL2A_20200226T103021_N0400.tif',
+                     'scene_20200226_copy_2020-02-26.tif'):
+            with self.subTest(name=name):self.assertEqual(suggested_date(name),'2020-02-26')
+        for name in ('scene_26-02-2020.tif','scene_02-03-2020.tif','scene_2020-02_26.tif',
+                     'scene_20200230.tif','scene_20200226_export_20200304.tif',
+                     'scene_1202002261.tif','scene_20990101.tif','scene_without_date.tif'):
+            with self.subTest(name=name):self.assertEqual(suggested_date(name),'')
+
     def test_reject_disjoint_crs_and_duplicate_dates(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder=Path(tmp);a=self.make_source(folder,'a.tif');b=self.make_source(folder,'b.tif',left=400000)

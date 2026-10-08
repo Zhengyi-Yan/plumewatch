@@ -23,8 +23,8 @@ app_ui=ui.page_fluid(
         ui.tags.link(rel='stylesheet',href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'),
         ui.tags.link(rel='stylesheet',href='leaflet.css'),
         ui.tags.link(rel='stylesheet',href='app.css?v=20261008-series'),
-        ui.tags.link(rel='stylesheet',href='timeline.css?v=20261009-series1'),
-        ui.tags.script(src='leaflet.js'),ui.tags.script(src='timeline.js?v=20261009-series1',defer=True)),
+        ui.tags.link(rel='stylesheet',href='timeline.css?v=20261009-series3'),
+        ui.tags.script(src='leaflet.js'),ui.tags.script(src='timeline.js?v=20261009-series3',defer=True)),
     ui.div(ui.tags.aside(
         ui.div(ui.span('plumewatch',class_='brand-word'),class_='brand'),
         ui.p('SATELLITE INSIGHT STUDIO',class_='brand-caption'),ui.div(class_='nav-rule'),
@@ -44,10 +44,15 @@ app_ui=ui.page_fluid(
                 ui.p('Same projected CRS; shared coverage required. Up to 250 MiB per file and 20 million source pixels per batch.',class_='series-muted'),class_='series-upload'),
             ui.input_action_button('series_example','Load local Arno sequence',class_='example-button') if all(p.is_file() for p in LOCAL_ARNO) else None,
             ui.output_ui('series_files'),
-            ui.input_checkbox('series_confirm','I have checked every acquisition date.',value=False),
+            ui.div(ui.input_checkbox('series_confirm','I have checked every acquisition date.',value=False),
+                   ui.p('Check each acquisition date, then tick this box before classifying.',id='series-confirm-error',role='alert',hidden=True),
+                   id='series-confirm-panel',class_='series-date-confirmation'),
             ui.div(ui.input_select('series_model','Model for every date',choices={'rf':'Random Forest','unet':'U-Net','svm':'SVM'},selected='rf'),
-                   ui.input_numeric('series_threshold','Minimum predicted-class score (%)',value=0,min=0,max=95,step=5),class_='series-settings'),
-            ui.p('0% keeps every predicted plume pixel. One fixed filter applies to all dates; scores are uncalibrated.',class_='series-muted'),
+                   ui.div(ui.input_slider('series_threshold','Filter lower-score predictions',value=0,min=0,max=95,step=5,post='%',width='100%'),
+                          ui.div(ui.span('0% · Keep all'),ui.span('95% · Higher scores'),class_='series-threshold-endpoints'),
+                          ui.p('0% · No filter. Start here to compare all predicted plume pixels.',id='series-threshold-note',class_='series-muted'),
+                          class_='series-threshold-control'),class_='series-settings'),
+            ui.p('One cutoff applies to every date. Model scores are not calibrated probabilities; raising this filter does not make the model more accurate.',class_='series-muted'),
             ui.input_task_button('series_run','Classify series ↗',label_busy='Processing series…',class_='run-button',width='100%'),
             ui.div(ui.output_text('series_status'),role='status',aria_live='polite',class_='series-status'),
             class_='series-setup'),class_='series-intake'),
@@ -137,7 +142,7 @@ def server(input,output,session):
         entries.set(value['entries']); message.set('Check acquisition dates, then classify the series.')
     @render.ui
     def series_files():
-        return ui.div(*[ui.div(ui.div(ui.strong(e['name']),ui.span('Date suggested from filename; please verify.' if e['date'] else 'Enter the actual capture date.',class_='series-muted')),
+        return ui.div(*[ui.div(ui.div(ui.strong(e['name']),ui.span('Date suggested from filename; please verify.' if e['date'] else 'No unambiguous filename date; enter the actual capture date.',class_='series-muted')),
                       ui.input_date(f'series_date_{i}',f'Acquisition {i+1}',value=e['date'] or None,min=MIN_ACQUISITION_DATE),class_='series-file-row') for i,e in enumerate(entries())],class_='series-file-list')
     @ui.bind_task_button(button_id='series_run')
     @reactive.extended_task
@@ -158,10 +163,12 @@ def server(input,output,session):
     def busy(): return load.status()=='running' or run.status()=='running' or retry_weather.status()=='running'
     @reactive.effect
     @reactive.event(input.series_run)
-    def classify():
+    async def classify():
         if busy(): return
         try:
-            if not input.series_confirm(): raise ValueError('Confirm that every acquisition date is correct.')
+            if not input.series_confirm():
+                await session.send_custom_message('series-date-confirmation',True)
+                raise ValueError('Check each acquisition date, then tick the confirmation box.')
             snapshot=[{**e,'date':acquisition_date(input[f'series_date_{i}']()).isoformat()} for i,e in enumerate(entries())]
             if len(snapshot)<2: raise ValueError('Choose at least two images.')
             threshold=float(input.series_threshold())/100
