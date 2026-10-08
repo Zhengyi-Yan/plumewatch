@@ -241,6 +241,28 @@ The threshold slider filters class previews and displayed areas, not raw exporte
 
 The [teammate guide](TEAM_GUIDE.md) explains each view, score interpretation, annotation/training flow and troubleshooting. It is a Markdown document in the repository root, next to this README. Model disagreement is not accuracy, scores are uncalibrated, and predictions are estimates of visible plume extent rather than sediment concentration or verified physical boundaries.
 
+## Time-series prototype
+
+Open **Time series** in the navbar, or visit `/timeline/` on the running dashboard. This is a separate Shiny page with its own upload/result state. The existing classification page and checkpoints remain unchanged.
+
+1. Choose 2–6 supported twelve-band acquisitions of one location. Use one image per distinct date, the same projected CRS, and overlapping coverage. The batch limit is 20 million source pixels, with the existing 250 MiB / ten-million-pixel limits per image.
+2. Check the dates suggested from filenames, fill any missing dates, and confirm them. Filename suggestions are not verified metadata.
+3. Choose one model and a fixed score filter for the entire series. The default 0% includes all predicted plume pixels. This page runs only that model, sequentially, without retraining.
+4. Explore dated thumbnails, plume-area observations, seven-day preceding rainfall, linked maps, sequence playback a two-date footprint-change overlay, and an all-date plume-frequency view. The browser highlights plume only; it does not repeat the classification page's overlay controls.
+5. Export the observation CSV, provenance/weather JSON, per-date plume masks, pairwise change TIFFs and plume-frequency TIFF.
+
+Comparisons use the intersection of source footprints, aligned by nearest neighbour to the first chronological source's 10 m grid. Every area and change calculation uses pixels valid on **all** uploaded dates. Low-score filtering does not redefine valid coverage. The displayed coverage percentage describes the retained share of the geographic overlap, including land; it is not a plume accuracy score. Adding a cloudy date can reduce every observation's comparable area. Different projected CRS inputs, disjoint footprints, duplicate dates and zero shared valid pixels are rejected. Exports use this **comparison grid**, not each source image's full dimensions; previews are downsampled Web Mercator displays.
+
+Rainfall is fetched from Open-Meteo for one fixed point at the overlap centre. It covers the seven complete local-calendar days before each confirmed acquisition. Failures remain unavailable, can be retried without rerunning classification, and are recorded in the export. Rainfall bars can have overlapping windows and must not be summed. Neither rainfall nor the uploaded series feeds temporal inputs into the models. Graph points are observed classification estimates, not continuous movement, concentration or evidence of causation.
+
+If the three existing Arno acquisitions are present locally, **Load local Arno sequence** fills the upload list for a real demonstration (26 and 28 February and 4 March 2020). These large imagery files are not bundled on GitHub. The example demonstrates workflow, not independent model accuracy.
+
+Verification on macOS covered three full-resolution Arno scenes using RF and live rainfall, small real-scene batches through U-Net and SVM, the actual mounted upload/session/download endpoints, browser playback/toggles, and known-area alignment/NoData/change tests. Windows/WSL use of this new page has not been verified. No new Python dependencies are required. Run the comparison checks with:
+
+```sh
+.venv/bin/python -m unittest discover -s tests -p test_time_series.py -v
+```
+
 ## Code
 
 - `app.py`: Shiny UI and session workflow

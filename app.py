@@ -37,6 +37,7 @@ app_ui = ui.page_fluid(
             ui.tags.nav(
                 ui.tags.a(ui.tags.img(src='blue/overview.svg', alt='', class_='nav-icon'), 'Overview', href='#overview', class_='nav-link active'),
                 ui.tags.a(ui.tags.img(src='blue/scenes.svg', alt='', class_='nav-icon'), 'Scenes', href='#workspace', class_='nav-link'),
+                ui.tags.a(ui.tags.img(src='blue/scenes.svg', alt='', class_='nav-icon'), 'Time series', href='/timeline/', class_='nav-link'),
                 ui.input_action_button('model_notes', ui.span(ui.tags.img(src='blue/model-notes.svg', alt='', class_='nav-icon'), 'Model notes'),
                                        class_='nav-link nav-button'),
                 ui.tags.a(ui.tags.img(src='blue/exports.svg', alt='', class_='nav-icon'), 'Exports', href='#export-actions', class_='nav-link'),
@@ -441,3 +442,8 @@ def server(input, output, session):
                 footer=ui.modal_button('Close')))
 
 app = App(app_ui, server, static_assets=ROOT / 'www')
+
+# Separate Shiny session and UI; existing single-scene workflow stays at /.
+from starlette.routing import Mount
+from timeline import app as timeline_app
+app.starlette_app.router.routes.insert(0, Mount('/timeline', app=timeline_app))
