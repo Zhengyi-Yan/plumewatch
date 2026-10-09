@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const dateText=(date,year=true)=>new Date(date+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',...(year?{year:'numeric'}:{}),timeZone:'UTC'});
   const plume=[215,239,144]; // Same visible-plume colour as the classification page.
   function el(tag,text,className){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;}
-  function stop(){if(timer)clearInterval(timer);timer=null;$('series-play').textContent='Play dates';$('series-play').setAttribute('aria-pressed','false');}
+  function stop(){if(timer)clearInterval(timer);timer=null;$('series-play').textContent='Play dates';$('series-play').setAttribute('aria-pressed','false');imageLabels();}
   function confirmationError(required){
     $('series-confirm-panel').classList.toggle('needs-confirmation',required);
     $('series-confirm-error').hidden=!required;
@@ -75,9 +75,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     layers[j].push(L.imageOverlay(data.maps[index].rgb,data.bounds,{alt:'Sentinel-2 '+data.rows[index].date,className:j===2?'series-analysis-background':''}).addTo(maps[j]));
     if(mask)layers[j].push(L.imageOverlay(overlay(mask,kind),data.bounds,{alt:kind==='change'?'Plume change between compared dates':kind==='frequency'?'Number of dates classified as plume':'Predicted plume footprint'}).addTo(maps[j]));
   }
+  function imageLabels(){
+    if(!data)return;
+    const a=Number($('series-left-date').value),b=Number($('series-right-date').value);
+    if(!data.rows[a]||!data.rows[b])return;
+    [['series-reference-stamp',a],['series-viewing-stamp',b]].forEach(([id,i])=>{
+      $(id).textContent=dateText(data.rows[i].date);$(id).dateTime=data.rows[i].date;
+    });
+    $('series-viewing-position').textContent=(timer?'Playing · ':'Viewing · ')+'Image '+(b+1)+' of '+data.rows.length;
+  }
   function paintMaps(){
     if(!data)return;
     const a=Number($('series-left-date').value),b=Number($('series-right-date').value);
+    imageLabels();
     [a,b].forEach((index,j)=>replaceMap(j,index,$('series-show-plume').checked?data.maps[index].plume:null));
     [...$('series-observations').children].forEach((button,i)=>{
       button.classList.toggle('selected',i===b);button.setAttribute('aria-pressed',String(i===b));
@@ -198,7 +208,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   $('series-play').addEventListener('click',()=>{
     if(timer){stop();return;}if(!data)return;
     $('series-play').textContent='Pause';$('series-play').setAttribute('aria-pressed','true');
-    timer=setInterval(()=>{$('series-right-date').value=String((Number($('series-right-date').value)+1)%data.rows.length);paintMaps();},1800);
+    timer=setInterval(()=>{$('series-right-date').value=String((Number($('series-right-date').value)+1)%data.rows.length);paintMaps();},1800);imageLabels();
   });
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
   Shiny.addCustomMessageHandler('series-result',install);

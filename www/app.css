@@ -53,3 +53,6 @@
 .rainfall-retry.btn{font-size:12px;color:var(--blue);background:var(--pale);border:1px solid var(--line);border-radius:12px;margin-top:8px}
 
 .status-line:has(.shiny-text-output:empty){display:none}
+
+/* Brand caption removed; keep the divider separated from the wordmark. */
+.site-sidebar .nav-rule{margin-top:24px}

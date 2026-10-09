@@ -26,13 +26,12 @@ app_ui = ui.page_fluid(
         ui.tags.link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'),
         ui.tags.link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css'),
         ui.tags.link(rel='stylesheet', href='leaflet.css'),
-        ui.tags.link(rel='stylesheet', href='app.css?v=20261008-ui-cleanup'),
+        ui.tags.link(rel='stylesheet', href='app.css?v=20261009-brand'),
         ui.tags.script(src='leaflet.js'),
         ui.tags.script(src='app.js?v=20261008-ui-cleanup', defer=True)),
     ui.div(
         ui.tags.aside(
             ui.div(ui.span('plumewatch', class_='brand-word'), class_='brand'),
-            ui.p('SATELLITE INSIGHT STUDIO', class_='brand-caption'),
             ui.div(class_='nav-rule'), ui.p('WORKSPACE', class_='nav-label'),
             ui.tags.nav(
                 ui.tags.a(ui.tags.img(src='blue/overview.svg', alt='', class_='nav-icon'), 'Overview', href='#overview', class_='nav-link active'),
