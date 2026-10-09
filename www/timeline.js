@@ -59,14 +59,13 @@ document.addEventListener('DOMContentLoaded',()=>{
       });
     });
   }
+  function frequencyGroup(count,total){return count===total?3:count===1?1:count>1?2:0;}
   function overlay(mask,kind){
     const canvas=document.createElement('canvas');canvas.width=data.width;canvas.height=data.height;
     const context=canvas.getContext('2d'),image=context.createImageData(data.width,data.height);
     const colors=kind==='change'?{1:[42,111,151,220],2:[239,135,84,220],3:[...plume,220]}:{1:[...plume,131]};
-    if(kind==='frequency')for(let n=1;n<=data.rows.length;n++){
-      const t=(n-1)/(data.rows.length-1);
-      colors[n]=n===data.rows.length?[...plume,220]:[Math.round(169-168*t),Math.round(214-141*t),Math.round(229-105*t),220];
-    }
+    if(kind==='frequency')for(let n=1;n<=data.rows.length;n++)
+      colors[n]=({1:[169,214,229,220],2:[42,111,151,220],3:[...plume,220]})[frequencyGroup(n,data.rows.length)];
     for(let i=0;i<mask.length;i++)if(data.valid[i]&&colors[mask[i]]&&(kind!=='change'||visibleChanges[mask[i]]))image.data.set(colors[mask[i]],i*4);
     context.putImageData(image,0,0);return canvas.toDataURL('image/png');
   }
@@ -114,18 +113,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   function paintAnalysis(){
     if(!data)return;
     const legend=$('series-footprint-legend');legend.replaceChildren();
+    $('series-frequency-details').hidden=$('series-footprint-mode').value!=='frequency';
     if($('series-footprint-mode').value==='frequency'){
       replaceMap(2,data.rows.length-1,data.frequency,'frequency');
       $('series-change-title').textContent='Where does plume appear repeatedly?';
       $('series-change-description').textContent=dateText(data.rows[0].date)+' to '+dateText(data.rows[data.rows.length-1].date)+' · '+data.rows.length+' images';
-      $('series-change-instructions').textContent='We compare the same patch of water in every image. Its colour shows how many images classify it as plume. Green means every image; blue means only some images.';
-      for(let n=1;n<=data.rows.length;n++){
-        const t=(n-1)/(data.rows.length-1),color=n===data.rows.length?'#d7ef90':`rgb(${Math.round(169-168*t)},${Math.round(214-141*t)},${Math.round(229-105*t)})`;
-        const label=n===data.rows.length?'In every image':n===1?'In one image only':'In '+n+' images only';
-        const note=n===data.rows.length?'Plume predicted in all '+n+' images':'Plume predicted in exactly '+n+' of '+data.rows.length+' images';
-        legend.append(layerCard(label,note,data.frequency_km2[String(n)]||0,color));
+      $('series-change-instructions').textContent='Compare the same place across your images: light blue means once, dark blue means some images, and green means every image. Each number is the area covered by that colour.';
+      const total=data.rows.length,areas=[0,0,0,0],counts=$('series-frequency-counts');counts.replaceChildren();
+      for(let n=1;n<=total;n++){
+        const area=data.frequency_km2[String(n)]||0;areas[frequencyGroup(n,total)]+=area;
+        const row=el('tr');row.append(el('td',n+' of '+total+' images'),el('td',format(area)+' km²'));counts.append(row);
       }
-      $('series-change-footnote').textContent='Each number is the area covered by that colour. For example, green marks water classified as plume in every uploaded image. This does not prove plume stayed there between dates. Uncoloured areas may have no predicted plume or no valid data.';
+      legend.append(layerCard('Once','Plume predicted in one image only',areas[1],'#a9d6e5'),
+        layerCard('Some images',total===2?'No middle group with two images':total===3?'Plume predicted in 2 of 3 images':'Plume predicted in 2–'+(total-1)+' of '+total+' images',areas[2],'#2a6f97'),
+        layerCard('Every image','Plume predicted in all '+total+' images',areas[3],'#d7ef90'));
+      $('series-change-footnote').textContent='These are model predictions. Green does not prove plume stayed there between dates. Uncoloured areas may have no predicted plume or no valid data.';
       return;
     }
     $('series-change-footnote').textContent='Colours compare model predictions, not actual sediment movement. Uncoloured areas may have no predicted plume or no valid data.';
