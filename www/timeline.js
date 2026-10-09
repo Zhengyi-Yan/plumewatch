@@ -116,15 +116,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     const legend=$('series-footprint-legend');legend.replaceChildren();
     if($('series-footprint-mode').value==='frequency'){
       replaceMap(2,data.rows.length-1,data.frequency,'frequency');
-      $('series-change-title').textContent='How often was plume predicted here?';
-      $('series-change-description').textContent=dateText(data.rows[0].date)+' to '+dateText(data.rows[data.rows.length-1].date)+' · '+data.rows.length+' acquisitions';
-      $('series-change-instructions').textContent='Match each map colour to its count below. The area is where plume was predicted on exactly that many dates.';
+      $('series-change-title').textContent='Where does plume appear repeatedly?';
+      $('series-change-description').textContent=dateText(data.rows[0].date)+' to '+dateText(data.rows[data.rows.length-1].date)+' · '+data.rows.length+' images';
+      $('series-change-instructions').textContent='We compare the same patch of water in every image. Its colour shows how many images classify it as plume. Green means every image; blue means only some images.';
       for(let n=1;n<=data.rows.length;n++){
         const t=(n-1)/(data.rows.length-1),color=n===data.rows.length?'#d7ef90':`rgb(${Math.round(169-168*t)},${Math.round(214-141*t)},${Math.round(229-105*t)})`;
-        legend.append(layerCard(n+' of '+data.rows.length+' dates','Predicted plume on exactly '+n+(n===1?' date':' dates'),data.frequency_km2[String(n)]||0,color));
+        const label=n===data.rows.length?'In every image':n===1?'In one image only':'In '+n+' images only';
+        const note=n===data.rows.length?'Plume predicted in all '+n+' images':'Plume predicted in exactly '+n+' of '+data.rows.length+' images';
+        legend.append(layerCard(label,note,data.frequency_km2[String(n)]||0,color));
       }
+      $('series-change-footnote').textContent='Each number is the area covered by that colour. For example, green marks water classified as plume in every uploaded image. This does not prove plume stayed there between dates. Uncoloured areas may have no predicted plume or no valid data.';
       return;
     }
+    $('series-change-footnote').textContent='Colours compare model predictions, not actual sediment movement. Uncoloured areas may have no predicted plume or no valid data.';
     const [low,high]=analysisPair,earlier=dateText(data.rows[low].date),later=dateText(data.rows[high].date),pair=data.pairs[`${low}-${high}`];
     const delta=pair.later_only_km2-pair.earlier_only_km2;
     $('series-change-title').textContent=Math.abs(delta)<.005?'No net change in predicted plume area':
