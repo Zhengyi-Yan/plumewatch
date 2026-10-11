@@ -257,9 +257,19 @@ Comparisons use the intersection of source footprints, aligned by nearest neighb
 
 Rainfall is fetched from Open-Meteo for one fixed point at the overlap centre. It covers the seven complete local-calendar days before each confirmed acquisition. Failures remain unavailable, can be retried without rerunning classification, and are recorded in the export. Rainfall bars can have overlapping windows and must not be summed. Neither rainfall nor the uploaded series feeds temporal inputs into the models. Chart bars represent individual acquisitions in date order, with equal spacing between observations; they do not represent continuous movement, concentration or evidence of causation.
 
-If the three existing Arno acquisitions are present locally, **Load local Arno sequence** fills the upload list for a real demonstration (26 and 28 February and 4 March 2020). These large imagery files are not bundled on GitHub. The example demonstrates workflow, not independent model accuracy.
+The **Load Cyclone Gabrielle sequence** button loads four Raukōkore acquisitions: **10, 15 and 20 February, and 2 March 2023**. Dates in these filenames use **Pacific/Auckland local dates**; the export manifest retains the UTC acquisition timestamps. The 15 February image shows the immediate aftermath, rather than the main storm itself. The button appears when all four TIFFs are available in `data/demo`.
 
-Verification on macOS covered three full-resolution Arno scenes using RF and live rainfall, small real-scene batches through U-Net and SVM, the actual mounted upload/session/download endpoints, browser playback/toggles, and known-area alignment/NoData/change tests. Windows/WSL use of this new page has not been verified. No new Python dependencies are required. Run the comparison checks with:
+The approximately 239 MiB of imagery is hosted separately as [GitHub Release assets](https://github.com/Zhengyi-Yan/plumewatch/releases/tag/gabrielle-demo-v1), not committed to Git history. From the repository root, download it once with:
+
+```sh
+python download_demo.py
+```
+
+On Windows, use `py download_demo.py` if `python` is unavailable. The downloader verifies file sizes and SHA-256 hashes, retains matching local files, and only replaces a file after a complete verified download. Restart the dashboard after downloading so the example button appears. Load the sequence, check the four suggested NZ dates, tick the confirmation box, and classify using one model and a fixed score filter (start at 0%). Loading the example does not precompute predictions.
+
+This sequence demonstrates the comparison workflow, not independently verified plume accuracy or cyclone impact. Both RF and U-Net predict increased area on 15 February relative to 10 February, but disagree on later changes. All-date-valid coverage is approximately 70.6% of the 144 km² crop, including land. The crop may truncate plume features. The March observation follows further rainfall and is not a dry control.
+
+Verification on macOS covered three full-resolution Arno scenes using RF and live rainfall, small real-scene batches through U-Net and SVM, the actual mounted upload/session/download endpoints, browser playback/toggles, and known-area alignment/NoData/change tests. The Gabrielle replacement was also verified on macOS through the mounted dashboard session: loading all four NZ dates, full-resolution RF classification, live rainfall and the four-date export. The same scenes were assessed with U-Net separately. Windows/WSL use of this new page has not been verified. No new Python dependencies are required. Run the comparison checks with:
 
 ```sh
 .venv/bin/python -m unittest discover -s tests -p test_time_series.py -v

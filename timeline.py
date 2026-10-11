@@ -11,7 +11,7 @@ from rainfall import MIN_ACQUISITION_DATE, fetch_rainfall, acquisition_date
 ROOT=Path(__file__).resolve().parent
 # ponytail: one worker bounds batch inference memory; add a job service for hosted multi-user use.
 POOL=ThreadPoolExecutor(max_workers=1)
-LOCAL_ARNO=[ROOT/f'data/raw/spencer-sentinel-2/Italy_Arno_{date}_S2_L2A_12band.tif' for date in ('20200226','20200228','20200304')]
+GABRIELLE_SCENES=[ROOT/f'data/demo/Raukokore_{date}_NZ_gabrielle_v1_12band.tif' for date in ('20230210','20230215','20230220','20230302')]
 
 
 def card(*children, class_=''):
@@ -42,7 +42,7 @@ app_ui=ui.page_fluid(
                 ui.p('2–6 images · one location · distinct dates',class_='series-muted')),class_='series-section-title'),
             ui.div(ui.input_file('series_upload',None,multiple=True,accept=['.tif','.tiff'],button_label='Choose images',placeholder='12-band Sentinel-2 GeoTIFFs'),
                 ui.p('Same projected CRS; shared coverage required. Up to 250 MiB per file and 20 million source pixels per batch.',class_='series-muted'),class_='series-upload'),
-            ui.input_action_button('series_example','Load local Arno sequence',class_='example-button') if all(p.is_file() for p in LOCAL_ARNO) else None,
+            ui.input_action_button('series_example','Load Cyclone Gabrielle sequence',class_='example-button') if all(p.is_file() for p in GABRIELLE_SCENES) else None,
             ui.output_ui('series_files'),
             ui.div(ui.input_checkbox('series_confirm','I have checked every acquisition date.',value=False),
                    ui.p('Check each acquisition date, then tick this box before classifying.',id='series-confirm-error',role='alert',hidden=True),
@@ -142,10 +142,10 @@ def server(input,output,session):
     @reactive.effect
     @reactive.event(input.series_example)
     def example():
-        if busy() or not all(p.is_file() for p in LOCAL_ARNO): return
+        if busy() or not all(p.is_file() for p in GABRIELLE_SCENES): return
         entries.set([]); result.set(None); ui.update_checkbox('series_confirm',value=False)
-        message.set('Checking the local Arno acquisitions…')
-        load([{'name':p.name,'datapath':str(p)} for p in LOCAL_ARNO])
+        message.set('Checking the Cyclone Gabrielle acquisitions…')
+        load([{'name':p.name,'datapath':str(p)} for p in GABRIELLE_SCENES])
     @reactive.effect
     async def loaded():
         if load.status()!='success': return
