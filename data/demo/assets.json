@@ -1,0 +1,25 @@
+{
+  "release": "https://github.com/Zhengyi-Yan/plumewatch/releases/download/gabrielle-demo-v1",
+  "files": [
+    {
+      "name": "Raukokore_20230210_NZ_gabrielle_v1_12band.tif",
+      "bytes": 67105228,
+      "sha256": "ace56d63d779c73fcc0906d3cd6de2d05db3bc10a00d0dddc24d2afe14885e56"
+    },
+    {
+      "name": "Raukokore_20230215_NZ_gabrielle_v1_12band.tif",
+      "bytes": 66438508,
+      "sha256": "f36c0c401ead7258113cde08fd90bbaff8b0ff8e2556c31b1856bf3dbe5d26b8"
+    },
+    {
+      "name": "Raukokore_20230220_NZ_gabrielle_v1_12band.tif",
+      "bytes": 53612173,
+      "sha256": "715dc7a2d177f396f3ba00bfe4285edf87adf1fa367b30e17520c8579a98c87e"
+    },
+    {
+      "name": "Raukokore_20230302_NZ_gabrielle_v1_12band.tif",
+      "bytes": 64385996,
+      "sha256": "5ba4885d11ee5b6eb644c544302840fca5eb54255de5814b49e9e39cc23570e8"
+    }
+  ]
+}

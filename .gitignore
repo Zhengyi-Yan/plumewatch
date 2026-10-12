@@ -208,3 +208,6 @@ data/processed/svm_rbf_20261001/*
 
 # Downloaded research dataset archive (outside data/raw).
 /data/MARIDA.zip
+
+# Gabrielle demo imagery is hosted as release assets; metadata stays in Git.
+/data/demo/*.part

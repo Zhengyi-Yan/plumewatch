@@ -26,17 +26,17 @@ app_ui = ui.page_fluid(
         ui.tags.link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'),
         ui.tags.link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css'),
         ui.tags.link(rel='stylesheet', href='leaflet.css'),
-        ui.tags.link(rel='stylesheet', href='app.css?v=20261008-ui-cleanup'),
+        ui.tags.link(rel='stylesheet', href='app.css?v=20261009-brand'),
         ui.tags.script(src='leaflet.js'),
         ui.tags.script(src='app.js?v=20261008-ui-cleanup', defer=True)),
     ui.div(
         ui.tags.aside(
             ui.div(ui.span('plumewatch', class_='brand-word'), class_='brand'),
-            ui.p('SATELLITE INSIGHT STUDIO', class_='brand-caption'),
             ui.div(class_='nav-rule'), ui.p('WORKSPACE', class_='nav-label'),
             ui.tags.nav(
                 ui.tags.a(ui.tags.img(src='blue/overview.svg', alt='', class_='nav-icon'), 'Overview', href='#overview', class_='nav-link active'),
                 ui.tags.a(ui.tags.img(src='blue/scenes.svg', alt='', class_='nav-icon'), 'Scenes', href='#workspace', class_='nav-link'),
+                ui.tags.a(ui.tags.img(src='blue/scenes.svg', alt='', class_='nav-icon'), 'Time series', href='/timeline/', class_='nav-link'),
                 ui.input_action_button('model_notes', ui.span(ui.tags.img(src='blue/model-notes.svg', alt='', class_='nav-icon'), 'Model notes'),
                                        class_='nav-link nav-button'),
                 ui.tags.a(ui.tags.img(src='blue/exports.svg', alt='', class_='nav-icon'), 'Exports', href='#export-actions', class_='nav-link'),
@@ -441,3 +441,8 @@ def server(input, output, session):
                 footer=ui.modal_button('Close')))
 
 app = App(app_ui, server, static_assets=ROOT / 'www')
+
+# Separate Shiny session and UI; existing single-scene workflow stays at /.
+from starlette.routing import Mount
+from timeline import app as timeline_app
+app.starlette_app.router.routes.insert(0, Mount('/timeline', app=timeline_app))
