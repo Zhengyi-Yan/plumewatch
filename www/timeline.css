@@ -77,8 +77,6 @@
 .series-observations:has(>.series-observation:nth-child(4)){grid-template-columns:repeat(3,minmax(0,1fr))}
 .series-result-heading>label{display:flex;gap:8px;align-items:center;white-space:nowrap;margin:0}
 .series-plume-dot{width:12px;height:12px;background:#d7ef90;border-radius:50%}
-.series-compare-actions{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 12px}
-.series-compare-actions p{max-width:480px;margin:0}
 .series-compare-button{background:var(--blue);color:white;border:0;border-radius:24px;padding:12px 20px;font-size:13px;font-weight:600;white-space:nowrap;transition:transform 280ms var(--ease)}
 .series-compare-button:hover{transform:translateY(-2px)}
 .series-compare-button:disabled{opacity:.45;transform:none;cursor:not-allowed}
@@ -94,7 +92,7 @@
 .series-disclosure .export-button{margin-top:20px}
 @media(max-width:1250px){.series-observation{gap:12px}.series-observation img{width:64px;height:112px}.series-observation-area{font-size:18px}}
 @media(max-width:1100px){.series-observations:has(>.series-observation:nth-child(4)){grid-template-columns:repeat(2,minmax(0,1fr))}.series-observation img{width:88px}}
-@media(max-width:760px){.series-observations:has(>.series-observation:nth-child(4)){grid-template-columns:1fr}.series-compare-actions{align-items:flex-start;flex-direction:column}.series-disclosure>summary{padding:18px;font-size:14px}.series-disclosure>summary .series-muted{display:none}}
+@media(max-width:760px){.series-observations:has(>.series-observation:nth-child(4)){grid-template-columns:1fr}.series-disclosure>summary{padding:18px;font-size:14px}.series-disclosure>summary .series-muted{display:none}}
 
 /* A quiet baseline beside the primary image, with the same centre and zoom. */
 .series-maps{grid-template-columns:minmax(250px,.85fr) minmax(0,1.65fr);align-items:start}
@@ -152,3 +150,12 @@ button.series-layer-card:hover{transform:translateY(-2px)}
 .series-reference .series-image-stamp{padding:10px 12px;top:10px;left:10px}
 .series-reference .series-image-stamp time{font-size:17px}
 @media(max-width:760px){.series-map-controls{align-items:flex-start;flex-direction:column;gap:12px}.series-map-controls>div{flex-wrap:wrap;gap:6px 12px}.series-image-stamp time{font-size:20px}}
+
+.series-change-section{margin-top:24px}
+.series-change-section .series-map-heading{margin-top:18px}
+.series-comparison-picker{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:12px;align-items:end;background:var(--pale);border-radius:16px;padding:16px;margin:0 0 22px}
+.series-comparison-picker label{display:block;font-size:12px;font-weight:600;margin-bottom:8px}
+.series-comparison-picker select{width:100%;min-height:40px}
+.series-comparison-picker .series-muted{grid-column:1/-1;margin:0}
+.series-comparison-picker .series-muted:empty{display:none}
+@media(max-width:760px){.series-comparison-picker{grid-template-columns:1fr}.series-comparison-picker .series-compare-button{width:100%}}

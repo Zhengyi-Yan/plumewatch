@@ -92,8 +92,6 @@ document.addEventListener('DOMContentLoaded',()=>{
       button.classList.toggle('selected',i===b);button.setAttribute('aria-pressed',String(i===b));
       button.querySelector('.series-observation-state').textContent=i===a?(i===b?'Reference · Viewing':'Reference'):i===b?'Viewing':'View image →';
     });
-    $('series-compare').disabled=a===b;
-    $('series-compare-feedback').textContent=a===b?'Choose a different viewing date to compare changes.':'';
   }
   function layerCard(label,note,value,color,key){
     const card=el(key?'button':'div',undefined,'series-layer-card');
@@ -113,6 +111,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   function paintAnalysis(){
     if(!data)return;
     const legend=$('series-footprint-legend');legend.replaceChildren();
+    $('series-comparison-picker').hidden=$('series-footprint-mode').value==='frequency';
     $('series-frequency-details').hidden=$('series-footprint-mode').value!=='frequency';
     if($('series-footprint-mode').value==='frequency'){
       replaceMap(2,data.rows.length-1,data.frequency,'frequency');
@@ -178,9 +177,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   function install(value){
     const firstDisplay=!data,previousLeft=$('series-left-date').value,previousRight=$('series-right-date').value;
-    stop();data=value;$('series-results').hidden=!data;if(!data){$('series-change-section').open=false;return;}
+    stop();data=value;$('series-results').hidden=!data;if(!data)return;
     data.valid=decode(data.valid);data.frequency=decode(data.frequency);data.maps.forEach(m=>m.plume=decode(m.plume));
-    if(firstDisplay){visibleChanges={1:true,2:true,3:false};analysisPair=[0,data.rows.length-1];$('series-change-section').open=false;$('series-footprint-mode').value='pair';}
+    if(firstDisplay){visibleChanges={1:true,2:true,3:false};analysisPair=[0,data.rows.length-1];$('series-footprint-mode').value='pair';}
     $('series-observations').replaceChildren();
     $('series-observations').style.setProperty('--observation-count',data.rows.length);
     data.rows.forEach((r,i)=>{
@@ -196,6 +195,12 @@ document.addEventListener('DOMContentLoaded',()=>{
       $(id).replaceChildren();data.rows.forEach((r,i)=>{const option=el('option',dateText(r.date));option.value=i;$(id).append(option);});
       $(id).value=firstDisplay?(j===0?'0':String(data.rows.length-1)):(j===0?previousLeft:previousRight);
     });
+    ['series-compare-from','series-compare-to'].forEach((id,j)=>{
+      const previous=$(id).value;$(id).replaceChildren();
+      data.rows.forEach((r,i)=>{const option=el('option',dateText(r.date));option.value=i;$(id).append(option);});
+      $(id).value=firstDisplay?String(analysisPair[j]):previous;
+    });
+    comparisonSelection();
     $('series-coverage-note').textContent='Areas use '+format(data.shared_km2)+' km² valid on every date ('+data.coverage_percent.toFixed(1)+'% of the geographic overlap). Model: '+({rf:'Random Forest',unet:'U-Net',svm:'SVM'}[data.model])+'. Fixed score filter: '+Math.round(data.threshold*100)+'%. Adding a cloudy image can reduce this shared area.';
     charts();table();initMaps();
     requestAnimationFrame(()=>{syncing=true;maps.slice(0,2).forEach(map=>map.invalidateSize());maps[1].fitBounds(data.bounds,{padding:[12,12],animate:false});[maps[0],maps[2]].forEach(map=>map.setView(maps[1].getCenter(),maps[1].getZoom(),{animate:false}));syncing=false;paintMaps();paintAnalysis();if(firstDisplay)$('series-results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
@@ -203,14 +208,18 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   ['series-left-date','series-right-date','series-show-plume'].forEach(id=>$(id).addEventListener('change',()=>{stop();paintMaps();}));
   $('series-footprint-mode').addEventListener('change',paintAnalysis);
+  function comparisonSelection(){
+    const a=Number($('series-compare-from').value),b=Number($('series-compare-to').value);
+    $('series-compare').disabled=a===b;
+    $('series-compare-feedback').textContent=a===b?'Choose two different image dates.':'';
+  }
+  ['series-compare-from','series-compare-to'].forEach(id=>$(id).addEventListener('change',comparisonSelection));
   $('series-compare').addEventListener('click',()=>{
-    if(!data)return;stop();
-    const a=Number($('series-left-date').value),b=Number($('series-right-date').value);if(a===b)return;
-    analysisPair=[Math.min(a,b),Math.max(a,b)];visibleChanges={1:true,2:true,3:false};$('series-footprint-mode').value='pair';$('series-change-section').open=true;
-    paintAnalysis();requestAnimationFrame(()=>{maps[2].invalidateSize();maps[2].setView(maps[0].getCenter(),maps[0].getZoom(),{animate:false});});
-    $('series-change-section').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    if(!data)return;
+    const a=Number($('series-compare-from').value),b=Number($('series-compare-to').value);if(a===b)return;
+    analysisPair=[Math.min(a,b),Math.max(a,b)];visibleChanges={1:true,2:true,3:false};
+    paintAnalysis();requestAnimationFrame(()=>maps[2].invalidateSize());
   });
-  $('series-change-section').addEventListener('toggle',()=>{if(data&&$('series-change-section').open){maps[2].invalidateSize();maps[2].setView(maps[0].getCenter(),maps[0].getZoom(),{animate:false});}});
   $('series-play').addEventListener('click',()=>{
     if(timer){stop();return;}if(!data)return;
     $('series-play').textContent='Pause';$('series-play').setAttribute('aria-pressed','true');
