@@ -88,7 +88,10 @@ app_ui=ui.page_fluid(
                                class_='series-map-frame'),class_='series-viewing'),
                    class_='series-maps'),
             ui.div(
-                card(ui.p('PLUME COMPARISON',class_='eyebrow'),
+                ui.div(ui.div(ui.p('PLUME COMPARISON',class_='eyebrow'),ui.h2('Compare plume footprints'),
+                              ui.p('Choose two image dates to see where predicted plume was added, removed or unchanged.',class_='series-muted')),
+                       class_='series-result-heading'),
+                card(
                      ui.div(ui.div(ui.tags.label('First image',**{'for':'series-compare-from'}),ui.tags.select(id='series-compare-from')),
                             ui.div(ui.tags.label('Second image',**{'for':'series-compare-to'}),ui.tags.select(id='series-compare-to')),
                             ui.tags.button('Compare dates',id='series-compare',type='button',class_='series-compare-button'),
