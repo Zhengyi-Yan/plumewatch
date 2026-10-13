@@ -182,16 +182,17 @@ def build_series(entries, model, threshold, folder, *, weather=fetch_rainfall, p
     outputs = []; checkpoint_ids = set()
     classifier = {'rf':classify_rf,'unet':classify_unet,'svm':classify_svm}[model]
     for i, entry in enumerate(entries):
-        progress(f'Classifying {i+1}/{len(entries)} · {entry["date"]}')
+        progress({'text':f'Classifying image {i+1} of {len(entries)} · {entry["date"]}', 'stage':'classification','completed':i,'total':len(entries)})
         result = classifier(prepare_scene(entry['path']), Path(folder)/f'inference_{i}')
         outputs.append(result['output_dir'])
         checkpoint_ids.add(result['map']['modelId'])
         del result
-    progress('Aligning grids and calculating shared valid coverage…')
+        progress({'text':f'Classified {i+1} of {len(entries)} images','stage':'classification','completed':i+1,'total':len(entries)})
+    progress({'text':'Aligning grids and calculating shared valid coverage…','stage':'comparison','completed':len(entries),'total':len(entries)})
     result = assemble(entries,outputs,model,threshold,Path(folder)/'comparison')
     result['checkpoint_ids'] = sorted(checkpoint_ids)
     for i, row in enumerate(result['rows']):
-        progress(f'Retrieving rainfall {i+1}/{len(entries)} · {row["date"]}')
+        progress({'text':f'Fetching rainfall {i+1} of {len(entries)} · {row["date"]}','stage':'rainfall','completed':len(entries),'total':len(entries)})
         try:
             row['weather'] = weather(result['location'],row['date'])
             row['rainfall_7d_mm'] = row['weather']['totals_mm'][7]

@@ -55,14 +55,17 @@ class SeriesTest(unittest.TestCase):
             with rasterio.open(folder/'comparison/plume_frequency.tif') as src:
                 self.assertEqual(src.read(1)[0,0],255)
                 self.assertEqual(int((src.read(1)==2).sum()),1)
-            calls=[]
+            calls=[]; events=[]
             def weather(location,date):
                 calls.append((location,date))
                 if date=='2020-02-28': raise ValueError('archive unavailable')
                 return {'totals_mm':{7:12.5},'location':location}
             with patch('time_series.classify_rf',side_effect=[{'output_dir':outputs[0],'map':{'modelId':'test-rf'}},{'output_dir':outputs[1],'map':{'modelId':'test-rf'}}]):
-                result=build_series(list(reversed(entries)),'rf',0,folder/'batch',weather=weather)
+                result=build_series(list(reversed(entries)),'rf',0,folder/'batch',weather=weather,progress=events.append)
             self.assertEqual([r['date'] for r in result['rows']],['2020-02-26','2020-02-28'])
+            self.assertEqual([e['completed'] for e in events if e['stage']=='classification'],[0,1,1,2])
+            self.assertEqual([e['stage'] for e in events][-3:],['comparison','rainfall','rainfall'])
+            self.assertTrue(all(e['total']==2 for e in events))
             self.assertEqual(calls[0][0],calls[1][0])
             self.assertIsNone(result['rows'][1]['rainfall_7d_mm'])
             self.assertIn('archive unavailable',result['rows'][1]['weather_error'])

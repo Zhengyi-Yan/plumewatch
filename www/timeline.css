@@ -159,3 +159,13 @@ button.series-layer-card:hover{transform:translateY(-2px)}
 .series-comparison-picker .series-muted{grid-column:1/-1;margin:0}
 .series-comparison-picker .series-muted:empty{display:none}
 @media(max-width:760px){.series-comparison-picker{grid-template-columns:1fr}.series-comparison-picker .series-compare-button{width:100%}}
+
+.series-progress-panel{margin-top:16px;padding:16px;background:var(--pale);border-radius:16px}
+.series-progress-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:12px;margin-bottom:12px}
+#series-elapsed{white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+#series-progress-bar{display:block;width:100%;height:10px;border:0;border-radius:8px;overflow:hidden;appearance:none;background:var(--line)}
+#series-progress-bar::-webkit-progress-bar{background:var(--line);border-radius:8px}
+#series-progress-bar::-webkit-progress-value{background:var(--blue);border-radius:8px;transition:width 280ms var(--ease)}
+#series-progress-bar::-moz-progress-bar{background:var(--blue);border-radius:8px}
+.series-progress-panel .series-muted{margin:10px 0 0}
+@media(prefers-reduced-motion:reduce){#series-progress-bar::-webkit-progress-value{transition:none}}

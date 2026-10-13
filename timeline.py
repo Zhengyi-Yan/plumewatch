@@ -23,8 +23,8 @@ app_ui=ui.page_fluid(
         ui.tags.link(rel='stylesheet',href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'),
         ui.tags.link(rel='stylesheet',href='leaflet.css'),
         ui.tags.link(rel='stylesheet',href='app.css?v=20261009-brand'),
-        ui.tags.link(rel='stylesheet',href='timeline.css?v=20261012-comparison'),
-        ui.tags.script(src='leaflet.js'),ui.tags.script(src='timeline.js?v=20261012-comparison',defer=True)),
+        ui.tags.link(rel='stylesheet',href='timeline.css?v=20261013-progress'),
+        ui.tags.script(src='leaflet.js'),ui.tags.script(src='timeline.js?v=20261013-progress',defer=True)),
     ui.div(ui.tags.aside(
         ui.div(ui.span('plumewatch',class_='brand-word'),class_='brand'),
         ui.div(class_='nav-rule'),
@@ -55,6 +55,10 @@ app_ui=ui.page_fluid(
             ui.p('One cutoff applies to every date. Model scores are not calibrated probabilities; raising this filter does not make the model more accurate.',class_='series-muted'),
             ui.input_task_button('series_run','Classify series ↗',label_busy='Processing series…',class_='run-button',width='100%'),
             ui.div(ui.output_text('series_status'),role='status',aria_live='polite',class_='series-status'),
+            ui.div(ui.div(ui.strong(id='series-progress-label'),ui.span('Elapsed: 0:00',id='series-elapsed'),class_='series-progress-heading'),
+                   ui.tags.progress(id='series-progress-bar',value=0,max=1,**{'aria-label':'Images classified'}),
+                   ui.p(id='series-progress-count',class_='series-muted'),
+                   id='series-progress-panel',class_='series-progress-panel',hidden=True),
             class_='series-setup'),class_='series-intake'),
         ui.div(
             ui.div(ui.div(ui.p('YOUR UPLOADED IMAGES',class_='eyebrow'),ui.h2('Browse the dates'),
@@ -166,16 +170,22 @@ def server(input,output,session):
         nonlocal future
         loop=asyncio.get_running_loop(); queue=asyncio.Queue()
         def progress(text): loop.call_soon_threadsafe(queue.put_nowait,text)
+        await session.send_custom_message('series-progress',{'stage':'start','text':'Starting classification…','completed':0,'total':len(snapshot)})
         folder=Path(temp.name)/uuid.uuid4().hex
         future=POOL.submit(build_series,snapshot,model,threshold,folder,progress=progress)
         wrapped=asyncio.wrap_future(future)
-        while not wrapped.done():
+        while not wrapped.done() or not queue.empty():
             try:
                 text=await asyncio.wait_for(queue.get(),timeout=.25)
                 await session.send_custom_message('series-progress',text)
             except asyncio.TimeoutError: pass
-        try: return {'result':await wrapped}
-        except Exception as error: return {'error':str(error)}
+        try:
+            value=await wrapped
+            await session.send_custom_message('series-progress',{'stage':'complete','text':'Series ready','completed':len(snapshot),'total':len(snapshot)})
+            return {'result':value}
+        except Exception as error:
+            await session.send_custom_message('series-progress',{'stage':'error','text':'Processing stopped. See the error above.'})
+            return {'error':str(error)}
     def busy(): return load.status()=='running' or run.status()=='running' or retry_weather.status()=='running'
     @reactive.effect
     @reactive.event(input.series_run)

@@ -227,7 +227,27 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
   Shiny.addCustomMessageHandler('series-result',install);
-  Shiny.addCustomMessageHandler('series-progress',text=>{$('series_status').textContent=text;});
+  let progressStarted=null,elapsedInterval=null;
+  function elapsed(){
+    const seconds=Math.floor((performance.now()-progressStarted)/1000);
+    $('series-elapsed').textContent='Elapsed: '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+  }
+  Shiny.addCustomMessageHandler('series-progress',state=>{
+    if(state.stage==='start'){
+      clearInterval(elapsedInterval);progressStarted=performance.now();elapsed();
+      elapsedInterval=setInterval(elapsed,1000);$('series-progress-panel').hidden=false;
+    }
+    $('series_status').textContent=state.text;
+    $('series-progress-label').textContent=state.text;
+    if(state.total!==undefined){
+      $('series-progress-bar').max=state.total;$('series-progress-bar').value=state.completed;
+      $('series-progress-count').textContent=state.completed+' of '+state.total+' images classified'+
+        (state.stage==='comparison'?' · Preparing comparison':state.stage==='rainfall'?' · Fetching rainfall':state.stage==='complete'?' · Complete':'');
+    }
+    if(state.stage==='complete'||state.stage==='error'){
+      clearInterval(elapsedInterval);elapsedInterval=null;if(progressStarted!==null)elapsed();
+    }
+  });
   Shiny.addCustomMessageHandler('series-controls',state=>{
     document.querySelectorAll('.series-setup input,.series-setup select,.series-setup button').forEach(e=>e.disabled=state.busy);
     const scoreSlider=jQuery('#series_threshold').data('ionRangeSlider');
