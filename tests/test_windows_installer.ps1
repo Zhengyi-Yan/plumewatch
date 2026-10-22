@@ -31,8 +31,22 @@ function wsl.exe {
     } elseif ($args -contains 'uname') {
         if ($env:PW_TEST_CASE -like 'wsl1_*') { '4.4.0-Microsoft' } else { '6.6.0-microsoft-standard-WSL2' }
     } elseif ($args -contains 'wslpath') {
-        '/mnt/c/Test Folder/scripts/install_wsl.sh'
+        if ($args[2] -ne '--exec') {
+            $global:LASTEXITCODE = 1
+            'wslpath: C:UsersdenniDesktopplumewatch-mainscriptsinstall_wsl.sh'
+            return
+        }
+        $expectedPath = Join-Path (Split-Path $env:PW_TEST_INSTALLER -Parent) 'scripts/install_wsl.sh'
+        if ($args.Count -ne 7 -or $args[-1] -ne $expectedPath) {
+            throw 'Windows script path was split or changed before reaching wslpath.'
+        }
+        if ($env:PW_TEST_CASE -eq 'path_failed') { $global:LASTEXITCODE = 1; return }
+        '/mnt/c/Test Folder & (review)/scripts/install_wsl.sh'
     } elseif ($args -contains 'bash') {
+        if ($args.Count -ne 5 -or $args[2] -ne '--exec' -or
+            $args[-1] -ne '/mnt/c/Test Folder & (review)/scripts/install_wsl.sh') {
+            throw 'Ubuntu script path must be passed intact without a shell parsing it.'
+        }
         if ($env:PW_TEST_CASE -eq 'install_failed') { $global:LASTEXITCODE = 1 }
     }
 }
@@ -69,12 +83,19 @@ function New-Object {
 exit $LASTEXITCODE
 '@
 try {
+    $sourceRoot = Split-Path $PSScriptRoot -Parent
+    $fixture = Join-Path $temp 'installer folder with spaces & (review)'
+    New-Item -ItemType Directory -Path (Join-Path $fixture 'scripts') | Out-Null
+    foreach ($name in @('install_windows.ps1', 'Start Dashboard.bat', 'scripts/install_wsl.sh')) {
+        Copy-Item -LiteralPath (Join-Path $sourceRoot $name) -Destination (Join-Path $fixture $name)
+    }
+    $installer = Join-Path $fixture 'install_windows.ps1'
     $wrapper = Join-Path $temp 'mock.ps1'
     [IO.File]::WriteAllText($wrapper, $mock)
     $cases = @{
         success = 0; enable_wsl = 3010; enable_failed = 1; missing_wsl = 1
         new_ubuntu = 0; ubuntu_failed = 1; ubuntu_reboot = 3010; root_user = 1
-        wsl1_decline = 1; wsl1_accept = 0; install_failed = 1; shortcut_conflict = 1
+        wsl1_decline = 1; wsl1_accept = 0; install_failed = 1; shortcut_conflict = 1; path_failed = 1
     }
     foreach ($case in $cases.Keys) {
         $caseDir = Join-Path $temp $case
@@ -103,6 +124,9 @@ try {
             throw 'WSL enablement must not install Ubuntu as the elevated account.'
         }
         if ($case -eq 'wsl1_decline' -and $calls -match '--set-version') { throw 'Declined conversion ran.' }
+        if ($case -eq 'path_failed' -and "$output" -notmatch 'Ubuntu could not translate installer path') {
+            throw 'A WSL path error must identify path conversion, not blame ZIP extraction.'
+        }
         Write-Host "PASS $case"
     }
     Write-Host "PowerShell syntax and $($cases.Count) mocked installer scenarios passed."

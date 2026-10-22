@@ -85,11 +85,12 @@ try {
     }
 
     $scriptPath = Join-Path $PSScriptRoot 'scripts/install_wsl.sh'
-    $linuxPath = (& wsl.exe -d $distro -- wslpath -a -u $scriptPath | Out-String).Trim()
+    # Direct execution preserves path backslashes and spaces instead of parsing them in a shell.
+    $linuxPath = (& wsl.exe -d $distro --exec wslpath -a -u $scriptPath | Out-String).Trim()
     if ($LASTEXITCODE -ne 0 -or -not $linuxPath.StartsWith('/')) {
-        throw 'Extract the installer to a local Windows folder, then retry.'
+        throw "Ubuntu could not translate installer path '$scriptPath' (wslpath exit $LASTEXITCODE). Keep the WSL error above for diagnosis."
     }
-    & wsl.exe -d $distro -- bash $linuxPath
+    & wsl.exe -d $distro --exec bash $linuxPath
     if ($LASTEXITCODE -ne 0) { throw 'PlumeWatch installation or verification failed. Fix the error above and rerun setup.' }
 
     $launcher = Join-Path $installDir 'Start Dashboard.bat'
