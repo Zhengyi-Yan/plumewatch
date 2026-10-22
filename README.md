@@ -4,7 +4,7 @@ PlumeWatch is a local web dashboard for mapping candidate sediment plumes in Sen
 
 Review predictions on interactive maps, compare images across acquisition dates, view rainfall context and export georeferenced results and area summaries. Predictions estimate visible plume extent; they do not measure sediment concentration or confirm physical plume boundaries.
 
-Start with [the teammate setup and dashboard guide](TEAM_GUIDE.md) for installation, model files, controls and troubleshooting. See [the consolidated experiment report](REPORT.md) for results, protocols and limitations.
+Start with [the teammate setup and dashboard guide](TEAM_GUIDE.md) for installation, model files, controls and troubleshooting. See [model evaluation and limitations](#model-evaluation-and-limitations) for the main results and retained evidence.
 
 ## Full installation guide
 
@@ -282,6 +282,21 @@ Supported inputs are twelve-band GeoTIFFs from the [PlumeWatch scene exporter](e
 The threshold slider filters class previews and displayed areas, not raw exported classifications. Score smoothing changes display only. Exports contain `classification.tif`, `model_score.tif`, `plume_score.tif`, `summary.csv` and `metadata.json`; TIFFs preserve the native source grid. Save exports before closing the session.
 
 The [teammate guide](TEAM_GUIDE.md) explains each view, score interpretation, annotation/training flow and troubleshooting. It is a Markdown document in the repository root, next to this README. Model disagreement is not accuracy, scores are uncalibrated, and predictions are estimates of visible plume extent rather than sediment concentration or verified physical boundaries.
+
+## Model evaluation and limitations
+
+Development evaluation used 49 reviewed frames in 13 linked site/event groups. Each group was held out in turn; related sites, events and overlapping imagery stayed together. RF and LayerNorm U-Net were scored on identical uniform samples of up to 15,000 valid reviewed pixels per frame. Unannotated and invalid pixels were excluded.
+
+| Model | Plume precision | Recall | F1 | IoU |
+|---|---:|---:|---:|---:|
+| Expanded Random Forest | 0.956 | 0.836 | 0.892 | 0.805 |
+| LayerNorm U-Net | 0.975 | 0.786 | 0.870 | 0.771 |
+
+RF achieved the higher pooled plume F1; performance varied by location, and U-Net performed better in some groups. SVM has no independent accuracy evaluation. These are sampled human-annotation agreement scores, not physical sediment measurements or complete plume-area accuracy. Previously inspected development scenes and earlier architecture experiments limit their independence; this is exploratory group cross-validation rather than untouched external validation.
+
+The final dashboard models were fitted using all reviewed frames and have no separate unseen test scores. Sparse or uncertain labels, limited geographic coverage and clouds limit interpretation. Scores are uncalibrated; model agreement, disagreement and display smoothing do not establish accuracy. Rainfall provides context rather than evidence of causation.
+
+Supporting evidence remains in [expanded RF results](results/multiclass_rf_v2_20260930/metrics.json), [expanded U-Net metrics](reports/evidence/unet_expanded_metrics.json), [original U-Net metrics](reports/evidence/unet_original_metrics.json), [final U-Net verification](reports/evidence/unet_final_verification.json) and [SVM protocol](reports/evidence/svm_protocol.json). Reproducing training requires the original imagery, reviewed annotations and local experiment inputs; cloning the repository alone does not reproduce expanded training.
 
 ## Time-series prototype
 

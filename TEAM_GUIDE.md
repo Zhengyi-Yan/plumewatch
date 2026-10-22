@@ -128,7 +128,7 @@ Single Sentinel-2 export → input validation and screening
 | `unet_worker.py` | U-Net inference in the separate PyTorch environment, using saved normalization and overlapping blended tiles. |
 | `www/app.js`, `www/app.css` | Map interactions, score display and dashboard styling. |
 | `annotation_pipeline.py` | Converts reviewed annotations into aligned training masks. |
-| `REPORT.md` | Consolidated experiment results, protocols and limitations. |
+| `README.md` and `reports/evidence/` | Model evaluation summary and supporting metrics. |
 
 RF uses saved per-pixel spectral features. U-Net also uses spatial context. SVM applies its saved StandardScaler once before the RBF classifier. Inference uses the supplied trained artifacts; it does not learn statistics from the uploaded scene, run SAM or train new models.
 
@@ -142,7 +142,7 @@ The project maps **candidate visible sediment plumes**, not sediment concentrati
 
 Model scores are uncalibrated and not directly comparable between models. SVM's predicted class can differ from the class with the highest reported probability; its predicted-class score follows the actual SVM prediction. Smooth boundaries, high scores and model agreement do not prove correctness.
 
-The final all-data models do not have independent test scores for those final fitted artifacts. The Wellington example overlaps training data and cannot demonstrate generalization. Consult [the report](REPORT.md) for held-out experiment evidence and its limits; use genuinely unseen, independently reviewed scenes to assess new performance.
+The final all-data models do not have independent test scores for those final fitted artifacts. The Wellington example overlaps training data and cannot demonstrate generalization. Consult [the evaluation summary](README.md#model-evaluation-and-limitations) for held-out experiment evidence and its limits; use genuinely unseen, independently reviewed scenes to assess new performance.
 
 ## 10. Troubleshooting
 

@@ -82,7 +82,7 @@ in ignored `data/processed/multiclass_rf_v1/model.pkl`. The manifest's legacy
 `split` fields remain `unassigned` because all four groups participate in this
 cross-validation; there is no untouched independent test set. Do not tune the
 model on these fold scores and then describe them as independent test results.
-This section describes the original 21-frame experiment. The dashboard now uses the later expanded three-class RF; see [REPORT.md](REPORT.md) for the consolidated comparisons.
+This section describes the original 21-frame experiment. The dashboard now uses the later expanded three-class RF; see [the README evaluation summary](README.md#model-evaluation-and-limitations) for the expanded results.
 
 To regenerate six visual examples, run `.venv/bin/python render_rf_examples.py`.
 Each prediction comes from a fold that excluded that scene's entire site/event

@@ -13,7 +13,7 @@ normalisation and loss weights using only the other three groups. Training is
 fixed at 40 epochs, 128 256-pixel patches per epoch, batch size 4, AdamW at
 3e-4, and base seed 42 (fold seeds 43–46). No held-out group is used for stopping or tuning.
 
-This describes the original pilot. The later 49-frame LayerNorm checkpoint is now used by the dashboard; do not delete this folder or its environment while that integration is in use. Results and limitations are consolidated in [REPORT.md](../../REPORT.md). Its `.venv/` and `outputs/` are ignored locally; no
+This describes the original pilot. The later 49-frame LayerNorm checkpoint is now used by the dashboard; do not delete this folder or its environment while that integration is in use. Current results and limitations are summarised in [the main README](../../README.md#model-evaluation-and-limitations). Its `.venv/` and `outputs/` are ignored locally; no
 source imagery is copied into it. Set up and run on the Mac with:
 
 ```sh
