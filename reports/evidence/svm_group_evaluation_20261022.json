@@ -1,0 +1,3312 @@
+{
+  "method": "Leave one linked site/event group out; matching RF/U-Net reference pixels",
+  "seed": 42,
+  "frames": 49,
+  "groups": 13,
+  "evaluation_pixels": 735000,
+  "sklearn_version": "1.8.0",
+  "sampling": "Up to 300 pixels/group/class, divided across every eligible frame; all reviewed frames contribute. Not every labelled pixel.",
+  "parameters": {
+    "kernel": "rbf",
+    "C": 1,
+    "gamma": "scale",
+    "class_weight": "balanced",
+    "probability": true
+  },
+  "samples_sha256": "f4154e9daf05e30fdfaa3e12012ccce29e6ef15e5ce6c259f35f7a1751675d42",
+  "reference_metrics_sha256": "b26a420e430283f534349a59cb8c0dc500bb8641a9b6ee6a82599bb491ac8891",
+  "deployed_model_sha256": "a461a509331bed12a97b2399edcf46be76768a875698e4a11d962fcfeec6b1bc",
+  "deployed_model_unchanged": true,
+  "summary": {
+    "accuracy": 0.8970585034013605,
+    "macro_f1_present_classes": 0.8405289212256677,
+    "classes": {
+      "normal_water": {
+        "support": 75851,
+        "precision": 0.5089349535382416,
+        "recall": 0.9386824168435486,
+        "f1": 0.6600201157816186,
+        "iou": 0.4925597194069913
+      },
+      "plume": {
+        "support": 305389,
+        "precision": 0.9762062208663126,
+        "recall": 0.7879393167402886,
+        "f1": 0.8720269912771209,
+        "iou": 0.7730920727123186
+      },
+      "land": {
+        "support": 353760,
+        "precision": 0.996853189981842,
+        "recall": 0.9823326549072817,
+        "f1": 0.9895396566182636,
+        "iou": 0.9792958853848169
+      }
+    },
+    "confusion_matrix": [
+      [
+        71200,
+        4645,
+        6
+      ],
+      [
+        63670,
+        240628,
+        1091
+      ],
+      [
+        5030,
+        1220,
+        347510
+      ]
+    ]
+  },
+  "folds": [
+    {
+      "group": "group_01",
+      "train_frames": [
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 3.600260959006846,
+      "scenes": [
+        {
+          "png": "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+          "group": "group_01",
+          "site": "Hutt / Wellington Harbour",
+          "date": "20190812",
+          "svm": {
+            "accuracy": 0.9976666666666667,
+            "macro_f1_present_classes": 0.9959459847373641,
+            "classes": {
+              "normal_water": {
+                "support": 3550,
+                "precision": 0.9943851768669287,
+                "recall": 0.9977464788732394,
+                "f1": 0.9960629921259843,
+                "iou": 0.9921568627450981
+              },
+              "plume": {
+                "support": 1076,
+                "precision": 0.9862511457378552,
+                "recall": 1.0,
+                "f1": 0.9930779880018459,
+                "iou": 0.9862511457378552
+              },
+              "land": {
+                "support": 10374,
+                "precision": 1.0,
+                "recall": 0.9973973395026027,
+                "f1": 0.9986969740842623,
+                "iou": 0.9973973395026027
+              }
+            },
+            "confusion_matrix": [
+              [
+                3542,
+                8,
+                0
+              ],
+              [
+                0,
+                1076,
+                0
+              ],
+              [
+                20,
+                7,
+                10347
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+          "group": "group_01",
+          "site": "Hutt / Wellington Harbour",
+          "date": "20200712",
+          "svm": {
+            "accuracy": 0.9888,
+            "macro_f1_present_classes": 0.9801794459475146,
+            "classes": {
+              "normal_water": {
+                "support": 3044,
+                "precision": 0.9623003194888179,
+                "recall": 0.9894875164257556,
+                "f1": 0.9757045675413023,
+                "iou": 0.952561669829222
+              },
+              "plume": {
+                "support": 823,
+                "precision": 0.945852534562212,
+                "recall": 0.9975698663426489,
+                "f1": 0.9710230632761679,
+                "iou": 0.9436781609195403
+              },
+              "land": {
+                "support": 11133,
+                "precision": 0.9997273223050355,
+                "recall": 0.9879637114883679,
+                "f1": 0.9938107070250733,
+                "iou": 0.9876975574712644
+              }
+            },
+            "confusion_matrix": [
+              [
+                3012,
+                29,
+                3
+              ],
+              [
+                2,
+                821,
+                0
+              ],
+              [
+                116,
+                18,
+                10999
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+          "group": "group_01",
+          "site": "Hutt / Wellington Harbour",
+          "date": "20210722",
+          "svm": {
+            "accuracy": 0.9945333333333334,
+            "macro_f1_present_classes": 0.984010352703518,
+            "classes": {
+              "normal_water": {
+                "support": 797,
+                "precision": 0.9255813953488372,
+                "recall": 0.998745294855709,
+                "f1": 0.9607724803862402,
+                "iou": 0.924506387921022
+              },
+              "plume": {
+                "support": 3650,
+                "precision": 0.9958734525447043,
+                "recall": 0.9917808219178083,
+                "f1": 0.9938229238160604,
+                "iou": 0.9877216916780355
+              },
+              "land": {
+                "support": 10553,
+                "precision": 0.9997144217039505,
+                "recall": 0.9951672510186677,
+                "f1": 0.9974356539082534,
+                "iou": 0.9948844259189087
+              }
+            },
+            "confusion_matrix": [
+              [
+                796,
+                1,
+                0
+              ],
+              [
+                27,
+                3620,
+                3
+              ],
+              [
+                37,
+                14,
+                10502
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_02",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 3.3590557919815183,
+      "scenes": [
+        {
+          "png": "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+          "group": "group_02",
+          "site": "Whanganui mouth",
+          "date": "20191003",
+          "svm": {
+            "accuracy": 0.998,
+            "macro_f1_present_classes": 0.9985824296450729,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 6194,
+                "precision": 0.9977448453608248,
+                "recall": 1.0,
+                "f1": 0.9988711498145459,
+                "iou": 0.9977448453608248
+              },
+              "land": {
+                "support": 8806,
+                "precision": 1.0,
+                "recall": 0.9965932318873495,
+                "f1": 0.9982937094755999,
+                "iou": 0.9965932318873495
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                6194,
+                0
+              ],
+              [
+                16,
+                14,
+                8776
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+          "group": "group_02",
+          "site": "Rangit\u012bkei mouth",
+          "date": "20191003",
+          "svm": {
+            "accuracy": 0.8754666666666666,
+            "macro_f1_present_classes": 0.815354605447013,
+            "classes": {
+              "normal_water": {
+                "support": 2331,
+                "precision": 0.5559532331185875,
+                "recall": 0.9995709995709996,
+                "f1": 0.7145047531432076,
+                "iou": 0.5558206106870229
+              },
+              "plume": {
+                "support": 4404,
+                "precision": 0.9988230678697528,
+                "recall": 0.57811080835604,
+                "f1": 0.7323457500359557,
+                "iou": 0.5777172679827547
+              },
+              "land": {
+                "support": 8265,
+                "precision": 0.9995157384987894,
+                "recall": 0.9989110707803993,
+                "f1": 0.9992133131618759,
+                "iou": 0.9984278631031563
+              }
+            },
+            "confusion_matrix": [
+              [
+                2330,
+                1,
+                0
+              ],
+              [
+                1854,
+                2546,
+                4
+              ],
+              [
+                7,
+                2,
+                8256
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+          "group": "group_02",
+          "site": "Manawat\u016b mouth",
+          "date": "20191003",
+          "svm": {
+            "accuracy": 0.8021333333333334,
+            "macro_f1_present_classes": 0.6127367007738463,
+            "classes": {
+              "normal_water": {
+                "support": 461,
+                "precision": 0.13562812591938805,
+                "recall": 1.0,
+                "f1": 0.238860103626943,
+                "iou": 0.13562812591938805
+              },
+              "plume": {
+                "support": 5165,
+                "precision": 0.9915555555555555,
+                "recall": 0.431945788964182,
+                "f1": 0.6017532029669589,
+                "iou": 0.43036265432098764
+              },
+              "land": {
+                "support": 9374,
+                "precision": 0.9988236552240403,
+                "recall": 0.9963729464476211,
+                "f1": 0.9975967957276369,
+                "iou": 0.9952051145444859
+              }
+            },
+            "confusion_matrix": [
+              [
+                461,
+                0,
+                0
+              ],
+              [
+                2923,
+                2231,
+                11
+              ],
+              [
+                15,
+                19,
+                9340
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_03",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "Waimakariri_20220826_cvat.png"
+      ],
+      "train_samples": 10476,
+      "seconds": 7.05507141596172,
+      "scenes": [
+        {
+          "png": "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+          "group": "group_03",
+          "site": "Waiau Uwha mouth",
+          "date": "20210602",
+          "svm": {
+            "accuracy": 0.9407333333333333,
+            "macro_f1_present_classes": 0.7894388772510852,
+            "classes": {
+              "normal_water": {
+                "support": 337,
+                "precision": 0.2762295081967213,
+                "recall": 1.0,
+                "f1": 0.43288375080282593,
+                "iou": 0.2762295081967213
+              },
+              "plume": {
+                "support": 6821,
+                "precision": 0.9990438247011952,
+                "recall": 0.9190734496408152,
+                "f1": 0.9573915699450213,
+                "iou": 0.9182657096821444
+              },
+              "land": {
+                "support": 7842,
+                "precision": 1.0,
+                "recall": 0.9570262688089773,
+                "f1": 0.9780413110054083,
+                "iou": 0.9570262688089773
+              }
+            },
+            "confusion_matrix": [
+              [
+                337,
+                0,
+                0
+              ],
+              [
+                552,
+                6269,
+                0
+              ],
+              [
+                331,
+                6,
+                7505
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+          "group": "group_03",
+          "site": "Waiau Uwha mouth",
+          "date": "20210428",
+          "svm": {
+            "accuracy": 0.6018666666666667,
+            "macro_f1_present_classes": 0.3689639856790838,
+            "classes": {
+              "normal_water": {
+                "support": 111,
+                "precision": 0.018265591574790192,
+                "recall": 1.0,
+                "f1": 0.035875888817065285,
+                "iou": 0.018265591574790192
+              },
+              "plume": {
+                "support": 6145,
+                "precision": 0.9755102040816327,
+                "recall": 0.03889340927583401,
+                "f1": 0.07480438184663536,
+                "iou": 0.03885547065517802
+              },
+              "land": {
+                "support": 8744,
+                "precision": 1.0,
+                "recall": 0.992451967063129,
+                "f1": 0.9962116863735506,
+                "iou": 0.992451967063129
+              }
+            },
+            "confusion_matrix": [
+              [
+                111,
+                0,
+                0
+              ],
+              [
+                5906,
+                239,
+                0
+              ],
+              [
+                60,
+                6,
+                8678
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+          "group": "group_03",
+          "site": "Hurunui mouth",
+          "date": "20210602",
+          "svm": {
+            "accuracy": 0.9238,
+            "macro_f1_present_classes": 0.9598814995375688,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 7572,
+                "precision": 1.0,
+                "recall": 0.871500264131009,
+                "f1": 0.9313386493543152,
+                "iou": 0.871500264131009
+              },
+              "land": {
+                "support": 7428,
+                "precision": 1.0,
+                "recall": 0.9771136241249326,
+                "f1": 0.9884243497208225,
+                "iou": 0.9771136241249326
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                973,
+                6599,
+                0
+              ],
+              [
+                170,
+                0,
+                7258
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+          "group": "group_03",
+          "site": "Hurunui mouth",
+          "date": "20210428",
+          "svm": {
+            "accuracy": 0.5970666666666666,
+            "macro_f1_present_classes": 0.39281983501656564,
+            "classes": {
+              "normal_water": {
+                "support": 527,
+                "precision": 0.08020088266626084,
+                "recall": 1.0,
+                "f1": 0.1484925331079177,
+                "iou": 0.08020088266626084
+              },
+              "plume": {
+                "support": 6111,
+                "precision": 1.0,
+                "recall": 0.016200294550810016,
+                "f1": 0.0318840579710145,
+                "iou": 0.016200294550810016
+              },
+              "land": {
+                "support": 8362,
+                "precision": 1.0,
+                "recall": 0.9961731643147572,
+                "f1": 0.9980829139707645,
+                "iou": 0.9961731643147572
+              }
+            },
+            "confusion_matrix": [
+              [
+                527,
+                0,
+                0
+              ],
+              [
+                6012,
+                99,
+                0
+              ],
+              [
+                32,
+                0,
+                8330
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+          "group": "group_03",
+          "site": "Waimakariri / Pegasus Bay",
+          "date": "20210602",
+          "svm": {
+            "accuracy": 0.9470666666666666,
+            "macro_f1_present_classes": 0.9664196595980892,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 5986,
+                "precision": 0.992260917634052,
+                "recall": 0.8995990644837956,
+                "f1": 0.9436607377551914,
+                "iou": 0.8933311214333112
+              },
+              "land": {
+                "support": 9014,
+                "precision": 1.0,
+                "recall": 0.9785888617705791,
+                "f1": 0.9891785814409868,
+                "iou": 0.9785888617705791
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                601,
+                5385,
+                0
+              ],
+              [
+                151,
+                42,
+                8821
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+          "group": "group_03",
+          "site": "Waimakariri / Pegasus Bay",
+          "date": "20210602",
+          "svm": {
+            "accuracy": 0.9681333333333333,
+            "macro_f1_present_classes": 0.9815604511527252,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 6378,
+                "precision": 0.9960532807104094,
+                "recall": 0.9496707431796801,
+                "f1": 0.9723091740910185,
+                "iou": 0.9461105904404874
+              },
+              "land": {
+                "support": 8622,
+                "precision": 1.0,
+                "recall": 0.9817907678032939,
+                "f1": 0.990811728214432,
+                "iou": 0.9817907678032939
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                321,
+                6057,
+                0
+              ],
+              [
+                133,
+                24,
+                8465
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+          "group": "group_03",
+          "site": "Waimakariri / Pegasus Bay",
+          "date": "20210428",
+          "svm": {
+            "accuracy": 0.7788666666666667,
+            "macro_f1_present_classes": 0.5181032455107849,
+            "classes": {
+              "normal_water": {
+                "support": 336,
+                "precision": 0.09248554913294797,
+                "recall": 1.0,
+                "f1": 0.1693121693121693,
+                "iou": 0.09248554913294797
+              },
+              "plume": {
+                "support": 4261,
+                "precision": 0.981042654028436,
+                "recall": 0.2429007275287491,
+                "f1": 0.3893905191873589,
+                "iou": 0.24176594253679046
+              },
+              "land": {
+                "support": 10403,
+                "precision": 1.0,
+                "recall": 0.9912525233105834,
+                "f1": 0.9956070480328264,
+                "iou": 0.9912525233105834
+              }
+            },
+            "confusion_matrix": [
+              [
+                336,
+                0,
+                0
+              ],
+              [
+                3226,
+                1035,
+                0
+              ],
+              [
+                71,
+                20,
+                10312
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Waimakariri_20220826_cvat.png",
+          "group": "group_03",
+          "site": "Waimakariri / Pegasus Bay",
+          "date": "20220826",
+          "svm": {
+            "accuracy": 0.9478666666666666,
+            "macro_f1_present_classes": 0.8860486940757726,
+            "classes": {
+              "normal_water": {
+                "support": 1109,
+                "precision": 0.5917822838847385,
+                "recall": 1.0,
+                "f1": 0.7435467650016762,
+                "iou": 0.5917822838847385
+              },
+              "plume": {
+                "support": 4834,
+                "precision": 0.9961287200580692,
+                "recall": 0.8516756309474556,
+                "f1": 0.9182558269209324,
+                "iou": 0.8488659793814433
+              },
+              "land": {
+                "support": 9057,
+                "precision": 0.9998888024018682,
+                "recall": 0.9928232306503257,
+                "f1": 0.9963434903047091,
+                "iou": 0.9927136233164053
+              }
+            },
+            "confusion_matrix": [
+              [
+                1109,
+                0,
+                0
+              ],
+              [
+                716,
+                4117,
+                1
+              ],
+              [
+                49,
+                16,
+                8992
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_04",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png"
+      ],
+      "train_samples": 10482,
+      "seconds": 7.2853062089998275,
+      "scenes": [
+        {
+          "png": "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+          "group": "group_04",
+          "site": "Mohaka mouth",
+          "date": "20230219",
+          "svm": {
+            "accuracy": 0.9981333333333333,
+            "macro_f1_present_classes": 0.9957522703907123,
+            "classes": {
+              "normal_water": {
+                "support": 1415,
+                "precision": 0.9805959805959806,
+                "recall": 1.0,
+                "f1": 0.9902029391182646,
+                "iou": 0.9805959805959806
+              },
+              "plume": {
+                "support": 4766,
+                "precision": 1.0,
+                "recall": 0.9941250524548888,
+                "f1": 0.9970538720538721,
+                "iou": 0.9941250524548888
+              },
+              "land": {
+                "support": 8819,
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "iou": 1.0
+              }
+            },
+            "confusion_matrix": [
+              [
+                1415,
+                0,
+                0
+              ],
+              [
+                28,
+                4738,
+                0
+              ],
+              [
+                0,
+                0,
+                8819
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+          "group": "group_04",
+          "site": "Wairoa mouth",
+          "date": "20230219",
+          "svm": {
+            "accuracy": 0.9931333333333333,
+            "macro_f1_present_classes": 0.9726853975044071,
+            "classes": {
+              "normal_water": {
+                "support": 480,
+                "precision": 0.879182156133829,
+                "recall": 0.9854166666666667,
+                "f1": 0.9292730844793713,
+                "iou": 0.8678899082568807
+              },
+              "plume": {
+                "support": 5405,
+                "precision": 0.9929354898680052,
+                "recall": 0.988159111933395,
+                "f1": 0.9905415430267063,
+                "iou": 0.9812603343744258
+              },
+              "land": {
+                "support": 9115,
+                "precision": 1.0,
+                "recall": 0.9964893033461327,
+                "f1": 0.9982415650071437,
+                "iou": 0.9964893033461327
+              }
+            },
+            "confusion_matrix": [
+              [
+                473,
+                7,
+                0
+              ],
+              [
+                64,
+                5341,
+                0
+              ],
+              [
+                1,
+                31,
+                9083
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+          "group": "group_04",
+          "site": "N\u016bhaka mouth",
+          "date": "20230219",
+          "svm": {
+            "accuracy": 0.9483333333333334,
+            "macro_f1_present_classes": 0.8865906731843372,
+            "classes": {
+              "normal_water": {
+                "support": 2001,
+                "precision": 0.7213410237923576,
+                "recall": 1.0,
+                "f1": 0.8381151832460734,
+                "iou": 0.7213410237923576
+              },
+              "plume": {
+                "support": 2555,
+                "precision": 0.999439461883408,
+                "recall": 0.6978473581213307,
+                "f1": 0.8218483521548744,
+                "iou": 0.6975743348982786
+              },
+              "land": {
+                "support": 10444,
+                "precision": 0.9999042329055736,
+                "recall": 0.9997127537342014,
+                "f1": 0.9998084841520636,
+                "iou": 0.9996170416467209
+              }
+            },
+            "confusion_matrix": [
+              [
+                2001,
+                0,
+                0
+              ],
+              [
+                771,
+                1783,
+                1
+              ],
+              [
+                2,
+                1,
+                10441
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+          "group": "group_04",
+          "site": "Waipaoa / T\u016branganui-a-Kiwa",
+          "date": "20230219",
+          "svm": {
+            "accuracy": 0.9960666666666667,
+            "macro_f1_present_classes": 0.9904452785944818,
+            "classes": {
+              "normal_water": {
+                "support": 762,
+                "precision": 0.957286432160804,
+                "recall": 1.0,
+                "f1": 0.9781771501925546,
+                "iou": 0.957286432160804
+              },
+              "plume": {
+                "support": 5221,
+                "precision": 0.9955879531939382,
+                "recall": 0.994062440145566,
+                "f1": 0.9948246118458884,
+                "iou": 0.9897025171624714
+              },
+              "land": {
+                "support": 9017,
+                "precision": 0.9997775553331109,
+                "recall": 0.996894754352889,
+                "f1": 0.9983340737450023,
+                "iou": 0.9966736888790332
+              }
+            },
+            "confusion_matrix": [
+              [
+                762,
+                0,
+                0
+              ],
+              [
+                29,
+                5190,
+                2
+              ],
+              [
+                5,
+                23,
+                8989
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+          "group": "group_04",
+          "site": "Waipaoa / T\u016branganui-a-Kiwa",
+          "date": "20230221",
+          "svm": {
+            "accuracy": 0.9585333333333333,
+            "macro_f1_present_classes": 0.8568762604430343,
+            "classes": {
+              "normal_water": {
+                "support": 754,
+                "precision": 0.5576923076923077,
+                "recall": 1.0,
+                "f1": 0.7160493827160493,
+                "iou": 0.5576923076923077
+              },
+              "plume": {
+                "support": 2424,
+                "precision": 0.9870619946091644,
+                "recall": 0.7553630363036303,
+                "f1": 0.8558074316429072,
+                "iou": 0.7479575163398693
+              },
+              "land": {
+                "support": 11822,
+                "precision": 1.0,
+                "recall": 0.9975469463711724,
+                "f1": 0.998771966970146,
+                "iou": 0.9975469463711724
+              }
+            },
+            "confusion_matrix": [
+              [
+                754,
+                0,
+                0
+              ],
+              [
+                593,
+                1831,
+                0
+              ],
+              [
+                5,
+                24,
+                11793
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+          "group": "group_04",
+          "site": "Waipaoa / T\u016branganui-a-Kiwa",
+          "date": "20230224",
+          "svm": {
+            "accuracy": 0.9951333333333333,
+            "macro_f1_present_classes": 0.9897257187046695,
+            "classes": {
+              "normal_water": {
+                "support": 921,
+                "precision": 0.9845474613686535,
+                "recall": 0.9685124864277959,
+                "f1": 0.9764641488779419,
+                "iou": 0.9540106951871657
+              },
+              "plume": {
+                "support": 7099,
+                "precision": 0.9921601567968641,
+                "recall": 0.9983096210733906,
+                "f1": 0.9952253896924589,
+                "iou": 0.9904961565338923
+              },
+              "land": {
+                "support": 6980,
+                "precision": 0.9995684074233924,
+                "recall": 0.9954154727793696,
+                "f1": 0.9974876175436078,
+                "iou": 0.9949878275812688
+              }
+            },
+            "confusion_matrix": [
+              [
+                892,
+                29,
+                0
+              ],
+              [
+                9,
+                7087,
+                3
+              ],
+              [
+                5,
+                27,
+                6948
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+          "group": "group_04",
+          "site": "Uawa / Tolaga Bay",
+          "date": "20230221",
+          "svm": {
+            "accuracy": 0.7584,
+            "macro_f1_present_classes": 0.8954510919034402,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 626,
+                "precision": 0.9625850340136054,
+                "recall": 0.9041533546325878,
+                "f1": 0.9324546952224053,
+                "iou": 0.8734567901234568
+              },
+              "land": {
+                "support": 14374,
+                "precision": 0.9999075016187217,
+                "recall": 0.7520523166828997,
+                "f1": 0.858447488584475,
+                "iou": 0.752
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                59,
+                566,
+                1
+              ],
+              [
+                3542,
+                22,
+                10810
+              ]
+            ]
+          }
+        },
+        {
+          "png": "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+          "group": "group_04",
+          "site": "Waiapu mouth",
+          "date": "20230221",
+          "svm": {
+            "accuracy": 0.7612,
+            "macro_f1_present_classes": 0.789135478491097,
+            "classes": {
+              "normal_water": {
+                "support": 7068,
+                "precision": 0.6637242933608789,
+                "recall": 1.0,
+                "f1": 0.7978777445391432,
+                "iou": 0.6637242933608789
+              },
+              "plume": {
+                "support": 5954,
+                "precision": 1.0,
+                "recall": 0.3983876385623111,
+                "f1": 0.5697814076387221,
+                "iou": 0.3983876385623111
+              },
+              "land": {
+                "support": 1978,
+                "precision": 0.9994946942900454,
+                "recall": 1.0,
+                "f1": 0.9997472832954258,
+                "iou": 0.9994946942900454
+              }
+            },
+            "confusion_matrix": [
+              [
+                7068,
+                0,
+                0
+              ],
+              [
+                3581,
+                2372,
+                1
+              ],
+              [
+                0,
+                0,
+                1978
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_05",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 2.4579891249886714,
+      "scenes": [
+        {
+          "png": "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+          "group": "group_05",
+          "site": "Isonzo",
+          "date": "20231104",
+          "svm": {
+            "accuracy": 0.7016,
+            "macro_f1_present_classes": 0.5760350577522346,
+            "classes": {
+              "normal_water": {
+                "support": 3674,
+                "precision": 0.9695431472081218,
+                "recall": 0.051986935220468156,
+                "f1": 0.09868251097907517,
+                "iou": 0.05190217391304348
+              },
+              "plume": {
+                "support": 7414,
+                "precision": 0.647601846277343,
+                "recall": 0.8705152414351227,
+                "f1": 0.742692750287687,
+                "iou": 0.5907010799926781
+              },
+              "land": {
+                "support": 3912,
+                "precision": 0.8019433533181725,
+                "recall": 0.9915644171779141,
+                "f1": 0.8867299119899418,
+                "iou": 0.7965092402464066
+              }
+            },
+            "confusion_matrix": [
+              [
+                191,
+                3483,
+                0
+              ],
+              [
+                2,
+                6454,
+                958
+              ],
+              [
+                4,
+                29,
+                3879
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+          "group": "group_05",
+          "site": "Isonzo",
+          "date": "20231022",
+          "svm": {
+            "accuracy": 0.9321333333333334,
+            "macro_f1_present_classes": 0.8573964748330655,
+            "classes": {
+              "normal_water": {
+                "support": 1052,
+                "precision": 0.5185651353052234,
+                "recall": 0.7832699619771863,
+                "f1": 0.6240060583112458,
+                "iou": 0.453494771601541
+              },
+              "plume": {
+                "support": 11533,
+                "precision": 0.9777555838024332,
+                "recall": 0.9337553108471343,
+                "f1": 0.9552490353483832,
+                "iou": 0.9143318050602819
+              },
+              "land": {
+                "support": 2415,
+                "precision": 0.9966624947851481,
+                "recall": 0.9892339544513458,
+                "f1": 0.9929343308395677,
+                "iou": 0.9859678085018572
+              }
+            },
+            "confusion_matrix": [
+              [
+                824,
+                228,
+                0
+              ],
+              [
+                756,
+                10769,
+                8
+              ],
+              [
+                9,
+                17,
+                2389
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_06",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 4.133814417000394,
+      "scenes": [
+        {
+          "png": "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+          "group": "group_06",
+          "site": "Arno",
+          "date": "20200226",
+          "svm": {
+            "accuracy": 0.9662,
+            "macro_f1_present_classes": 0.6658751470043396,
+            "classes": {
+              "normal_water": {
+                "support": 492,
+                "precision": 0.75,
+                "recall": 0.012195121951219513,
+                "f1": 0.024000000000000004,
+                "iou": 0.012145748987854251
+              },
+              "plume": {
+                "support": 10487,
+                "precision": 0.9548146123713218,
+                "recall": 0.9994278630685611,
+                "f1": 0.9766120014908685,
+                "iou": 0.9542929982700538
+              },
+              "land": {
+                "support": 4021,
+                "precision": 0.997758405977584,
+                "recall": 0.9962695846804277,
+                "f1": 0.9970134395221504,
+                "iou": 0.994044665012407
+              }
+            },
+            "confusion_matrix": [
+              [
+                6,
+                483,
+                3
+              ],
+              [
+                0,
+                10481,
+                6
+              ],
+              [
+                2,
+                13,
+                4006
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+          "group": "group_06",
+          "site": "Arno",
+          "date": "20200228",
+          "svm": {
+            "accuracy": 0.9994666666666666,
+            "macro_f1_present_classes": 0.9993381424637316,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 10801,
+                "precision": 0.9992598760292349,
+                "recall": 1.0,
+                "f1": 0.9996298010180473,
+                "iou": 0.9992598760292349
+              },
+              "land": {
+                "support": 4199,
+                "precision": 1.0,
+                "recall": 0.9980947844724934,
+                "f1": 0.999046483909416,
+                "iou": 0.9980947844724934
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                10801,
+                0
+              ],
+              [
+                0,
+                8,
+                4191
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+          "group": "group_06",
+          "site": "Arno",
+          "date": "20200304",
+          "svm": {
+            "accuracy": 0.9755333333333334,
+            "macro_f1_present_classes": 0.6600991828553756,
+            "classes": {
+              "normal_water": {
+                "support": 349,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 10011,
+                "precision": 0.9651017063530319,
+                "recall": 1.0,
+                "f1": 0.982240973312402,
+                "iou": 0.9651017063530319
+              },
+              "land": {
+                "support": 4640,
+                "precision": 1.0,
+                "recall": 0.9961206896551724,
+                "f1": 0.9980565752537249,
+                "iou": 0.9961206896551724
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                349,
+                0
+              ],
+              [
+                0,
+                10011,
+                0
+              ],
+              [
+                5,
+                13,
+                4622
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+          "group": "group_06",
+          "site": "Arno",
+          "date": "20210126",
+          "svm": {
+            "accuracy": 0.9961333333333333,
+            "macro_f1_present_classes": 0.9958014723346064,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 10219,
+                "precision": 0.9954217806351062,
+                "recall": 1.0,
+                "f1": 0.9977056382719063,
+                "iou": 0.9954217806351062
+              },
+              "land": {
+                "support": 4781,
+                "precision": 1.0,
+                "recall": 0.9878686467266262,
+                "f1": 0.9938973063973064,
+                "iou": 0.9878686467266262
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                10219,
+                0
+              ],
+              [
+                11,
+                47,
+                4723
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_07",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 2.638778791995719,
+      "scenes": [
+        {
+          "png": "France_Var_20200928_S2_L2A_12band_cvat.png",
+          "group": "group_07",
+          "site": "Var",
+          "date": "20200928",
+          "svm": {
+            "accuracy": 0.9995333333333334,
+            "macro_f1_present_classes": 0.9996329062893812,
+            "classes": {
+              "normal_water": {
+                "support": 8785,
+                "precision": 0.9996586253982703,
+                "recall": 1.0,
+                "f1": 0.9998292835600069,
+                "iou": 0.9996586253982703
+              },
+              "plume": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "land": {
+                "support": 6215,
+                "precision": 1.0,
+                "recall": 0.9988736926790024,
+                "f1": 0.9994365290187556,
+                "iou": 0.9988736926790024
+              }
+            },
+            "confusion_matrix": [
+              [
+                8785,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                3,
+                4,
+                6208
+              ]
+            ]
+          }
+        },
+        {
+          "png": "France_Var_20201003_S2_L2A_12band_cvat.png",
+          "group": "group_07",
+          "site": "Var",
+          "date": "20201003",
+          "svm": {
+            "accuracy": 0.8518,
+            "macro_f1_present_classes": 0.8273281463651457,
+            "classes": {
+              "normal_water": {
+                "support": 2240,
+                "precision": 0.5041694838855082,
+                "recall": 0.9986607142857142,
+                "f1": 0.6700614048225251,
+                "iou": 0.5038288288288288
+              },
+              "plume": {
+                "support": 7074,
+                "precision": 0.9993823347745522,
+                "recall": 0.6861747243426632,
+                "f1": 0.81367865225044,
+                "iou": 0.6858838490885969
+              },
+              "land": {
+                "support": 5686,
+                "precision": 0.9964949176305643,
+                "recall": 1.0,
+                "f1": 0.998244382022472,
+                "iou": 0.9964949176305643
+              }
+            },
+            "confusion_matrix": [
+              [
+                2237,
+                3,
+                0
+              ],
+              [
+                2200,
+                4854,
+                20
+              ],
+              [
+                0,
+                0,
+                5686
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_08",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 3.0173408329719678,
+      "scenes": [
+        {
+          "png": "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+          "group": "group_08",
+          "site": "Pineios",
+          "date": "20230831",
+          "svm": {
+            "accuracy": 0.999,
+            "macro_f1_present_classes": 0.9994978426874354,
+            "classes": {
+              "normal_water": {
+                "support": 2464,
+                "precision": 0.9991889699918897,
+                "recall": 1.0,
+                "f1": 0.9995943204868154,
+                "iou": 0.9991889699918897
+              },
+              "plume": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "land": {
+                "support": 12536,
+                "precision": 1.0,
+                "recall": 0.9988034460753031,
+                "f1": 0.9994013648880553,
+                "iou": 0.9988034460753031
+              }
+            },
+            "confusion_matrix": [
+              [
+                2464,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                2,
+                13,
+                12521
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+          "group": "group_08",
+          "site": "Pineios",
+          "date": "20230910",
+          "svm": {
+            "accuracy": 0.9961333333333333,
+            "macro_f1_present_classes": 0.9945700182864842,
+            "classes": {
+              "normal_water": {
+                "support": 2661,
+                "precision": 0.9797496318114874,
+                "recall": 1.0,
+                "f1": 0.9897712479077552,
+                "iou": 0.9797496318114874
+              },
+              "plume": {
+                "support": 4977,
+                "precision": 0.9993908629441625,
+                "recall": 0.988949166164356,
+                "f1": 0.9941425974550595,
+                "iou": 0.9883534136546185
+              },
+              "land": {
+                "support": 7362,
+                "precision": 1.0,
+                "recall": 0.9995925020374898,
+                "f1": 0.9997962094966375,
+                "iou": 0.9995925020374898
+              }
+            },
+            "confusion_matrix": [
+              [
+                2661,
+                0,
+                0
+              ],
+              [
+                55,
+                4922,
+                0
+              ],
+              [
+                0,
+                3,
+                7359
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_09",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png"
+      ],
+      "train_samples": 10478,
+      "seconds": 7.573418167012278,
+      "scenes": [
+        {
+          "png": "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+          "group": "group_09",
+          "site": "Burdekin",
+          "date": "20250218",
+          "svm": {
+            "accuracy": 0.992,
+            "macro_f1_present_classes": 0.9912350687593141,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 10100,
+                "precision": 0.9937747035573122,
+                "recall": 0.9957425742574257,
+                "f1": 0.994757665677547,
+                "iou": 0.9895700088556528
+              },
+              "land": {
+                "support": 4900,
+                "precision": 0.9911631730374024,
+                "recall": 0.9842857142857143,
+                "f1": 0.9877124718410812,
+                "iou": 0.9757232449929193
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                10057,
+                43
+              ],
+              [
+                14,
+                63,
+                4823
+              ]
+            ]
+          }
+        },
+        {
+          "png": "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+          "group": "group_09",
+          "site": "Burdekin",
+          "date": "20250218",
+          "svm": {
+            "accuracy": 0.9198,
+            "macro_f1_present_classes": 0.8067367059159384,
+            "classes": {
+              "normal_water": {
+                "support": 553,
+                "precision": 0.31407322654462244,
+                "recall": 0.9927667269439421,
+                "f1": 0.47718383311603646,
+                "iou": 0.3133561643835616
+              },
+              "plume": {
+                "support": 11155,
+                "precision": 0.9995983935742971,
+                "recall": 0.8925145674585387,
+                "f1": 0.9430262846317783,
+                "iou": 0.8921946410968725
+              },
+              "land": {
+                "support": 3292,
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "iou": 1.0
+              }
+            },
+            "confusion_matrix": [
+              [
+                549,
+                4,
+                0
+              ],
+              [
+                1199,
+                9956,
+                0
+              ],
+              [
+                0,
+                0,
+                3292
+              ]
+            ]
+          }
+        },
+        {
+          "png": "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+          "group": "group_09",
+          "site": "Burdekin",
+          "date": "20250228",
+          "svm": {
+            "accuracy": 0.9898,
+            "macro_f1_present_classes": 0.9651074895005897,
+            "classes": {
+              "normal_water": {
+                "support": 282,
+                "precision": 0.8468468468468469,
+                "recall": 1.0,
+                "f1": 0.9170731707317074,
+                "iou": 0.8468468468468469
+              },
+              "plume": {
+                "support": 11078,
+                "precision": 0.9913700107874865,
+                "recall": 0.9954865499187578,
+                "f1": 0.9934240158544274,
+                "iou": 0.9869339538213711
+              },
+              "land": {
+                "support": 3640,
+                "precision": 0.9983065198983911,
+                "recall": 0.9717032967032967,
+                "f1": 0.9848252819156342,
+                "iou": 0.9701042238069116
+              }
+            },
+            "confusion_matrix": [
+              [
+                282,
+                0,
+                0
+              ],
+              [
+                44,
+                11028,
+                6
+              ],
+              [
+                7,
+                96,
+                3537
+              ]
+            ]
+          }
+        },
+        {
+          "png": "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+          "group": "group_09",
+          "site": "Burdekin",
+          "date": "20250228",
+          "svm": {
+            "accuracy": 0.8633333333333333,
+            "macro_f1_present_classes": 0.8804730358844619,
+            "classes": {
+              "normal_water": {
+                "support": 3734,
+                "precision": 0.6474158862296219,
+                "recall": 0.9997321906802357,
+                "f1": 0.7858947368421052,
+                "iou": 0.6473036240679729
+              },
+              "plume": {
+                "support": 8251,
+                "precision": 0.999838787683379,
+                "recall": 0.751666464670949,
+                "f1": 0.8581707485817074,
+                "iou": 0.7515753756665051
+              },
+              "land": {
+                "support": 3015,
+                "precision": 0.9947212141207522,
+                "recall": 1.0,
+                "f1": 0.9973536222295732,
+                "iou": 0.9947212141207522
+              }
+            },
+            "confusion_matrix": [
+              [
+                3733,
+                1,
+                0
+              ],
+              [
+                2033,
+                6202,
+                16
+              ],
+              [
+                0,
+                0,
+                3015
+              ]
+            ]
+          }
+        },
+        {
+          "png": "AU_Tully_20250216_cvat.png",
+          "group": "group_09",
+          "site": "Tully",
+          "date": "20250216",
+          "svm": {
+            "accuracy": 0.7795333333333333,
+            "macro_f1_present_classes": 0.6141504290995199,
+            "classes": {
+              "normal_water": {
+                "support": 775,
+                "precision": 0.1904176904176904,
+                "recall": 1.0,
+                "f1": 0.31991744066047473,
+                "iou": 0.1904176904176904
+              },
+              "plume": {
+                "support": 5099,
+                "precision": 0.9934246575342466,
+                "recall": 0.3555599137085703,
+                "f1": 0.5236857307914501,
+                "iou": 0.3547251027196243
+              },
+              "land": {
+                "support": 9126,
+                "precision": 1.0,
+                "recall": 0.997698882314267,
+                "f1": 0.9988481158466349,
+                "iou": 0.997698882314267
+              }
+            },
+            "confusion_matrix": [
+              [
+                775,
+                0,
+                0
+              ],
+              [
+                3286,
+                1813,
+                0
+              ],
+              [
+                9,
+                12,
+                9105
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+          "group": "group_09",
+          "site": "Burdekin",
+          "date": "20190210",
+          "svm": {
+            "accuracy": 0.9642,
+            "macro_f1_present_classes": 0.9591757120875419,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 4515,
+                "precision": 0.8955934894799523,
+                "recall": 0.9993355481727575,
+                "f1": 0.9446247252172093,
+                "iou": 0.8950605038682801
+              },
+              "land": {
+                "support": 10485,
+                "precision": 0.9996986136226642,
+                "recall": 0.9490701001430615,
+                "f1": 0.9737266989578747,
+                "iou": 0.9487986270022883
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                4512,
+                3
+              ],
+              [
+                8,
+                526,
+                9951
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+          "group": "group_09",
+          "site": "Burdekin",
+          "date": "20190210",
+          "svm": {
+            "accuracy": 0.9976,
+            "macro_f1_present_classes": 0.9975961023096007,
+            "classes": {
+              "normal_water": {
+                "support": 7784,
+                "precision": 0.9953964194373401,
+                "recall": 1.0,
+                "f1": 0.9976928992566009,
+                "iou": 0.9953964194373401
+              },
+              "plume": {
+                "support": 7216,
+                "precision": 1.0,
+                "recall": 0.9950110864745011,
+                "f1": 0.9974993053626007,
+                "iou": 0.9950110864745011
+              },
+              "land": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              }
+            },
+            "confusion_matrix": [
+              [
+                7784,
+                0,
+                0
+              ],
+              [
+                36,
+                7180,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+          "group": "group_09",
+          "site": "Burdekin",
+          "date": "20190210",
+          "svm": {
+            "accuracy": 0.9952,
+            "macro_f1_present_classes": 0.9699674672441511,
+            "classes": {
+              "normal_water": {
+                "support": 440,
+                "precision": 0.890295358649789,
+                "recall": 0.9590909090909091,
+                "f1": 0.9234135667396062,
+                "iou": 0.8577235772357723
+              },
+              "plume": {
+                "support": 12408,
+                "precision": 0.9983907306083039,
+                "recall": 1.0,
+                "f1": 0.9991947173457885,
+                "iou": 0.9983907306083039
+              },
+              "land": {
+                "support": 2152,
+                "precision": 1.0,
+                "recall": 0.974907063197026,
+                "f1": 0.9872941176470589,
+                "iou": 0.974907063197026
+              }
+            },
+            "confusion_matrix": [
+              [
+                422,
+                18,
+                0
+              ],
+              [
+                0,
+                12408,
+                0
+              ],
+              [
+                52,
+                2,
+                2098
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_10",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "AU_Murray_20230101_x0_y0_cvat.png"
+      ],
+      "train_samples": 10768,
+      "seconds": 2.206268167006783,
+      "scenes": [
+        {
+          "png": "AU_Murray_20230101_x0_y0_cvat.png",
+          "group": "group_10",
+          "site": "Murray",
+          "date": "20230101",
+          "svm": {
+            "accuracy": 0.9999333333333333,
+            "macro_f1_present_classes": 0.9999308745436147,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 6085,
+                "precision": 0.9998356884653302,
+                "recall": 1.0,
+                "f1": 0.9999178374825405,
+                "iou": 0.9998356884653302
+              },
+              "land": {
+                "support": 8915,
+                "precision": 1.0,
+                "recall": 0.9998878295008413,
+                "f1": 0.999943911604689,
+                "iou": 0.9998878295008413
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                6085,
+                0
+              ],
+              [
+                0,
+                1,
+                8914
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_11",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "AU_TweedHeads_20220301_cvat.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 1.960023166029714,
+      "scenes": [
+        {
+          "png": "AU_TweedHeads_20220301_cvat.png",
+          "group": "group_11",
+          "site": "Tweed",
+          "date": "20220301",
+          "svm": {
+            "accuracy": 0.84,
+            "macro_f1_present_classes": 0.8300556411040937,
+            "classes": {
+              "normal_water": {
+                "support": 1870,
+                "precision": 0.43821805392731533,
+                "recall": 0.9994652406417113,
+                "f1": 0.6092909535452323,
+                "iou": 0.4381153305203938
+              },
+              "plume": {
+                "support": 11343,
+                "precision": 0.999776461383704,
+                "recall": 0.7885920832231332,
+                "f1": 0.88171513060621,
+                "iou": 0.7884530630233583
+              },
+              "land": {
+                "support": 1787,
+                "precision": 0.9988814317673378,
+                "recall": 0.9994404029099049,
+                "f1": 0.9991608391608391,
+                "iou": 0.9983230855226384
+              }
+            },
+            "confusion_matrix": [
+              [
+                1869,
+                1,
+                0
+              ],
+              [
+                2396,
+                8945,
+                2
+              ],
+              [
+                0,
+                1,
+                1786
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_12",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "test_frames": [
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 2.766107584000565,
+      "scenes": [
+        {
+          "png": "Nelson_Maitai_20220822_cvat.png",
+          "group": "group_12",
+          "site": "Maitai",
+          "date": "20220822",
+          "svm": {
+            "accuracy": 0.9865333333333334,
+            "macro_f1_present_classes": 0.9931967248132598,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 7555,
+                "precision": 1.0,
+                "recall": 0.9752481800132363,
+                "f1": 0.9874690075722039,
+                "iou": 0.9752481800132363
+              },
+              "land": {
+                "support": 7445,
+                "precision": 0.9998654286098776,
+                "recall": 0.9979852249832102,
+                "f1": 0.9989244420543157,
+                "iou": 0.9978511952726296
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                186,
+                7368,
+                1
+              ],
+              [
+                15,
+                0,
+                7430
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Nelson_Wakapuaka_20220831_cvat.png",
+          "group": "group_12",
+          "site": "Wakapuaka",
+          "date": "20220831",
+          "svm": {
+            "accuracy": 0.4086666666666667,
+            "macro_f1_present_classes": 0.42978756742673124,
+            "classes": {
+              "normal_water": {
+                "support": 1211,
+                "precision": 0.12012697153060212,
+                "recall": 1.0,
+                "f1": 0.2144881331916401,
+                "iou": 0.12012697153060212
+              },
+              "plume": {
+                "support": 9228,
+                "precision": 1.0,
+                "recall": 0.03901170351105332,
+                "f1": 0.07509386733416772,
+                "iou": 0.03901170351105332
+              },
+              "land": {
+                "support": 4561,
+                "precision": 1.0,
+                "recall": 0.9995614996711247,
+                "f1": 0.9997807017543859,
+                "iou": 0.9995614996711247
+              }
+            },
+            "confusion_matrix": [
+              [
+                1211,
+                0,
+                0
+              ],
+              [
+                8868,
+                360,
+                0
+              ],
+              [
+                2,
+                0,
+                4559
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "group": "group_13",
+      "train_frames": [
+        "P1-01_20190812T222541_20190812T222624_T60GUV_cvat_v1.png",
+        "P1-03_20200712T222549_20200712T222545_T60GUV_cvat_v1.png",
+        "P1-04_20210722T222551_20210722T222547_T60GUV_cvat_v1.png",
+        "P1-05_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-06_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P1-07_20191003T221559_20191003T221601_T60GUA_cvat_v1.png",
+        "P2-01_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-02_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-03_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-04_20210428T222539_20210428T222539_T59GPN_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPM_cvat_v1.png",
+        "P2-05_20210602T222551_20210602T222545_T59GPN_cvat_v1.png",
+        "P2-06_20210428T222539_20210428T222539_T59GPM-T59GPN_mosaic_cvat_v1.png",
+        "P3-02_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-03_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-04_20230219T221601_20230219T221601_T60HWB_cvat_v1.png",
+        "P3-05_20230219T221601_20230219T221601_T60HWC_cvat_v1.png",
+        "P3-05_20230221T220619_20230221T220620_T60HWC_cvat_v1.png",
+        "P3-05_20230224T221609_20230224T221604_T60HWC_cvat_v1.png",
+        "P3-06_20230221T220619_20230221T220620_T60HXC_cvat_v1.png",
+        "P3-07_20230221T220619_20230221T220620_T60HXD_cvat_v1.png",
+        "Isonzo_20231104_S2_SR_L2A_12band_Float32_cvat.png",
+        "Isonzo_20231022_S2_SR_L2A_12band_Float32_cvat.png",
+        "Italy_Arno_20200226_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200228_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20200304_S2_L2A_12band_cvat.png",
+        "Italy_Arno_20210126_S2_L2A_12band_cvat.png",
+        "France_Var_20200928_S2_L2A_12band_cvat.png",
+        "France_Var_20201003_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230831_S2_L2A_12band_cvat.png",
+        "Greece_Pineios_20230910_S2_L2A_12band_cvat.png",
+        "AU_BurdekinRiver_20250218_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250218_x1736_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x0_y0_cvat.png",
+        "AU_BurdekinRiver_20250228_x1736_y0_cvat.png",
+        "AU_Murray_20230101_x0_y0_cvat.png",
+        "AU_Tully_20250216_cvat.png",
+        "AU_TweedHeads_20220301_cvat.png",
+        "Nelson_Maitai_20220822_cvat.png",
+        "Nelson_Wakapuaka_20220831_cvat.png",
+        "Waimakariri_20220826_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x2106_y3889_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y0_cvat.png",
+        "Burdekin_UNMASKED_20190210T002051_20190210T002051_T55KEU_x4212_y3889_cvat.png"
+      ],
+      "test_frames": [
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+        "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+        "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png"
+      ],
+      "train_samples": 10468,
+      "seconds": 4.67662945901975,
+      "scenes": [
+        {
+          "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y1546_cvat.png",
+          "group": "group_13",
+          "site": "Hawkesbury",
+          "date": "20220410",
+          "svm": {
+            "accuracy": 0.9569333333333333,
+            "macro_f1_present_classes": 0.9755659286505324,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 6983,
+                "precision": 0.9988979848866498,
+                "recall": 0.9086352570528426,
+                "f1": 0.9516310461192352,
+                "iou": 0.907725321888412
+              },
+              "land": {
+                "support": 8017,
+                "precision": 1.0,
+                "recall": 0.9990021204939503,
+                "f1": 0.9995008111818295,
+                "iou": 0.9990021204939503
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                638,
+                6345,
+                0
+              ],
+              [
+                1,
+                7,
+                8009
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y3093_cvat.png",
+          "group": "group_13",
+          "site": "Hawkesbury",
+          "date": "20220410",
+          "svm": {
+            "accuracy": 0.6639333333333334,
+            "macro_f1_present_classes": 0.7860837825238013,
+            "classes": {
+              "normal_water": {
+                "support": 0,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "iou": 0.0
+              },
+              "plume": {
+                "support": 8410,
+                "precision": 0.9997036158861885,
+                "recall": 0.4010701545778835,
+                "f1": 0.5724711473183979,
+                "iou": 0.401022470574248
+              },
+              "land": {
+                "support": 6590,
+                "precision": 1.0,
+                "recall": 0.9993930197268589,
+                "f1": 0.9996964177292047,
+                "iou": 0.9993930197268589
+              }
+            },
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                5037,
+                3373,
+                0
+              ],
+              [
+                3,
+                1,
+                6586
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Hawkesbury_Broken_Bay_UNMASKED_20220410T235239_20220410T235241_T56HLH_x0_y4639_cvat.png",
+          "group": "group_13",
+          "site": "Hawkesbury",
+          "date": "20220410",
+          "svm": {
+            "accuracy": 0.8893333333333333,
+            "macro_f1_present_classes": 0.6292854127668782,
+            "classes": {
+              "normal_water": {
+                "support": 6247,
+                "precision": 0.7906594102012403,
+                "recall": 1.0,
+                "f1": 0.8830930166808029,
+                "iou": 0.7906594102012403
+              },
+              "plume": {
+                "support": 1648,
+                "precision": 0.5,
+                "recall": 0.003033980582524272,
+                "f1": 0.006031363088057902,
+                "iou": 0.0030248033877797943
+              },
+              "land": {
+                "support": 7105,
+                "precision": 0.9998589363803075,
+                "recall": 0.9976073187895848,
+                "f1": 0.9987318585317739,
+                "iou": 0.9974669293554742
+              }
+            },
+            "confusion_matrix": [
+              [
+                6247,
+                0,
+                0
+              ],
+              [
+                1642,
+                5,
+                1
+              ],
+              [
+                12,
+                5,
+                7088
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y0_cvat.png",
+          "group": "group_13",
+          "site": "Hunter",
+          "date": "20220410",
+          "svm": {
+            "accuracy": 0.976,
+            "macro_f1_present_classes": 0.8911223474512869,
+            "classes": {
+              "normal_water": {
+                "support": 890,
+                "precision": 0.718321226795803,
+                "recall": 1.0,
+                "f1": 0.8360732738374823,
+                "iou": 0.718321226795803
+              },
+              "plume": {
+                "support": 1022,
+                "precision": 0.9855263157894737,
+                "recall": 0.7328767123287672,
+                "f1": 0.840628507295174,
+                "iou": 0.7250726040658277
+              },
+              "land": {
+                "support": 13088,
+                "precision": 1.0,
+                "recall": 0.9933526894865525,
+                "f1": 0.9966652612212044,
+                "iou": 0.9933526894865525
+              }
+            },
+            "confusion_matrix": [
+              [
+                890,
+                0,
+                0
+              ],
+              [
+                273,
+                749,
+                0
+              ],
+              [
+                76,
+                11,
+                13001
+              ]
+            ]
+          }
+        },
+        {
+          "png": "Hunter_Newcastle_UNMASKED_20220410T235239_20220410T235241_T56HLJ_x0_y3077_cvat.png",
+          "group": "group_13",
+          "site": "Hunter",
+          "date": "20220410",
+          "svm": {
+            "accuracy": 0.5446,
+            "macro_f1_present_classes": 0.5626633417257664,
+            "classes": {
+              "normal_water": {
+                "support": 4344,
+                "precision": 0.38984115588261686,
+                "recall": 1.0,
+                "f1": 0.5609866339510556,
+                "iou": 0.38984115588261686
+              },
+              "plume": {
+                "support": 7307,
+                "precision": 0.9435626102292769,
+                "recall": 0.0732174627069933,
+                "f1": 0.13589027178054355,
+                "iou": 0.0728982150156697
+              },
+              "land": {
+                "support": 3349,
+                "precision": 1.0,
+                "recall": 0.9823828008360704,
+                "f1": 0.9911131194456997,
+                "iou": 0.9823828008360704
+              }
+            },
+            "confusion_matrix": [
+              [
+                4344,
+                0,
+                0
+              ],
+              [
+                6772,
+                535,
+                0
+              ],
+              [
+                27,
+                32,
+                3290
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "matched_truth": true,
+    "matched_class_support": true,
+    "mask_hashes_verified": true,
+    "fold_exclusions_verified": true,
+    "training_only_scaler_verified": true,
+    "persisted_predictions_verified": true
+  },
+  "elapsed_seconds": 52.96264533296926,
+  "limitations": [
+    "Exploratory group cross-validation of the training recipe, not an independent test of the final all-data checkpoint.",
+    "Previously inspected development labels; no untouched external validation.",
+    "Only sampled valid reviewed pixels are scored; ignored pixels and unreviewed candidates are excluded.",
+    "One seed and fixed hyperparameters; label uncertainty and geographic domain shift remain.",
+    "Overall accuracy covers water, plume and land; precision/recall/F1 below refer to plume."
+  ]
+}

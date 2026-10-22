@@ -298,18 +298,19 @@ The [teammate guide](TEAM_GUIDE.md) explains each view, score interpretation, an
 
 ## Model evaluation and limitations
 
-Development evaluation used 49 reviewed frames in 13 linked site/event groups. Each group was held out in turn; related sites, events and overlapping imagery stayed together. RF and LayerNorm U-Net were scored on identical uniform samples of up to 15,000 valid reviewed pixels per frame. Unannotated and invalid pixels were excluded.
+Development evaluation used 49 reviewed frames in 13 linked site/event groups. Each group was held out in turn; related sites, events and overlapping imagery stayed together. RF, LayerNorm U-Net and RBF SVM were scored on identical uniform samples of up to 15,000 valid reviewed pixels per frame. Unannotated and invalid pixels were excluded.
 
-| Model | Plume precision | Recall | F1 | IoU |
-|---|---:|---:|---:|---:|
-| Expanded Random Forest | 0.956 | 0.836 | 0.892 | 0.805 |
-| LayerNorm U-Net | 0.975 | 0.786 | 0.870 | 0.771 |
+| Model | Plume precision | Recall | F1 | IoU | Overall accuracy |
+|---|---:|---:|---:|---:|---:|
+| Expanded Random Forest | 0.956 | 0.836 | 0.892 | 0.805 | 0.911 |
+| LayerNorm U-Net | 0.975 | 0.786 | 0.870 | 0.771 | 0.898 |
+| RBF SVM | 0.976 | 0.788 | 0.872 | 0.773 | 0.897 |
 
-RF achieved the higher pooled plume F1; performance varied by location, and U-Net performed better in some groups. SVM has no independent accuracy evaluation. These are sampled human-annotation agreement scores, not physical sediment measurements or complete plume-area accuracy. Previously inspected development scenes and earlier architecture experiments limit their independence; this is exploratory group cross-validation rather than untouched external validation.
+RF achieved the higher pooled plume F1; performance varied by location, and U-Net performed better in some groups. SVM was evaluated on 22 October 2026 using the same held-out groups and cached reference pixels. Precision, recall, F1 and IoU refer to plume; overall accuracy includes normal water, plume and land. These are sampled human-annotation agreement scores, not physical sediment measurements or complete plume-area accuracy. Previously inspected development scenes and earlier architecture experiments limit their independence; this is exploratory group cross-validation rather than untouched external validation.
 
 The final dashboard models were fitted using all reviewed frames and have no separate unseen test scores. Sparse or uncertain labels, limited geographic coverage and clouds limit interpretation. Scores are uncalibrated; model agreement, disagreement and display smoothing do not establish accuracy. Rainfall provides context rather than evidence of causation.
 
-Supporting evidence remains in [expanded RF results](results/multiclass_rf_v2_20260930/metrics.json), [expanded U-Net metrics](reports/evidence/unet_expanded_metrics.json), [original U-Net metrics](reports/evidence/unet_original_metrics.json), [final U-Net verification](reports/evidence/unet_final_verification.json) and [SVM protocol](reports/evidence/svm_protocol.json). Reproducing training requires the original imagery, reviewed annotations and local experiment inputs; cloning the repository alone does not reproduce expanded training.
+Supporting evidence remains in [expanded RF results](results/multiclass_rf_v2_20260930/metrics.json), [expanded U-Net metrics](reports/evidence/unet_expanded_metrics.json), [original U-Net metrics](reports/evidence/unet_original_metrics.json), [final U-Net verification](reports/evidence/unet_final_verification.json) and [SVM protocol](reports/evidence/svm_protocol.json), [SVM evaluation report](reports/evidence/SVM_EVALUATION_20261022.md) and [SVM held-out metrics](reports/evidence/svm_group_evaluation_20261022.json). Reproducing training requires the original imagery, reviewed annotations and local experiment inputs; cloning the repository alone does not reproduce expanded training.
 
 ## Time-series prototype
 
