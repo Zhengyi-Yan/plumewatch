@@ -1,109 +1,145 @@
 # PlumeWatch
 
-Shiny for Python dashboard based on the [PlumeWatch Figma concept](https://www.figma.com/design/ZF9HZSM09M44cL9WTZpNJq?node-id=11-72). It opens a supported Sentinel-2 GeoTIFF, runs the expanded three-class Random Forest, final per-pixel LayerNorm U-Net and RBF SVM, and lets you switch the map between their results without rerunning inference. The map preview is downsampled; exports and area counts use the native source grid.
+PlumeWatch is a local web dashboard for mapping candidate sediment plumes in Sentinel-2 satellite imagery. It uses three trained machine-learning models — Random Forest, U-Net and SVM — to classify pixels as normal water, plume or land.
+
+Review predictions on interactive maps, compare images across acquisition dates, view rainfall context and export georeferenced results and area summaries. Predictions estimate visible plume extent; they do not measure sediment concentration or confirm physical plume boundaries.
 
 Start with [the teammate setup and dashboard guide](TEAM_GUIDE.md) for installation, model files, controls and troubleshooting. See [the consolidated experiment report](REPORT.md) for results, protocols and limitations.
 
 ## Full installation guide
 
+Install once, then use the launch instructions whenever you return. Choose your setup route:
+
+| Platform | First-time setup | After setup |
+|---|---|---|
+| macOS with Apple Silicon (M-series) | [A. macOS installation](#a-macos-installation) | Run the checks in E, then launch with F |
+| Intel/AMD 64-bit Windows | [B. Windows installer](#b-windows-installation-through-wsl2) | Use the **PlumeWatch** desktop shortcut |
+| Ubuntu Linux / manual WSL setup | [C. Linux/WSL environments](#c-linuxwsl-python-environments) | Run the checks in E, then launch with F |
+
 ### Before starting
 
-The dashboard needs two Python environments. The three active trained models are included in the repository. You do **not** need CVAT, SAM, a GEE account, Node.js or training data to run inference on an existing supported image.
+The repository includes all three trained models and a Wellington example image. You do **not** need training data, a Google Earth Engine account, CVAT, SAM or Node.js to use the dashboard. Additional imagery must meet the [supported input requirements](#g-use-the-dashboard).
 
-- **Verified locally:** macOS with dashboard Python 3.14.3 and U-Net Python 3.12.2.
-- **Linux x86-64:** dependency resolution with prebuilt wheels has been checked for both environments; a full Linux runtime installation has not been tested.
-- **Windows:** use Ubuntu through WSL2. The guided installer below automates setup on Intel/AMD 64-bit Windows. The manual WSL commands have been confirmed by a teammate; the installer and double-click launcher still need an end-to-end Windows test. Native Windows Python and Windows ARM are not supported by this installer.
-- **Hardware:** Apple Silicon uses MPS when available. Other machines currently use CPU for U-Net; CUDA is not selected automatically. Large images need substantially more RAM than their compressed file size.
+The dashboard uses Python 3.14; U-Net runs in a separate Python 3.12 environment. Setup creates both. Do not copy virtual environments from another computer. Internet access is needed for installation; large scenes also need substantially more RAM than their compressed file size.
 
-Do not copy virtual environments between computers. Recreate them using the commands below. Homebrew installs the latest patch release in each Python series; the exact local patch versions above describe the tested machine, not a guarantee for every fresh installation.
+**Verification status:** the application and model checks have run locally on Apple Silicon macOS with Python 3.14.3 / 3.12.2. The manual WSL setup commands have been confirmed by a teammate. Linux x86-64 dependency resolution and automated installer logic checks have passed, but the guided Windows installer and launcher still need an end-to-end Windows test.
+
+If a command fails, stop and retain its full error before continuing. A completed download or successful import alone does not verify the installation.
 
 ### A. macOS installation
 
-Open Terminal. If Homebrew is not installed, use its [official installer](https://brew.sh/):
+These instructions target **Apple Silicon Macs**. The pinned PyTorch 2.9 dependency has no official Intel Mac wheels; PyTorch ended those builds after 2.2.x ([PyTorch announcement](https://pytorch.org/blog/pytorch2-2/)). This guide does not provide a verified Intel Mac installation route.
+
+**1. Install the prerequisites.** Open Terminal. If Homebrew is missing, run its [official installer](https://brew.sh/) and complete its printed **Next steps** to add Homebrew to your PATH:
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Complete the installer's printed **Next steps** to put Homebrew on your PATH, then run:
+Then install Git and both Python versions:
 
 ```sh
 brew install git python@3.14 python@3.12
+```
 
+**2. Download the project.** For a new checkout:
+
+```sh
 mkdir -p ~/projects
 cd ~/projects
 git clone https://github.com/Zhengyi-Yan/plumewatch.git
 cd plumewatch
+```
 
+Already cloned with GitHub Desktop, or downloaded and extracted the ZIP? Open Terminal in that repository folder and skip the clone commands. You should be in the folder containing `app.py` and `requirements.txt`. A separate fresh clone is preferable when testing installation, so existing environments or ignored files cannot hide missing setup steps.
+
+The example location is `~/projects/plumewatch`; a Desktop folder works too. Use your actual repository path for later launches.
+
+**3. Install the dashboard environment.** From the repository root:
+
+```sh
 "$(brew --prefix python@3.14)/bin/python3.14" -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
 .venv/bin/python -m pip install -r requirements.txt
+```
 
+**4. Install the U-Net environment.** In the same folder:
+
+```sh
 "$(brew --prefix python@3.12)/bin/python3.12" -m venv experiments/unet/.venv
 experiments/unet/.venv/bin/python -m pip install --upgrade pip
 experiments/unet/.venv/bin/python -m pip install -r experiments/unet/requirements.txt
 ```
 
-If you already cloned the repository, enter that existing checkout rather than cloning again. Continue with **D. Included trained models**.
+The commands select each Python executable explicitly; no environment activation is needed. Homebrew installs its current patch release for each Python series, so your patch versions may differ from the locally tested versions above. Continue with **E. Verify the installation**, then **F. Launch and stop**.
 
 ### B. Windows installation through WSL2
 
-#### Guided installer (no setup commands to type)
+Use the guided installer on **Intel/AMD 64-bit Windows 11 or Windows 10 build 19041 or newer**. It runs the dashboard inside Ubuntu/WSL2; no Windows Git or Python installation is needed. Native Windows Python and Windows ARM are not supported by this installer.
 
-1. Download the repository using **Code → Download ZIP** on GitHub and **Extract All** to a local Windows folder. An existing Windows checkout containing the installer also works. Keep all the extracted files together.
-2. Double-click **`Install PlumeWatch.bat`**. It uses Windows PowerShell; no Windows Git or Python installation is needed. Internet access is required for Ubuntu, Python, dependencies and the repository download.
-3. Accept the Windows administrator prompt if WSL needs enabling. If setup asks for a restart, save your work, restart Windows yourself, then double-click the same installer again. It rechecks completed steps.
-4. If Ubuntu opens for first-time setup, create its username/password. If it leaves you at a shell prompt, type `exit` to return to the installer; follow the prompts if setup opens a separate window. Enter your Ubuntu password if `sudo` asks; password characters are not displayed.
-5. Wait for **Installation and model checks passed**, then use the **PlumeWatch** desktop shortcut. The installer creates both Python environments, installs CPU PyTorch, checks the included models/example, and runs actual RF/U-Net/SVM inference and raster/export checks. There is no need to run sections C–E separately after success. Continue with section G for dashboard use.
+**The installer has not yet been tested end to end on Windows.** Windows policy, disabled virtualization, insufficient disk/RAM or download restrictions can block setup. The installer reports errors and does not change your WSL memory limits.
 
-The application lives in `~/projects/plumewatch` inside the `Ubuntu` WSL distribution. The shortcut uses a launcher saved under `%LOCALAPPDATA%\PlumeWatch`, so the extracted installer folder can be removed after success. Logs are saved there as `install-*.log`; retain the terminal error and log if setup fails. Double-clicking the installer again retries dependency installation without deleting environments. An existing checkout is reused only if its origin is the expected HTTPS GitHub URL; it is not pulled, reset or overwritten. This is an installer/repair flow, not an updater. If it detects an existing WSL1 Ubuntu, it asks before conversion; save and back up that distribution's work first.
+1. [Download the project ZIP](https://github.com/Zhengyi-Yan/plumewatch/archive/refs/heads/main.zip) and choose **Extract All** to a local Windows folder. Keep the extracted files together. An existing Windows checkout containing the installer also works.
+2. Double-click **`Install PlumeWatch.bat`** in the extracted project folder. Run it normally and accept its administrator prompt if Windows needs to enable WSL.
+3. If asked to restart, save your work, restart Windows yourself and double-click the same installer again. It rechecks completed steps.
+4. Create an Ubuntu username/password if prompted. If Ubuntu leaves you at a shell prompt, type `exit` to return to setup. Follow the installer prompts if a separate Ubuntu window opens. Enter your Ubuntu password if `sudo` asks; its characters are not displayed.
+5. Wait for **Installation and model checks passed**. Then double-click the **PlumeWatch** desktop shortcut. Keep its terminal window open while using the dashboard; press **Ctrl+C** there to stop it.
 
-This guided installer has automated checks but **has not been tested end to end on Windows**. A successful model check does not establish plume accuracy or verify browser interactions. On the target Windows machine, also check dashboard startup, classification, export and stopping/relaunching. Windows policy, disabled virtualization, insufficient disk/RAM or download restrictions may prevent installation; setup stops on errors rather than reporting success. It does not change WSL memory limits or download the optional Gabrielle imagery.
+The installer creates both Python environments, installs dependencies including CPU PyTorch, checks the included models/example and runs RF/U-Net/SVM inference and raster/export checks. After success, **skip sections C–E** and continue with **G. Use the dashboard**. Also confirm browser classification, export and relaunch on the target Windows machine.
 
-#### Manual setup alternative
+The application is stored at `~/projects/plumewatch` inside the `Ubuntu` distribution. Logs and the persistent launcher are saved under `%LOCALAPPDATA%\PlumeWatch`; you can remove the extracted installer folder after success. If setup fails, keep its error and `install-*.log`, then rerun the installer after resolving the problem.
 
-Requires Windows 11 or Windows 10 version 2004/build 19041 or newer. See [Microsoft's WSL installation instructions](https://learn.microsoft.com/en-us/windows/wsl/install). The current setup commands have been tested and confirmed on Windows through Ubuntu/WSL. Native Windows without WSL remains unverified.
+Rerunning setup reuses environments and an existing checkout with the expected HTTPS GitHub origin. It does not pull updates, replace source files or retrain models. If an existing Ubuntu uses WSL1, setup asks before converting it; save and back up that distribution's work first. The optional Gabrielle imagery is a separate download described below.
 
-Open **PowerShell as Administrator**:
+<details>
+<summary>Manual Windows/WSL setup instead of the installer</summary>
+
+Follow [Microsoft's WSL setup requirements](https://learn.microsoft.com/en-us/windows/wsl/install). Open **PowerShell as Administrator**:
 
 ```powershell
 wsl --install -d Ubuntu
 ```
 
-Restart Windows when prompted. Then open PowerShell:
+Restart Windows if prompted and complete Ubuntu's username/password setup. For later access, open PowerShell and enter Ubuntu:
 
 ```powershell
-wsl --set-version Ubuntu 2
 wsl -d Ubuntu
 ```
 
-On the first Ubuntu launch, create a Linux username and password. Run the following **inside Ubuntu**, not PowerShell:
+New WSL installations use WSL2. To check an existing installation, run `wsl --list --verbose` in PowerShell. If Ubuntu uses WSL1, save and back up its work before running `wsl --set-version Ubuntu 2`.
+
+Continue with section C **inside Ubuntu**, not PowerShell.
+
+</details>
+
+### C. Linux/WSL Python environments
+
+**Manual setup only — skip this section if the Windows installer succeeded.** These commands target Ubuntu on x86-64, including Ubuntu inside WSL2. Other distributions need their own prerequisite installation commands. Keep a WSL checkout in the Linux home directory rather than on a Windows-mounted drive.
+
+Install the prerequisites and [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```sh
 sudo apt update
 sudo apt install -y git curl ca-certificates
-```
-
-Continue with **C. Linux/WSL Python environments**.
-
-### C. Linux/WSL Python environments
-
-These commands target Ubuntu/WSL. On an existing Ubuntu machine, first install `git`, `curl` and `ca-certificates` with the commands in section B. Other distributions use their own package manager.
-
-Use [uv's official installer](https://docs.astral.sh/uv/getting-started/installation/) to obtain the two Python versions:
-
-```sh
 curl -LsSf https://astral.sh/uv/install.sh | sh
 export PATH="$HOME/.local/bin:$PATH"
+```
 
+For a new checkout:
+
+```sh
 mkdir -p ~/projects
 cd ~/projects
 git clone https://github.com/Zhengyi-Yan/plumewatch.git
 cd plumewatch
+```
 
+If you already have a checkout, enter its repository root instead of cloning again. Install both environments there:
+
+```sh
 uv python install 3.14.3 3.12.2
 
-# Limit simultaneous installation work on memory-constrained machines.
+# Reduce simultaneous installation work on memory-constrained machines.
 export UV_CONCURRENT_INSTALLS=1
 export UV_CONCURRENT_DOWNLOADS=1
 export UV_CONCURRENT_BUILDS=1
@@ -116,20 +152,20 @@ uv pip install --python experiments/unet/.venv/bin/python \
   --torch-backend cpu --only-binary :all: -r experiments/unet/requirements.txt
 ```
 
-Keep the checkout in the Linux home directory under WSL. If a dependency fails to install, retain the error rather than silently changing pinned versions or retraining. The CPU backend avoids downloading CUDA packages that the current worker does not use. These commands resolve successfully against Linux x86-64 wheels; they do not prove successful installation or inference on every Linux/WSL machine. Concurrency limits may reduce memory pressure but cannot guarantee installation when the system is short of memory. Continue with section D.
+The CPU backend avoids CUDA downloads; the current U-Net worker does not select CUDA. Dependency resolution with Linux x86-64 wheels has been checked, but this does not establish successful installation or inference on every Linux/WSL machine. Continue with **E. Verify the installation**, then **F. Launch and stop**.
 
-If installation reports `Cannot allocate memory (os error 12)`, check:
+If installation reports `Cannot allocate memory (os error 12)`, retain the error and inspect available memory/processes:
 
 ```sh
 free -h
 ps -eo pid,comm,rss --sort=-rss | head -15
 ```
 
-Save any work running in WSL before restarting it: `wsl --shutdown` in Windows PowerShell stops **all** WSL sessions. Reopen with `wsl -d Ubuntu`, enter `~/projects/plumewatch`, set the concurrency variables above again and retry the failed install command. There is no need to delete the repository. If it still fails, retain the error and memory/process output for diagnosis; do not increase WSL's memory limit without checking the host's available RAM.
+Save work in all WSL sessions before using `wsl --shutdown` in Windows PowerShell: it stops **all** distributions. Reopen Ubuntu, enter the repository, set the concurrency variables again and retry the failed dependency-install command. Do not delete the checkout, silently change pinned packages or raise WSL memory limits without checking the host's available RAM.
 
 ### D. Included trained models
 
-**All three active dashboard models are included when you clone or pull this repository.** No separate model download, copying or training is needed.
+All three active models are included in the repository. No separate model download, copying or training is needed.
 
 | Model | Included file |
 |---|---|
@@ -137,70 +173,60 @@ Save any work running in WSL before restarting it: `wsl --shutdown` in Windows P
 | U-Net | `experiments/unet/outputs/expanded_all_data_20260930/model.pt` |
 | SVM | `data/processed/svm_rbf_20261001/model.pkl` |
 
-If you cloned an older version, update it from the repository root:
+RF and U-Net are computed together when either is requested, so both environments are required. SVM runs separately when selected. Use these active checkpoints rather than the historical `results/baseline_v1/model.pkl`. Training caches, other experiment checkpoints and most imagery are excluded; the Wellington example is included.
 
-```sh
-git pull --ff-only
-```
-
-RF/U-Net requests compute **both** models and require the separate U-Net Python environment installed above. SVM runs separately when selected. Training caches, other experiment checkpoints and downloaded imagery remain excluded; the Wellington example is included. Do not substitute the historical `results/baseline_v1/model.pkl` for the active RF.
+To update an existing Git checkout deliberately, run `git pull --ff-only` from its root. The Windows installer does not update an existing checkout automatically.
 
 ### E. Verify the installation
 
-From the repository root:
+**For macOS and manual Linux/WSL setup.** The Windows installer performs its own checks. From the repository root:
 
 ```sh
 .venv/bin/python -c "import shiny, rasterio, sklearn, numpy, PIL; print('Dashboard imports OK')"
 experiments/unet/.venv/bin/python -c "import torch, rasterio, numpy; print('U-Net imports OK:', torch.__version__); print('Apple GPU available:', torch.backends.mps.is_available())"
-
 .venv/bin/python -m unittest discover -s tests -p test_processing.py -v
 ```
 
-The tests require all three checkpoints and exercise actual inference and native-grid raster handling on a small synthetic input. They do not establish accuracy on new scenes. Apple GPU availability being false is expected on Intel Macs and Linux/WSL; inference uses CPU.
+Both import checks and the tests must pass. The tests exercise the included checkpoints, real inference, native raster grids and exports on small inputs; they do not establish accuracy on new scenes. Apple GPU availability being false is expected on Linux/WSL. On Apple Silicon, U-Net uses MPS when available and falls back to CPU otherwise.
 
 ### F. Launch and stop
+
+**Windows after guided installation:** double-click the **PlumeWatch** desktop shortcut. It starts the server and opens your browser. Keep the terminal window open; press **Ctrl+C** there to stop. If the browser does not open, use the URL printed in that window.
+
+**macOS or manual Linux/WSL setup:** from the repository root, run:
 
 ```sh
 .venv/bin/python -m shiny run --host 127.0.0.1 --port 8000 app.py
 ```
 
-Open **http://localhost:8000** in your browser. Keep the terminal running. Press **Ctrl+C** there to stop. If port 8000 is occupied, use `--port 8001` and open the corresponding address. No environment activation is needed because the command explicitly uses its Python executable.
+Open [http://localhost:8000](http://localhost:8000) in your browser. Keep Terminal running and press **Ctrl+C** there to stop. If port 8000 is occupied, use `--port 8001` and open [http://localhost:8001](http://localhost:8001).
 
-The included Wellington image at `hutt-test/hutt_20210723_full_scene_v1.tif` loads automatically. It overlaps training data, so it is a setup example rather than an independent accuracy test.
-
-For later launches on macOS/Linux:
+For later launches, open Terminal, enter your repository folder and run the same launch command. For example, with the default checkout location:
 
 ```sh
 cd ~/projects/plumewatch
 .venv/bin/python -m shiny run --host 127.0.0.1 --port 8000 app.py
 ```
 
-#### Windows double-click launcher
+Use your actual path if the project is on your Desktop or elsewhere. No environment activation or dependency reinstallation is needed for normal launches. The included Wellington image loads automatically; it overlaps training data and is a setup example, not an independent accuracy test.
 
-If you used the guided installer, use the **PlumeWatch** desktop shortcut it created. The steps below are for a manual installation.
+<details>
+<summary>Launcher for a manual Windows/WSL installation</summary>
 
-After completing installation once, open the Ubuntu checkout in Windows File Explorer:
+Inside Ubuntu, enter the checkout and open it in File Explorer:
 
 ```sh
 cd ~/projects/plumewatch
 explorer.exe .
 ```
 
-Double-click **`Start Dashboard.bat`** in that folder. The file is included in the repository; no separate launcher download is needed. You can create a Windows desktop shortcut to it for later use.
+Double-click **`Start Dashboard.bat`**. It checks both environments and all three models, starts the server through Ubuntu and opens your Windows browser. It launches an existing installation; it does not install packages. Keep its window open and press **Ctrl+C** there to stop.
 
-The launcher checks the two environments and all three models, starts the same Shiny command shown above through Ubuntu, and opens your default Windows browser when the server responds. Keep its terminal window open and press **Ctrl+C** there to stop. It does not install packages, update the repository, train models or change dashboard settings.
+The defaults are distribution `Ubuntu`, repository `~/projects/plumewatch` and port `8000`. If your manual setup differs, edit `PW_DISTRO`, `PW_REPO` or `PW_PORT` at the top of the launcher; `PW_REPO` must be a Linux path. A busy port produces an error rather than stopping another process. The launcher still needs verification on Windows.
 
-It defaults to the `Ubuntu` distribution, `~/projects/plumewatch` and port `8000`. If yours differs, edit `PW_DISTRO`, `PW_REPO` or `PW_PORT` at the top of the file; use a Linux path for `PW_REPO`. A busy port produces a message rather than stopping another process. Startup errors remain visible. If the browser does not open automatically, use the URL printed in the terminal.
+Alternatively, enter Ubuntu with `wsl -d Ubuntu` in PowerShell, then use the Linux launch commands above.
 
-The launcher has been inspected here but has not been executed on Windows. The existing manual startup remains available:
-
-For later Windows launches, first enter Ubuntu from PowerShell:
-
-```powershell
-wsl -d Ubuntu
-```
-
-Then run the same two Linux launch commands above. If your checkout is elsewhere, use its actual path. Do not reinstall dependencies for each launch.
+</details>
 
 ### G. Use the dashboard
 
