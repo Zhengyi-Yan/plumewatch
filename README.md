@@ -22,7 +22,7 @@ The repository includes all three trained models and a Wellington example image.
 
 The dashboard uses Python 3.14; U-Net runs in a separate Python 3.12 environment. Setup creates both. Do not copy virtual environments from another computer. Internet access is needed for installation; large scenes also need substantially more RAM than their compressed file size.
 
-**Verification status:** the application and model checks have run locally on Apple Silicon macOS with Python 3.14.3 / 3.12.2. The manual WSL setup commands have been confirmed by a teammate. Linux x86-64 dependency resolution and automated installer logic checks have passed, but the guided Windows installer and launcher still need an end-to-end Windows test.
+**Verification status:** the application and model checks have run locally on Apple Silicon macOS with Python 3.14.3 / 3.12.2. Linux x86-64 dependency resolution and automated installer logic checks have passed. On Windows 11 x86-64 with an existing Ubuntu/WSL2 installation, guided installation/model checks and desktop launcher startup, browser opening, graceful server stop/relaunch and failure handling have passed. Fresh WSL/Ubuntu provisioning still needs an end-to-end Windows test.
 
 If a command fails, stop and retain its full error before continuing. A completed download or successful import alone does not verify the installation.
 
@@ -77,7 +77,7 @@ The commands select each Python executable explicitly; no environment activation
 
 Use the guided installer on **Intel/AMD 64-bit Windows 11 or Windows 10 build 19041 or newer**. It runs the dashboard inside Ubuntu/WSL2; no Windows Git or Python installation is needed. Native Windows Python and Windows ARM are not supported by this installer.
 
-**The installer has not yet been tested end to end on Windows.** Windows policy, disabled virtualization, insufficient disk/RAM or download restrictions can block setup. The installer reports errors and does not change your WSL memory limits.
+**Tested on Windows 11 with an existing Ubuntu/WSL2 installation; fresh WSL/Ubuntu provisioning remains unverified end to end.** Windows policy, disabled virtualization, insufficient disk/RAM or download restrictions can block setup. The installer reports errors and does not change your WSL memory limits.
 
 1. [Download the project ZIP](https://github.com/Zhengyi-Yan/plumewatch/archive/refs/heads/main.zip) and choose **Extract All** to a local Windows folder. Keep the extracted files together. An existing Windows checkout containing the installer also works.
 2. Double-click **`Install PlumeWatch.bat`** in the extracted project folder. Run it normally and accept its administrator prompt if Windows needs to enable WSL.
@@ -88,6 +88,14 @@ Use the guided installer on **Intel/AMD 64-bit Windows 11 or Windows 10 build 19
 The installer creates both Python environments, installs dependencies including CPU PyTorch, checks the included models/example and runs RF/U-Net/SVM inference and raster/export checks. After success, **skip sections C–E** and continue with **G. Use the dashboard**. Also confirm browser classification, export and relaunch on the target Windows machine.
 
 The application is stored at `~/projects/plumewatch` inside the `Ubuntu` distribution. Logs and the persistent launcher are saved under `%LOCALAPPDATA%\PlumeWatch`; you can remove the extracted installer folder after success. If setup fails, keep its error and `install-*.log`, then rerun the installer after resolving the problem.
+
+If an older desktop launcher reports `Wsl/Service/WSL_E_DISTRO_NOT_FOUND` even though `wsl --list --verbose` shows `Ubuntu`, replace the installed launcher with `Start Dashboard.bat` from the latest project ZIP. From PowerShell in the extracted project folder, run:
+
+```powershell
+Copy-Item -LiteralPath '.\Start Dashboard.bat' -Destination (Join-Path $env:LOCALAPPDATA 'PlumeWatch\Start Dashboard.bat') -Force
+```
+
+The corrected launcher avoids CMD/WSL distribution-name quoting and stops on every nonzero exit code, including negative WSL errors. Replacing this file preserves Ubuntu and its Python environments; reinstalling is unnecessary for this launcher issue.
 
 Rerunning setup reuses environments and an existing checkout with the expected HTTPS GitHub origin. It does not pull updates, replace source files or retrain models. If an existing Ubuntu uses WSL1, setup asks before converting it; save and back up that distribution's work first. The optional Gabrielle imagery is a separate download described below.
 
@@ -222,7 +230,7 @@ explorer.exe .
 
 Double-click **`Start Dashboard.bat`**. It checks both environments and all three models, starts the server through Ubuntu and opens your Windows browser. It launches an existing installation; it does not install packages. Keep its window open and press **Ctrl+C** there to stop.
 
-The defaults are distribution `Ubuntu`, repository `~/projects/plumewatch` and port `8000`. If your manual setup differs, edit `PW_DISTRO`, `PW_REPO` or `PW_PORT` at the top of the launcher; `PW_REPO` must be a Linux path. A busy port produces an error rather than stopping another process. The launcher still needs verification on Windows.
+The defaults are distribution `Ubuntu`, repository `~/projects/plumewatch` and port `8000`. If your manual setup differs, edit `PW_DISTRO`, `PW_REPO` or `PW_PORT` at the top of the launcher; `PW_REPO` must be a Linux path. A busy port produces an error rather than stopping another process. WSL startup and installation checks must succeed before the launcher announces startup or opens a browser. Windows regression tests run with `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tests\test_windows_launcher.ps1`.
 
 Alternatively, enter Ubuntu with `wsl -d Ubuntu` in PowerShell, then use the Linux launch commands above.
 
