@@ -4,11 +4,11 @@ This guide covers running the current dashboard, reviewing predictions and under
 
 ## 1. What you need
 
-- Git and Python, with permission to create virtual environments and install packages.
+- For manual setup: Git and Python, with permission to create virtual environments and install packages. On Intel/AMD 64-bit Windows, the guided installer in README automates this inside Ubuntu/WSL2; Windows Git/Python are not needed.
 - The repository, which includes the **three active trained model files** and Wellington example.
 - A browser and enough memory for the source scene, model outputs and previews. Large images use considerably more memory than their compressed file size.
 
-**Verified setup:** macOS, dashboard Python 3.14.3 and a separate U-Net Python 3.12.2 environment. The commands below use that setup. Linux x86-64 dependency resolution with prebuilt wheels has been checked for both environments; a full Linux installation and runtime have not been tested here. Native Windows is **not supported unchanged**: the dashboard looks for `experiments/unet/.venv/bin/python`, whereas Windows virtual environments use `Scripts/python.exe`. Windows teammates can try the Linux instructions inside WSL2, but that route has not been verified. Do not copy another machine's virtual environments; recreate them locally.
+**Verified setup:** macOS, dashboard Python 3.14.3 and a separate U-Net Python 3.12.2 environment. The commands below use that setup. Linux x86-64 dependency resolution with prebuilt wheels has been checked for both environments; a full Linux installation and runtime have not been tested here. Native Windows is **not supported unchanged**: the dashboard looks for `experiments/unet/.venv/bin/python`, whereas Windows virtual environments use `Scripts/python.exe`. A teammate has confirmed the manual Ubuntu/WSL setup commands. The guided Windows installer and launcher still need an end-to-end Windows test. Do not copy another machine's virtual environments; recreate them locally.
 
 The U-Net worker uses Apple Metal/MPS when available and otherwise CPU. It does not currently select CUDA. CPU inference may be substantially slower.
 
@@ -36,6 +36,8 @@ No separate model transfer or training is needed. For an older checkout, run `gi
 RF and U-Net are computed together when either is requested, so install both Python environments from README. SVM runs separately when selected. Do not substitute the historical `results/baseline_v1/model.pkl`; it is not the active dashboard RF.
 
 ## 4. Start the dashboard
+
+On Windows after guided installation, double-click the **PlumeWatch** desktop shortcut. Keep its terminal window open and press **Ctrl+C** there to stop. Other installations use:
 
 ```sh
 .venv/bin/python -m shiny run --host 127.0.0.1 --port 8000 app.py

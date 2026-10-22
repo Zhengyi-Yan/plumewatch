@@ -7,14 +7,14 @@ set "PW_PORT=8000"
 
 where wsl.exe >nul 2>&1
 if errorlevel 1 (
-  echo WSL is not available. Complete the Windows installation in README.md first.
+  echo WSL is not available. Run Install PlumeWatch.bat first; see README.md.
   pause
   exit /b 1
 )
 
 wsl.exe -d "%PW_DISTRO%" --cd "%PW_REPO%" -- bash -c "test -f app.py && test -x .venv/bin/python && test -x experiments/unet/.venv/bin/python && test -f data/processed/multiclass_rf_v2_20260930/model.pkl && test -f experiments/unet/outputs/expanded_all_data_20260930/model.pt && test -f data/processed/svm_rbf_20261001/model.pkl"
 if errorlevel 1 (
-  echo Checkout, Python environments or models are missing. See README.md.
+  echo Checkout, Python environments or models are missing. Run Install PlumeWatch.bat to install or repair.
   echo Check PW_DISTRO and PW_REPO at the top of this file.
   pause
   exit /b 1

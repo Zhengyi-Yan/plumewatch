@@ -12,7 +12,7 @@ The dashboard needs two Python environments. The three active trained models are
 
 - **Verified locally:** macOS with dashboard Python 3.14.3 and U-Net Python 3.12.2.
 - **Linux x86-64:** dependency resolution with prebuilt wheels has been checked for both environments; a full Linux runtime installation has not been tested.
-- **Windows:** use Ubuntu through WSL2. Native Windows needs a change to the hardcoded U-Net executable path; the current WSL setup commands have been tested and confirmed by a teammate. The new double-click launcher still needs a Windows test.
+- **Windows:** use Ubuntu through WSL2. The guided installer below automates setup on Intel/AMD 64-bit Windows. The manual WSL commands have been confirmed by a teammate; the installer and double-click launcher still need an end-to-end Windows test. Native Windows Python and Windows ARM are not supported by this installer.
 - **Hardware:** Apple Silicon uses MPS when available. Other machines currently use CPU for U-Net; CUDA is not selected automatically. Large images need substantially more RAM than their compressed file size.
 
 Do not copy virtual environments between computers. Recreate them using the commands below. Homebrew installs the latest patch release in each Python series; the exact local patch versions above describe the tested machine, not a guarantee for every fresh installation.
@@ -47,6 +47,20 @@ experiments/unet/.venv/bin/python -m pip install -r experiments/unet/requirement
 If you already cloned the repository, enter that existing checkout rather than cloning again. Continue with **D. Included trained models**.
 
 ### B. Windows installation through WSL2
+
+#### Guided installer (no setup commands to type)
+
+1. Download the repository using **Code → Download ZIP** on GitHub and **Extract All** to a local Windows folder. An existing Windows checkout containing the installer also works. Keep all the extracted files together.
+2. Double-click **`Install PlumeWatch.bat`**. It uses Windows PowerShell; no Windows Git or Python installation is needed. Internet access is required for Ubuntu, Python, dependencies and the repository download.
+3. Accept the Windows administrator prompt if WSL needs enabling. If setup asks for a restart, save your work, restart Windows yourself, then double-click the same installer again. It rechecks completed steps.
+4. If Ubuntu opens for first-time setup, create its username/password. If it leaves you at a shell prompt, type `exit` to return to the installer; follow the prompts if setup opens a separate window. Enter your Ubuntu password if `sudo` asks; password characters are not displayed.
+5. Wait for **Installation and model checks passed**, then use the **PlumeWatch** desktop shortcut. The installer creates both Python environments, installs CPU PyTorch, checks the included models/example, and runs actual RF/U-Net/SVM inference and raster/export checks. There is no need to run sections C–E separately after success. Continue with section G for dashboard use.
+
+The application lives in `~/projects/plumewatch` inside the `Ubuntu` WSL distribution. The shortcut uses a launcher saved under `%LOCALAPPDATA%\PlumeWatch`, so the extracted installer folder can be removed after success. Logs are saved there as `install-*.log`; retain the terminal error and log if setup fails. Double-clicking the installer again retries dependency installation without deleting environments. An existing checkout is reused only if its origin is the expected HTTPS GitHub URL; it is not pulled, reset or overwritten. This is an installer/repair flow, not an updater. If it detects an existing WSL1 Ubuntu, it asks before conversion; save and back up that distribution's work first.
+
+This guided installer has automated checks but **has not been tested end to end on Windows**. A successful model check does not establish plume accuracy or verify browser interactions. On the target Windows machine, also check dashboard startup, classification, export and stopping/relaunching. Windows policy, disabled virtualization, insufficient disk/RAM or download restrictions may prevent installation; setup stops on errors rather than reporting success. It does not change WSL memory limits or download the optional Gabrielle imagery.
+
+#### Manual setup alternative
 
 Requires Windows 11 or Windows 10 version 2004/build 19041 or newer. See [Microsoft's WSL installation instructions](https://learn.microsoft.com/en-us/windows/wsl/install). The current setup commands have been tested and confirmed on Windows through Ubuntu/WSL. Native Windows without WSL remains unverified.
 
@@ -162,6 +176,8 @@ cd ~/projects/plumewatch
 ```
 
 #### Windows double-click launcher
+
+If you used the guided installer, use the **PlumeWatch** desktop shortcut it created. The steps below are for a manual installation.
 
 After completing installation once, open the Ubuntu checkout in Windows File Explorer:
 

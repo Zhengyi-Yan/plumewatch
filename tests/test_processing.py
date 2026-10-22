@@ -1,12 +1,11 @@
 """One end-to-end check that both trained models share a valid native grid."""
 import tempfile
-import pickle
 import unittest
 from pathlib import Path
 import numpy as np
 import rasterio
 from rasterio.transform import from_origin
-from processing import smooth_plume_preview, ROOT, BANDS, classify_rf, classify_unet, classify_svm, load_svm_model, disagreement_km2, make_download, prepare_scene, summary
+from processing import smooth_plume_preview, BANDS, classify_rf, classify_unet, classify_svm, load_svm_model, disagreement_km2, make_download, prepare_scene, summary
 
 
 class TwoModelWorkflowTest(unittest.TestCase):
@@ -95,9 +94,8 @@ class TwoModelWorkflowTest(unittest.TestCase):
 
     def test_svm_keeps_native_class_when_probability_argmax_disagrees(self):
         model = load_svm_model()
-        with (ROOT / 'data/processed/multiclass_rf_v2_20260930/samples.pkl').open('rb') as stream:
-            samples = pickle.load(stream)
-        x = np.concatenate([item[2][:200] for item in samples])
+        # Support vectors are included in the checkpoint; training caches are not.
+        x = model['scale'].inverse_transform(model['svc'].support_vectors_[:512]).astype('float32')
         expected = model.predict(x)
         probabilities = model.predict_proba(x)
         different = np.flatnonzero(expected != model.classes_[probabilities.argmax(1)])
