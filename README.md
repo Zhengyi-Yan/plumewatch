@@ -22,7 +22,7 @@ The repository includes all three trained models and a Wellington example image.
 
 The dashboard uses Python 3.14; U-Net runs in a separate Python 3.12 environment. Setup creates both. Do not copy virtual environments from another computer. Internet access is needed for installation; large scenes also need substantially more RAM than their compressed file size.
 
-**Verification status:** the application and model checks have run locally on Apple Silicon macOS with Python 3.14.3 / 3.12.2. Linux x86-64 dependency resolution and automated installer logic checks have passed. On Windows 11 x86-64 with an existing Ubuntu/WSL2 installation, guided installation/model checks and desktop launcher startup, browser opening, graceful server stop/relaunch and failure handling have passed. Fresh WSL/Ubuntu provisioning still needs an end-to-end Windows test.
+**Verification status:** the application and model checks have run locally on Apple Silicon macOS with Python 3.14.3 / 3.12.2. Linux x86-64 dependency resolution and automated installer logic checks have passed. On Windows 11 x86-64 with an existing Ubuntu/WSL2 installation, guided installation/model checks and desktop launcher startup, browser opening, graceful server stop/relaunch and failure handling have passed. The new update confirmation flow and fresh WSL/Ubuntu provisioning still need end-to-end Windows tests.
 
 If a command fails, stop and retain its full error before continuing. A completed download or successful import alone does not verify the installation.
 
@@ -77,13 +77,14 @@ The commands select each Python executable explicitly; no environment activation
 
 Use the guided installer on **Intel/AMD 64-bit Windows 11 or Windows 10 build 19041 or newer**. It runs the dashboard inside Ubuntu/WSL2; no Windows Git or Python installation is needed. Native Windows Python and Windows ARM are not supported by this installer.
 
-**Tested on Windows 11 with an existing Ubuntu/WSL2 installation; fresh WSL/Ubuntu provisioning remains unverified end to end.** Windows policy, disabled virtualization, insufficient disk/RAM or download restrictions can block setup. The installer reports errors and does not change your WSL memory limits.
+**Guided setup and launching have been tested on Windows 11 with existing Ubuntu/WSL2. The new update prompt and fresh WSL/Ubuntu provisioning remain unverified end to end on Windows.** Windows policy, disabled virtualization, insufficient disk/RAM or download restrictions can block setup. The installer reports errors and does not change your WSL memory limits.
 
 1. [Download the project ZIP](https://github.com/Zhengyi-Yan/plumewatch/archive/refs/heads/main.zip) and choose **Extract All** to a local Windows folder. Keep the extracted files together. An existing Windows checkout containing the installer also works.
 2. Double-click **`Install PlumeWatch.bat`** in the extracted project folder. Run it normally and accept its administrator prompt if Windows needs to enable WSL.
 3. If asked to restart, save your work, restart Windows yourself and double-click the same installer again. It rechecks completed steps.
 4. Create an Ubuntu username/password if prompted. If Ubuntu leaves you at a shell prompt, type `exit` to return to setup. Follow the installer prompts if a separate Ubuntu window opens. Enter your Ubuntu password if `sudo` asks; its characters are not displayed.
-5. Wait for **Installation and model checks passed**. Then double-click the **PlumeWatch** desktop shortcut. Keep its terminal window open while using the dashboard; press **Ctrl+C** there to stop it.
+5. If an existing Ubuntu checkout is older than GitHub `main`, setup shows the installed and available commit IDs and asks whether to update. Close any running dashboard, then type `y` to accept. Pressing Enter or typing `n` declines the update, stops setup and keeps the existing app and Python environments.
+6. Wait for **Installation and model checks passed**. Then double-click the **PlumeWatch** desktop shortcut. Keep its terminal window open while using the dashboard; press **Ctrl+C** there to stop it.
 
 The installer creates both Python environments, installs dependencies including CPU PyTorch, checks the included models/example and runs RF/U-Net/SVM inference and raster/export checks. After success, **skip sections C–E** and continue with **G. Use the dashboard**. Also confirm browser classification, export and relaunch on the target Windows machine.
 
@@ -97,7 +98,11 @@ Copy-Item -LiteralPath '.\Start Dashboard.bat' -Destination (Join-Path $env:LOCA
 
 The corrected launcher avoids CMD/WSL distribution-name quoting and stops on every nonzero exit code, including negative WSL errors. Replacing this file preserves Ubuntu and its Python environments; reinstalling is unnecessary for this launcher issue.
 
-Rerunning setup reuses environments and an existing checkout with the expected HTTPS GitHub origin. It does not pull updates, replace source files or retrain models. If an existing Ubuntu uses WSL1, setup asks before converting it; save and back up that distribution's work first. The optional Gabrielle imagery is a separate download described below.
+Rerunning setup reuses the existing environments and checks the actual Ubuntu checkout at `~/projects/plumewatch` against GitHub `main`. Downloading a new Windows ZIP alone does not update that checkout. An accepted update moves a clean `main` branch forward to the displayed GitHub commit without creating a merge commit; dependency installation and model checks then run against the updated code.
+
+Setup stops if the origin is unexpected, the checkout is on another branch or detached, local commits prevent a fast-forward update, or local changes/untracked files need review before an available update. It also rechecks the checkout after confirmation and refuses to overwrite ignored local files that conflict with incoming files. It never resets, automatically stashes or discards local work, deletes Python environments, or retrains models. A failed version check stops setup instead of silently using a stale version. Review any reported local work before rerunning setup. Updates are tested using temporary Git repositories; the interactive Windows update flow still needs verification.
+
+If an existing Ubuntu uses WSL1, setup asks before converting it; save and back up that distribution's work first. The optional Gabrielle imagery is a separate download described below.
 
 <details>
 <summary>Manual Windows/WSL setup instead of the installer</summary>
@@ -183,7 +188,7 @@ All three active models are included in the repository. No separate model downlo
 
 RF and U-Net are computed together when either is requested, so both environments are required. SVM runs separately when selected. Use these active checkpoints rather than the historical `results/baseline_v1/model.pkl`. Training caches, other experiment checkpoints and most imagery are excluded; the Wellington example is included.
 
-To update an existing Git checkout deliberately, run `git pull --ff-only` from its root. The Windows installer does not update an existing checkout automatically.
+For a manual installation, update an existing Git checkout with `git pull --ff-only` from its root. The Windows installer checks for updates and asks before updating the Ubuntu checkout.
 
 ### E. Verify the installation
 

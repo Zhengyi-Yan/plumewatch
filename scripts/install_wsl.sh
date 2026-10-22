@@ -22,10 +22,46 @@ if [[ -e "$repo" ]]; then
         echo "$repo already exists and is not the expected GitHub checkout. Nothing was replaced." >&2
         exit 1
     fi
-    echo "Reusing $repo without pulling updates or replacing your files."
+    if [[ $(git -C "$repo" symbolic-ref --quiet --short HEAD || true) != main ]]; then
+        echo 'Setup stopped: the existing checkout must be on main. No branch was changed.' >&2
+        exit 1
+    fi
+    echo "Checking GitHub main for updates to $repo..."
+    if ! git -C "$repo" fetch --no-tags origin main; then
+        echo 'Could not check GitHub for updates. Keep the error above and retry when access is restored.' >&2
+        exit 1
+    fi
+    installed=$(git -C "$repo" rev-parse HEAD)
+    latest=$(git -C "$repo" rev-parse FETCH_HEAD)
+    if [[ "$installed" != "$latest" ]]; then
+        if ! git -C "$repo" merge-base --is-ancestor "$installed" "$latest"; then
+            echo 'Setup stopped: local commits or differing history prevent a fast-forward update. Review the checkout manually; no reset or merge was performed.' >&2
+            exit 1
+        fi
+        if [[ -n $(git -C "$repo" status --porcelain) ]]; then
+            echo 'Setup stopped: local changes or untracked files need review before updating. Nothing was stashed or discarded.' >&2
+            exit 1
+        fi
+        printf 'An update is available.\nInstalled: %.12s\nGitHub main: %.12s\n' "$installed" "$latest"
+        printf 'Close any running dashboard. Update the installed code now? [y/N] '
+        if ! read -r answer || [[ ! "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
+            echo 'Update declined. Setup stopped; your existing app and Python environments were kept.'
+            exit 1
+        fi
+        if [[ $(git -C "$repo" rev-parse HEAD) != "$installed" ||
+              $(git -C "$repo" symbolic-ref --quiet --short HEAD || true) != main ||
+              -n $(git -C "$repo" status --porcelain) ]]; then
+            echo 'Setup stopped: the checkout changed while waiting for confirmation. Review it and rerun setup.' >&2
+            exit 1
+        fi
+        git -C "$repo" merge --ff-only --no-autostash --no-overwrite-ignore "$latest"
+        echo 'Installed code updated. Dependency installation and model checks will run next.'
+    else
+        echo "Installed code is already up to date: ${installed:0:12}"
+    fi
 else
     mkdir -p "$(dirname "$repo")"
-    git clone "$url" "$repo"
+    git clone --branch main "$url" "$repo"
 fi
 cd "$repo"
 
